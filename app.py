@@ -126,7 +126,6 @@ async def handle_photo(update: Update, context):
     """Обработчик фотографий"""
     await update.message.reply_text("🔍 Анализирую фотографию...")
     
-    # Получаем геолокацию
     lat = None
     lon = None
     city = None
@@ -141,7 +140,6 @@ async def handle_photo(update: Update, context):
         if city_match:
             city = city_match.group(1)
     
-    # Скачиваем фото
     photo_file = await update.message.photo[-1].get_file()
     
     with tempfile.NamedTemporaryFile(suffix='.jpg', delete=False) as tmp:
@@ -151,7 +149,6 @@ async def handle_photo(update: Update, context):
     try:
         result_text = await analyze_photo(tmp_path, lat, lon, city)
         
-        # Парсим JSON
         clean = result_text.strip()
         if clean.startswith('```json'):
             clean = clean[7:]
@@ -181,32 +178,25 @@ telegram_app.add_handler(CommandHandler("start", start))
 telegram_app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
 
 
-# ========== ИСПРАВЛЕННЫЙ Flask маршрут ==========
+# ========== ИСПРАВЛЕННЫЙ Flask маршрут (БЕЗ async) ==========
 @app.route('/')
 def index():
     return "Season bot is running!"
 
 
 @app.route(f'/webhook/{TOKEN}', methods=['POST'])
-def webhook():
-    """Принимает обновления от Telegram (синхронная версия)"""
+def webhook():  # ← НЕТ async
+    """Принимает обновления от Telegram"""
     try:
-        # Получаем JSON из запроса
         json_data = request.get_json(force=True)
-        
-        # Создаём объект Update из JSON
         update = Update.de_json(json_data, bot)
-        
-        # Обрабатываем обновление (запускаем асинхронно в существующем цикле)
         asyncio.run(telegram_app.process_update(update))
-        
         return 'ok', 200
     except Exception as e:
         logger.error(f"Webhook error: {e}")
         return 'error', 500
 
 
-# Установка вебхука при запуске
 def set_webhook():
     """Устанавливает вебхук при старте приложения"""
     host = os.getenv('RENDER_EXTERNAL_HOSTNAME')
@@ -227,10 +217,7 @@ def set_webhook():
 
 
 if __name__ == "__main__":
-    # Устанавливаем вебхук
     set_webhook()
-    
-    # Запускаем Flask сервер
     port = int(os.getenv("PORT", 10000))
     logger.info(f"🚀 Starting Flask server on port {port}")
     app.run(host='0.0.0.0', port=port)
