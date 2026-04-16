@@ -5,7 +5,7 @@ import logging
 from dotenv import load_dotenv
 import ollama
 from telegram import Update, Bot
-from telegram.ext import Dispatcher, CommandHandler, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 from flask import Flask, request
 import aiohttp
 from datetime import datetime
@@ -24,13 +24,13 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST")
 if not TOKEN:
     raise ValueError("TELEGRAM_BOT_TOKEN не найден!")
 
-# Инициализация
-bot = Bot(token=TOKEN)
-dispatcher = Dispatcher(bot, None, use_context=True)
-ollama_client = ollama.Client(host=OLLAMA_HOST)
-
 # Flask приложение
 app = Flask(__name__)
+
+# Создаём бота и диспетчер (Application в новой версии)
+bot = Bot(token=TOKEN)
+telegram_app = Application.builder().token(TOKEN).build()
+ollama_client = ollama.Client(host=OLLAMA_HOST)
 
 
 async def get_climate_context(lat: float, lon: float) -> str:
@@ -176,9 +176,9 @@ async def handle_photo(update: Update, context):
         os.unlink(tmp_path)
 
 
-# Регистрация обработчиков
-dispatcher.add_handler(CommandHandler("start", start))
-dispatcher.add_handler(MessageHandler(filters.PHOTO, handle_photo))
+# Регистрация обработчиков в Application (новая версия)
+telegram_app.add_handler(CommandHandler("start", start))
+telegram_app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
 
 
 # Flask маршруты
@@ -188,11 +188,12 @@ def index():
 
 
 @app.route(f'/webhook/{TOKEN}', methods=['POST'])
-def webhook():
+async def webhook():
     """Принимает обновления от Telegram"""
     try:
-        update = Update.de_json(request.get_json(), bot)
-        dispatcher.process_update(update)
+        # Обновляем процессор для каждого запроса
+        async with telegram_app:
+            await telegram_app.process_update(request.get_json())
         return 'ok', 200
     except Exception as e:
         logger.error(f"Webhook error: {e}")
@@ -202,13 +203,21 @@ def webhook():
 # Установка вебхука при запуске
 def set_webhook():
     """Устанавливает вебхук при старте приложения"""
-    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook/{TOKEN}"
+    from urllib.parse import urljoin
+    
+    # Получаем хост из переменной окружения Render
+    host = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+    if not host:
+        logger.warning("RENDER_EXTERNAL_HOSTNAME not set, using localhost")
+        webhook_url = f"https://localhost/webhook/{TOKEN}"
+    else:
+        webhook_url = f"https://{host}/webhook/{TOKEN}"
     
     import requests
     url = f"https://api.telegram.org/bot{TOKEN}/setWebhook"
     response = requests.post(url, json={"url": webhook_url})
     
-    if response.status_code == 200:
+    if response.status_code == 200 and response.json().get('ok'):
         logger.info(f"✅ Webhook set to: {webhook_url}")
     else:
         logger.error(f"❌ Failed to set webhook: {response.text}")
