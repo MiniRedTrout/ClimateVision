@@ -5,3 +5,4 @@ Pillow
 aiohttp
 flask
 requests
+flask[async]
