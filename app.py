@@ -27,7 +27,7 @@ if not TOKEN:
 # Flask приложение
 app = Flask(__name__)
 
-# Создаём бота и диспетчер (Application в новой версии)
+# Создаём бота и приложение Telegram
 bot = Bot(token=TOKEN)
 telegram_app = Application.builder().token(TOKEN).build()
 ollama_client = ollama.Client(host=OLLAMA_HOST)
@@ -176,24 +176,30 @@ async def handle_photo(update: Update, context):
         os.unlink(tmp_path)
 
 
-# Регистрация обработчиков в Application (новая версия)
+# Регистрация обработчиков
 telegram_app.add_handler(CommandHandler("start", start))
 telegram_app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
 
 
-# Flask маршруты
+# ========== ИСПРАВЛЕННЫЙ Flask маршрут ==========
 @app.route('/')
 def index():
     return "Season bot is running!"
 
 
 @app.route(f'/webhook/{TOKEN}', methods=['POST'])
-async def webhook():
-    """Принимает обновления от Telegram"""
+def webhook():
+    """Принимает обновления от Telegram (синхронная версия)"""
     try:
-        # Обновляем процессор для каждого запроса
-        async with telegram_app:
-            await telegram_app.process_update(request.get_json())
+        # Получаем JSON из запроса
+        json_data = request.get_json(force=True)
+        
+        # Создаём объект Update из JSON
+        update = Update.de_json(json_data, bot)
+        
+        # Обрабатываем обновление (запускаем асинхронно в существующем цикле)
+        asyncio.run(telegram_app.process_update(update))
+        
         return 'ok', 200
     except Exception as e:
         logger.error(f"Webhook error: {e}")
@@ -203,9 +209,6 @@ async def webhook():
 # Установка вебхука при запуске
 def set_webhook():
     """Устанавливает вебхук при старте приложения"""
-    from urllib.parse import urljoin
-    
-    # Получаем хост из переменной окружения Render
     host = os.getenv('RENDER_EXTERNAL_HOSTNAME')
     if not host:
         logger.warning("RENDER_EXTERNAL_HOSTNAME not set, using localhost")
