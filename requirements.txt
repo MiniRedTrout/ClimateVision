@@ -3,3 +3,5 @@ ollama
 python-dotenv
 Pillow
 aiohttp
+flask
+requests

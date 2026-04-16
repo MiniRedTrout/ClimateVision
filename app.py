@@ -1,14 +1,15 @@
 import os
-import asyncio
 import json
 import tempfile
 import logging
 from dotenv import load_dotenv
 import ollama
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+from telegram import Update, Bot
+from telegram.ext import Dispatcher, CommandHandler, MessageHandler, filters
+from flask import Flask, request
 import aiohttp
 from datetime import datetime
+import asyncio
 
 load_dotenv()
 
@@ -23,14 +24,17 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST")
 if not TOKEN:
     raise ValueError("TELEGRAM_BOT_TOKEN не найден!")
 
+# Инициализация
+bot = Bot(token=TOKEN)
+dispatcher = Dispatcher(bot, None, use_context=True)
 ollama_client = ollama.Client(host=OLLAMA_HOST)
+
+# Flask приложение
+app = Flask(__name__)
 
 
 async def get_climate_context(lat: float, lon: float) -> str:
-    """
-    Получает климатические данные для координат через Open-Meteo API
-    Возвращает строку с информацией для промпта
-    """
+    """Получает климатические данные через Open-Meteo API"""
     try:
         url = "https://archive-api.open-meteo.com/v1/archive"
         params = {
@@ -49,7 +53,6 @@ async def get_climate_context(lat: float, lon: float) -> str:
         if "daily" not in data:
             return ""
         
-        # Собираем данные по месяцам
         months_data = {}
         for i, date_str in enumerate(data["daily"]["time"]):
             month = datetime.strptime(date_str, "%Y-%m-%d").month
@@ -61,14 +64,7 @@ async def get_climate_context(lat: float, lon: float) -> str:
             months_data[month]["temps"].append(temp)
             months_data[month]["snow"] += snow or 0
         
-        # Формируем читаемую строку
-        month_names = {
-            12: "December", 1: "January", 2: "February",
-            3: "March", 4: "April", 5: "May",
-            6: "June", 7: "July", 8: "August",
-            9: "September", 10: "October", 11: "November"
-        }
-        
+        month_names = {12: "December", 1: "January", 2: "February", 3: "March", 4: "April"}
         context = "\n📊 Climate data for this location (based on 2023):\n"
         for month in [12, 1, 2, 3, 4]:
             if month in months_data:
@@ -77,17 +73,13 @@ async def get_climate_context(lat: float, lon: float) -> str:
                 context += f"   • {month_names[month]}: {avg_temp:.1f}°C, snow {snow:.0f}mm\n"
         
         return context
-        
     except Exception as e:
         logger.warning(f"Climate API error: {e}")
         return ""
 
 
-async def analyze_photo_with_climate(image_path: str, lat: float = None, lon: float = None, city: str = None) -> str:
-    """
-    Анализирует фото с учётом климатических данных
-    """
-    # Получаем климатический контекст, если есть координаты
+async def analyze_photo(image_path: str, lat: float = None, lon: float = None, city: str = None) -> str:
+    """Анализирует фото с учётом климатических данных"""
     climate_context = ""
     if lat and lon:
         climate_context = await get_climate_context(lat, lon)
@@ -104,15 +96,10 @@ async def analyze_photo_with_climate(image_path: str, lat: float = None, lon: fl
 
 Analyze this image and determine the season and month.
 
-IMPORTANT RULES:
-1. Use the climate data as the PRIMARY reference
-2. If climate data shows March has avg temp above 0°C and little snow → it's SPRING, not winter
-3. Only use visual clues from the image (snow, trees, clothing) as secondary evidence
-4. If image shows snow but climate data says March is warming → answer "spring" and month "March"
-5. If image shows snow AND climate data says December/January are cold → answer "winter"
+IMPORTANT: Use climate data as PRIMARY reference.
+If climate data shows March has temp above 0°C → it's SPRING, not winter.
 
-Respond in JSON format ONLY:
-{{"season": "winter/spring/summer/autumn", "month": "month_name", "confidence": "high/medium/low"}}
+Respond in JSON ONLY: {{"season": "...", "month": "...", "confidence": "..."}}
 """
     
     response = ollama_client.chat(
@@ -127,47 +114,19 @@ Respond in JSON format ONLY:
     return response['message']['content']
 
 
-async def analyze_photo_without_climate(image_path: str) -> str:
-    """
-    Анализирует фото без климатических данных (если нет геолокации)
-    """
-    prompt = """
-Analyze this image and determine the season and month.
-Look for visual clues: snow, leaves, flowers, clothing, sunlight.
-
-Respond in JSON format ONLY:
-{"season": "winter/spring/summer/autumn", "month": "month_name", "confidence": "high/medium/low"}
-"""
-    
-    response = ollama_client.chat(
-        model='llama3.2-vision:11b',
-        messages=[{
-            'role': 'user',
-            'content': prompt,
-            'images': [image_path]
-        }]
-    )
-    
-    return response['message']['content']
-
-
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def start(update: Update, context):
     """Обработчик команды /start"""
     await update.message.reply_text(
         "🌍 Привет! Я определяю сезон и месяц по фотографии!\n\n"
-        "📸 Как пользоваться:\n"
-        "1. Отправьте фото\n"
-        "2. Опционально: добавьте геолокацию или напишите город\n"
-        "3. Я проанализирую с учётом климатических данных\n\n"
-        "📍 Для точного определения месяца обязательно добавляйте геолокацию!"
+        "📸 Отправьте фото с геолокацией или укажите город в подписи."
     )
 
 
-async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработчик фотографий с RAG"""
-    await update.message.reply_text("🔍 Анализирую фотографию с учётом климатических данных...")
+async def handle_photo(update: Update, context):
+    """Обработчик фотографий"""
+    await update.message.reply_text("🔍 Анализирую фотографию...")
     
-    # Получаем геолокацию из сообщения
+    # Получаем геолокацию
     lat = None
     lon = None
     city = None
@@ -175,15 +134,12 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message.location:
         lat = update.message.location.latitude
         lon = update.message.location.longitude
-        logger.info(f"Got location: {lat}, {lon}")
     
-    # Проверяем подпись к фото на наличие города
     if update.message.caption:
         import re
         city_match = re.search(r'(?:город|в|из)\s+([А-Яа-яA-Za-z\-]+)', update.message.caption)
         if city_match:
             city = city_match.group(1)
-            logger.info(f"Got city from caption: {city}")
     
     # Скачиваем фото
     photo_file = await update.message.photo[-1].get_file()
@@ -193,109 +149,76 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         tmp_path = tmp.name
     
     try:
-        # Анализируем с учётом доступных данных
-        if lat and lon:
-            result_text = await analyze_photo_with_climate(tmp_path, lat, lon, city)
-        elif city:
-            # Можно добавить геокодинг города → координаты
-            result_text = await analyze_photo_with_climate(tmp_path, city=city)
-        else:
-            result_text = await analyze_photo_without_climate(tmp_path)
+        result_text = await analyze_photo(tmp_path, lat, lon, city)
         
-        # Парсим и форматируем результат
-        try:
-            # Очищаем ответ от markdown
-            clean_text = result_text.strip()
-            if clean_text.startswith('```json'):
-                clean_text = clean_text[7:]
-            if clean_text.startswith('```'):
-                clean_text = clean_text[3:]
-            if clean_text.endswith('```'):
-                clean_text = clean_text[:-3]
-            clean_text = clean_text.strip()
-            
-            result = json.loads(clean_text)
-            
-            season_ru = {
-                "winter": "❄️ Зима",
-                "spring": "🌸 Весна",
-                "summer": "☀️ Лето",
-                "autumn": "🍂 Осень"
-            }.get(result.get("season", ""), "❓ Неизвестно")
-            
-            month_ru = {
-                "January": "Январь", "February": "Февраль", "March": "Март",
-                "April": "Апрель", "May": "Май", "June": "Июнь",
-                "July": "Июль", "August": "Август", "September": "Сентябрь",
-                "October": "Октябрь", "November": "Ноябрь", "December": "Декабрь"
-            }.get(result.get("month", ""), result.get("month", "Неизвестно"))
-            
-            confidence_text = {
-                "high": "🎯 Высокая",
-                "medium": "📊 Средняя",
-                "low": "🤔 Низкая"
-            }.get(result.get("confidence", ""), "❓ Неизвестно")
-            
-            answer = f"""
-📸 **Результат анализа**
-
-🌿 **Сезон:** {season_ru}
-📅 **Месяц:** {month_ru}
-
-📊 **Уверенность:** {confidence_text}
-"""
-            if lat and lon:
-                answer += f"\n📍 Координаты: {lat:.4f}, {lon:.4f}"
-            elif city:
-                answer += f"\n🏙️ Город: {city}"
-            
-            await update.message.reply_text(answer)
-            
-        except json.JSONDecodeError:
-            await update.message.reply_text(f"📸 Результат: {result_text}")
-            
+        # Парсим JSON
+        clean = result_text.strip()
+        if clean.startswith('```json'):
+            clean = clean[7:]
+        if clean.startswith('```'):
+            clean = clean[3:]
+        if clean.endswith('```'):
+            clean = clean[:-3]
+        clean = clean.strip()
+        
+        result = json.loads(clean)
+        
+        season_ru = {"winter": "❄️ Зима", "spring": "🌸 Весна", "summer": "☀️ Лето", "autumn": "🍂 Осень"}.get(result.get("season", ""), "❓ Неизвестно")
+        month_ru = {"January": "Январь", "February": "Февраль", "March": "Март", "April": "Апрель", "May": "Май", "June": "Июнь", "July": "Июль", "August": "Август", "September": "Сентябрь", "October": "Октябрь", "November": "Ноябрь", "December": "Декабрь"}.get(result.get("month", ""), "Неизвестно")
+        
+        answer = f"📸 Результат:\n\n🌿 Сезон: {season_ru}\n📅 Месяц: {month_ru}"
+        await update.message.reply_text(answer)
+        
     except Exception as e:
         logger.error(f"Error: {e}")
-        await update.message.reply_text(f"❌ Ошибка при анализе: {str(e)[:100]}")
+        await update.message.reply_text(f"❌ Ошибка: {str(e)[:100]}")
     finally:
         os.unlink(tmp_path)
 
 
-async def handle_location(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработчик геолокации без фото"""
-    lat = update.message.location.latitude
-    lon = update.message.location.longitude
-    
-    await update.message.reply_text(
-        f"📍 Получены координаты: {lat:.4f}, {lon:.4f}\n\n"
-        "Теперь отправьте фотографию места, чтобы я мог определить сезон!"
-    )
+# Регистрация обработчиков
+dispatcher.add_handler(CommandHandler("start", start))
+dispatcher.add_handler(MessageHandler(filters.PHOTO, handle_photo))
 
 
-async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обработчик текстовых сообщений"""
-    await update.message.reply_text(
-        "📸 Пожалуйста, отправьте фотографию!\n\n"
-        "Я анализирую изображения и определяю сезон и месяц.\n"
-        "Для помощи отправьте /start"
-    )
+# Flask маршруты
+@app.route('/')
+def index():
+    return "Season bot is running!"
 
 
-def main():
-    """Запуск бота"""
-    app = Application.builder().token(TOKEN).build()
+@app.route(f'/webhook/{TOKEN}', methods=['POST'])
+def webhook():
+    """Принимает обновления от Telegram"""
+    try:
+        update = Update.de_json(request.get_json(), bot)
+        dispatcher.process_update(update)
+        return 'ok', 200
+    except Exception as e:
+        logger.error(f"Webhook error: {e}")
+        return 'error', 500
+
+
+# Установка вебхука при запуске
+def set_webhook():
+    """Устанавливает вебхук при старте приложения"""
+    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook/{TOKEN}"
     
-    # Регистрация обработчиков
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
-    app.add_handler(MessageHandler(filters.LOCATION, handle_location))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
+    import requests
+    url = f"https://api.telegram.org/bot{TOKEN}/setWebhook"
+    response = requests.post(url, json={"url": webhook_url})
     
-    logger.info("🚀 Бот запускается...")
-    logger.info(f"📡 Подключение к Ollama: {OLLAMA_HOST}")
-    
-    app.run_polling()
+    if response.status_code == 200:
+        logger.info(f"✅ Webhook set to: {webhook_url}")
+    else:
+        logger.error(f"❌ Failed to set webhook: {response.text}")
 
 
 if __name__ == "__main__":
-    main()
+    # Устанавливаем вебхук
+    set_webhook()
+    
+    # Запускаем Flask сервер
+    port = int(os.getenv("PORT", 10000))
+    logger.info(f"🚀 Starting Flask server on port {port}")
+    app.run(host='0.0.0.0', port=port)
