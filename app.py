@@ -10,7 +10,7 @@ from flask import Flask, request
 import aiohttp
 from datetime import datetime
 import asyncio
-
+from rag.retriever import ClimateRetriever
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
@@ -40,7 +40,7 @@ def init_telegram_app():
     initialized_app = telegram_app
     logger.info("✅ Telegram application initialized")
 
-async def get_climate_context(lat: float, lon: float) -> str:
+async def get_climate_context_api(lat: float, lon: float) -> str:
     try:
         url = "https://archive-api.open-meteo.com/v1/archive"
         params = {
@@ -82,12 +82,19 @@ async def get_climate_context(lat: float, lon: float) -> str:
     except Exception as e:
         logger.warning(f"Climate API error: {e}")
         return ""
-
+climate_retriever = ClimateRetriever()
+async def get_climate_context_hybrid(lat:float=None,lon:float = None,city: str = None):
+    context = climate_retriever.get_climate_context(lat,lon,city)
+    if context:
+        logger.info('Using RAG')
+        return context 
+    if lat and lon:
+        logger.info('RAG not found, using API Open-Meteo')
+        return await get_climate_context_api(lat,lon)
+    return ''
 
 async def analyze_photo(image_path: str, lat: float = None, lon: float = None, city: str = None) -> str:
-    climate_context = ""
-    if lat and lon:
-        climate_context = await get_climate_context(lat, lon)
+    climate_context = await get_climate_context_hybrid(lat, lon,city)
     
     location_text = ""
     if city:

@@ -1,0 +1,1482 @@
+{
+  "abakan": {
+    "city": "Abakan",
+    "lat": 53.7200,
+    "lon": 91.4400,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -15.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -18.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -15.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 4.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -6.0, "snow": 30, "season": "autumn"}
+    }
+  },
+  "anapa": {
+    "city": "Anapa",
+    "lat": 44.8951,
+    "lon": 37.3163,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 4.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 2.5, "snow": 8, "season": "winter"},
+      "February": {"temp": 3.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 6.0, "snow": 1, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 8.0, "snow": 1, "season": "autumn"}
+    }
+  },
+  "arkhangelsk": {
+    "city": "Arkhangelsk",
+    "lat": 64.5394,
+    "lon": 40.5200,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -8.5, "snow": 55, "season": "winter"},
+      "January": {"temp": -11.0, "snow": 60, "season": "winter"},
+      "February": {"temp": -9.5, "snow": 50, "season": "winter"},
+      "March": {"temp": -4.0, "snow": 40, "season": "spring"},
+      "April": {"temp": 1.5, "snow": 20, "season": "spring"},
+      "May": {"temp": 8.0, "snow": 5, "season": "spring"},
+      "June": {"temp": 14.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -3.5, "snow": 35, "season": "autumn"}
+    }
+  },
+  "astrakhan": {
+    "city": "Astrakhan",
+    "lat": 46.3497,
+    "lon": 48.0408,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -2.0, "snow": 10, "season": "winter"},
+      "January": {"temp": -4.0, "snow": 15, "season": "winter"},
+      "February": {"temp": -3.0, "snow": 10, "season": "winter"},
+      "March": {"temp": 2.5, "snow": 3, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 18.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 3.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "barnaul": {
+    "city": "Barnaul",
+    "lat": 53.3478,
+    "lon": 83.7798,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -12.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -15.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -13.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -5.0, "snow": 30, "season": "autumn"}
+    }
+  },
+  "belgorod": {
+    "city": "Belgorod",
+    "lat": 50.5975,
+    "lon": 36.5858,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -3.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -5.5, "snow": 25, "season": "winter"},
+      "February": {"temp": -4.5, "snow": 20, "season": "winter"},
+      "March": {"temp": 0.5, "snow": 10, "season": "spring"},
+      "April": {"temp": 8.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 7.5, "snow": 2, "season": "autumn"},
+      "November": {"temp": 1.0, "snow": 10, "season": "autumn"}
+    }
+  },
+  "bryansk": {
+    "city": "Bryansk",
+    "lat": 53.2420,
+    "lon": 34.3650,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -3.5, "snow": 25, "season": "winter"},
+      "January": {"temp": -5.5, "snow": 30, "season": "winter"},
+      "February": {"temp": -4.5, "snow": 25, "season": "winter"},
+      "March": {"temp": 0.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 7.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": 0.5, "snow": 15, "season": "autumn"}
+    }
+  },
+  "cheboksary": {
+    "city": "Cheboksary",
+    "lat": 56.1432,
+    "lon": 47.2489,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -7.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -10.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -8.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -2.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -2.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "chelyabinsk": {
+    "city": "Chelyabinsk",
+    "lat": 55.1644,
+    "lon": 61.4368,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -10.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -13.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -11.0, "snow": 35, "season": "winter"},
+      "March": {"temp": -4.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.5, "snow": 10, "season": "autumn"},
+      "November": {"temp": -4.0, "snow": 30, "season": "autumn"}
+    }
+  },
+  "chita": {
+    "city": "Chita",
+    "lat": 52.0333,
+    "lon": 113.5500,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -20.0, "snow": 25, "season": "winter"},
+      "January": {"temp": -23.0, "snow": 30, "season": "winter"},
+      "February": {"temp": -18.0, "snow": 20, "season": "winter"},
+      "March": {"temp": -8.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 2.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 10.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 0.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -11.0, "snow": 20, "season": "autumn"}
+    }
+  },
+  "ekaterinburg": {
+    "city": "Yekaterinburg",
+    "lat": 56.8389,
+    "lon": 60.6057,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -10.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -13.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -11.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -4.0, "snow": 30, "season": "spring"},
+      "April": {"temp": 4.0, "snow": 10, "season": "spring"},
+      "May": {"temp": 12.0, "snow": 1, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.0, "snow": 15, "season": "autumn"},
+      "November": {"temp": -4.5, "snow": 35, "season": "autumn"}
+    }
+  },
+  "gelendzhik": {
+    "city": "Gelendzhik",
+    "lat": 44.5667,
+    "lon": 38.0833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 5.0, "snow": 3, "season": "winter"},
+      "January": {"temp": 3.5, "snow": 5, "season": "winter"},
+      "February": {"temp": 4.0, "snow": 3, "season": "winter"},
+      "March": {"temp": 7.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 9.0, "snow": 1, "season": "autumn"}
+    }
+  },
+  "grozny": {
+    "city": "Grozny",
+    "lat": 43.3125,
+    "lon": 45.6980,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 10, "season": "winter"},
+      "January": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "February": {"temp": -1.0, "snow": 10, "season": "winter"},
+      "March": {"temp": 4.0, "snow": 3, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "irkutsk": {
+    "city": "Irkutsk",
+    "lat": 52.2855,
+    "lon": 104.3050,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -15.5, "snow": 30, "season": "winter"},
+      "January": {"temp": -18.0, "snow": 35, "season": "winter"},
+      "February": {"temp": -15.0, "snow": 25, "season": "winter"},
+      "March": {"temp": -6.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 3.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 0.5, "snow": 10, "season": "autumn"},
+      "November": {"temp": -8.0, "snow": 25, "season": "autumn"}
+    }
+  },
+  "ivanovo": {
+    "city": "Ivanovo",
+    "lat": 57.0000,
+    "lon": 40.9833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -6.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -9.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -7.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -2.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -2.5, "snow": 30, "season": "autumn"}
+    }
+  },
+  "izhevsk": {
+    "city": "Izhevsk",
+    "lat": 56.8528,
+    "lon": 53.2194,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -9.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -12.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -10.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -3.5, "snow": 30, "season": "spring"},
+      "April": {"temp": 4.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.0, "snow": 15, "season": "autumn"},
+      "November": {"temp": -4.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "kaliningrad": {
+    "city": "Kaliningrad",
+    "lat": 54.7104,
+    "lon": 20.4522,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -1.5, "snow": 20, "season": "winter"},
+      "February": {"temp": -0.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 2.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 7.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 8.0, "snow": 2, "season": "autumn"},
+      "November": {"temp": 3.0, "snow": 10, "season": "autumn"}
+    }
+  },
+  "kaluga": {
+    "city": "Kaluga",
+    "lat": 54.5180,
+    "lon": 36.2750,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -4.5, "snow": 30, "season": "winter"},
+      "January": {"temp": -6.5, "snow": 35, "season": "winter"},
+      "February": {"temp": -5.5, "snow": 30, "season": "winter"},
+      "March": {"temp": -0.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 7.0, "snow": 3, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.5, "snow": 8, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 20, "season": "autumn"}
+    }
+  },
+  "kemerovo": {
+    "city": "Kemerovo",
+    "lat": 55.3333,
+    "lon": 86.0833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -13.0, "snow": 50, "season": "winter"},
+      "January": {"temp": -16.0, "snow": 55, "season": "winter"},
+      "February": {"temp": -13.5, "snow": 45, "season": "winter"},
+      "March": {"temp": -5.5, "snow": 30, "season": "spring"},
+      "April": {"temp": 3.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -6.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "khabarovsk": {
+    "city": "Khabarovsk",
+    "lat": 48.4800,
+    "lon": 135.0800,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -17.0, "snow": 35, "season": "winter"},
+      "January": {"temp": -20.0, "snow": 40, "season": "winter"},
+      "February": {"temp": -15.0, "snow": 30, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 20, "season": "spring"},
+      "April": {"temp": 5.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": -6.0, "snow": 20, "season": "autumn"}
+    }
+  },
+  "khanty_mansiysk": {
+    "city": "Khanty-Mansiysk",
+    "lat": 61.0000,
+    "lon": 69.0000,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -15.0, "snow": 50, "season": "winter"},
+      "January": {"temp": -18.0, "snow": 55, "season": "winter"},
+      "February": {"temp": -15.5, "snow": 45, "season": "winter"},
+      "March": {"temp": -7.0, "snow": 35, "season": "spring"},
+      "April": {"temp": 0.5, "snow": 15, "season": "spring"},
+      "May": {"temp": 8.0, "snow": 5, "season": "spring"},
+      "June": {"temp": 15.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 8.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 0.0, "snow": 20, "season": "autumn"},
+      "November": {"temp": -9.0, "snow": 40, "season": "autumn"}
+    }
+  },
+  "kirov": {
+    "city": "Kirov",
+    "lat": 58.6000,
+    "lon": 49.6500,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -9.0, "snow": 45, "season": "winter"},
+      "January": {"temp": -11.5, "snow": 50, "season": "winter"},
+      "February": {"temp": -10.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -3.5, "snow": 30, "season": "spring"},
+      "April": {"temp": 4.0, "snow": 10, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -3.5, "snow": 35, "season": "autumn"}
+    }
+  },
+  "krasnodar": {
+    "city": "Krasnodar",
+    "lat": 45.0355,
+    "lon": 38.9750,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 1.5, "snow": 10, "season": "winter"},
+      "January": {"temp": -0.5, "snow": 15, "season": "winter"},
+      "February": {"temp": 0.5, "snow": 10, "season": "winter"},
+      "March": {"temp": 4.5, "snow": 3, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 18.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "krasnoyarsk": {
+    "city": "Krasnoyarsk",
+    "lat": 56.0097,
+    "lon": 92.7917,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -13.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -16.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -13.0, "snow": 35, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 3.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 1.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -7.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "kurgan": {
+    "city": "Kurgan",
+    "lat": 55.4500,
+    "lon": 65.3333,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -12.0, "snow": 35, "season": "winter"},
+      "January": {"temp": -14.5, "snow": 40, "season": "winter"},
+      "February": {"temp": -12.5, "snow": 30, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 20, "season": "spring"},
+      "April": {"temp": 4.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.5, "snow": 10, "season": "autumn"},
+      "November": {"temp": -5.0, "snow": 25, "season": "autumn"}
+    }
+  },
+  "kursk": {
+    "city": "Kursk",
+    "lat": 51.7303,
+    "lon": 36.1926,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -3.5, "snow": 25, "season": "winter"},
+      "January": {"temp": -5.5, "snow": 30, "season": "winter"},
+      "February": {"temp": -4.5, "snow": 25, "season": "winter"},
+      "March": {"temp": 0.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 7.5, "snow": 3, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.0, "snow": 5, "season": "autumn"},
+      "November": {"temp": 0.0, "snow": 15, "season": "autumn"}
+    }
+  },
+  "lipetsk": {
+    "city": "Lipetsk",
+    "lat": 52.6055,
+    "lon": 39.5875,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -4.5, "snow": 30, "season": "winter"},
+      "January": {"temp": -6.5, "snow": 35, "season": "winter"},
+      "February": {"temp": -5.5, "snow": 30, "season": "winter"},
+      "March": {"temp": -0.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 7.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 20, "season": "autumn"}
+    }
+  },
+  "magnitogorsk": {
+    "city": "Magnitogorsk",
+    "lat": 53.3833,
+    "lon": 58.9667,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -10.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -13.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -11.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -4.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 4.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.5, "snow": 10, "season": "autumn"},
+      "November": {"temp": -4.0, "snow": 30, "season": "autumn"}
+    }
+  },
+  "makhachkala": {
+    "city": "Makhachkala",
+    "lat": 42.9833,
+    "lon": 47.4833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 3.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 1.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 2.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 2, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 19.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.0, "snow": 2, "season": "autumn"}
+    }
+  },
+  "mineralnye_vody": {
+    "city": "Mineralnye Vody",
+    "lat": 44.2000,
+    "lon": 43.1333,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 10, "season": "winter"},
+      "January": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "February": {"temp": -1.0, "snow": 10, "season": "winter"},
+      "March": {"temp": 3.0, "snow": 3, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 4.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "moscow": {
+    "city": "Moscow",
+    "lat": 55.7558,
+    "lon": 37.6173,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -5.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -7.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -6.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -1.0, "snow": 30, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -1.5, "snow": 30, "season": "autumn"}
+    }
+  },
+  "murmansk": {
+    "city": "Murmansk",
+    "lat": 68.9667,
+    "lon": 33.0833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -7.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -10.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -8.5, "snow": 45, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 40, "season": "spring"},
+      "April": {"temp": -0.5, "snow": 25, "season": "spring"},
+      "May": {"temp": 4.5, "snow": 10, "season": "spring"},
+      "June": {"temp": 10.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 13.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 11.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 7.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 1.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -3.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "nalchik": {
+    "city": "Nalchik",
+    "lat": 43.4833,
+    "lon": 43.6167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 20, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 2.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 9.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 3.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "nazran": {
+    "city": "Nazran",
+    "lat": 43.2000,
+    "lon": 44.7667,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 12, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 18, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 12, "season": "winter"},
+      "March": {"temp": 3.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 4.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "neryungri": {
+    "city": "Neryungri",
+    "lat": 56.6500,
+    "lon": 124.7167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -28.0, "snow": 25, "season": "winter"},
+      "January": {"temp": -31.0, "snow": 30, "season": "winter"},
+      "February": {"temp": -26.0, "snow": 20, "season": "winter"},
+      "March": {"temp": -14.0, "snow": 15, "season": "spring"},
+      "April": {"temp": -2.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 6.5, "snow": 2, "season": "spring"},
+      "June": {"temp": 14.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 14.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 6.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": -4.0, "snow": 15, "season": "autumn"},
+      "November": {"temp": -19.0, "snow": 25, "season": "autumn"}
+    }
+  },
+  "nizhnevartovsk": {
+    "city": "Nizhnevartovsk",
+    "lat": 60.9333,
+    "lon": 76.5833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -17.0, "snow": 45, "season": "winter"},
+      "January": {"temp": -20.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -17.5, "snow": 40, "season": "winter"},
+      "March": {"temp": -9.0, "snow": 30, "season": "spring"},
+      "April": {"temp": -0.5, "snow": 15, "season": "spring"},
+      "May": {"temp": 7.5, "snow": 3, "season": "spring"},
+      "June": {"temp": 15.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 7.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": -0.5, "snow": 20, "season": "autumn"},
+      "November": {"temp": -10.0, "snow": 40, "season": "autumn"}
+    }
+  },
+  "nizhny_novgorod": {
+    "city": "Nizhny Novgorod",
+    "lat": 56.3269,
+    "lon": 44.0059,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -6.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -8.5, "snow": 45, "season": "winter"},
+      "February": {"temp": -7.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -2.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -2.0, "snow": 30, "season": "autumn"}
+    }
+  },
+  "novokuznetsk": {
+    "city": "Novokuznetsk",
+    "lat": 53.7500,
+    "lon": 87.1167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -12.5, "snow": 50, "season": "winter"},
+      "January": {"temp": -15.0, "snow": 55, "season": "winter"},
+      "February": {"temp": -13.0, "snow": 45, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 30, "season": "spring"},
+      "April": {"temp": 3.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.0, "snow": 15, "season": "autumn"},
+      "November": {"temp": -5.5, "snow": 35, "season": "autumn"}
+    }
+  },
+  "novorossiysk": {
+    "city": "Novorossiysk",
+    "lat": 44.7167,
+    "lon": 37.7667,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 5.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 3.5, "snow": 8, "season": "winter"},
+      "February": {"temp": 4.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 7.0, "snow": 1, "season": "spring"},
+      "April": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 9.0, "snow": 2, "season": "autumn"}
+    }
+  },
+  "novosibirsk": {
+    "city": "Novosibirsk",
+    "lat": 55.0084,
+    "lon": 82.9357,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -15.0, "snow": 45, "season": "winter"},
+      "January": {"temp": -18.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -15.5, "snow": 40, "season": "winter"},
+      "March": {"temp": -6.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 3.5, "snow": 8, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 1, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -7.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "omsk": {
+    "city": "Omsk",
+    "lat": 54.9884,
+    "lon": 73.3242,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -13.0, "snow": 40, "season": "winter"},
+      "January": {"temp": -16.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -13.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -5.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 3.5, "snow": 8, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.0, "snow": 15, "season": "autumn"},
+      "November": {"temp": -6.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "orel": {
+    "city": "Orel",
+    "lat": 52.9667,
+    "lon": 36.0667,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -4.0, "snow": 30, "season": "winter"},
+      "January": {"temp": -6.0, "snow": 35, "season": "winter"},
+      "February": {"temp": -5.0, "snow": 30, "season": "winter"},
+      "March": {"temp": -0.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 7.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 20, "season": "autumn"}
+    }
+  },
+  "orenburg": {
+    "city": "Orenburg",
+    "lat": 51.7667,
+    "lon": 55.1000,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -9.0, "snow": 35, "season": "winter"},
+      "January": {"temp": -11.5, "snow": 40, "season": "winter"},
+      "February": {"temp": -10.0, "snow": 30, "season": "winter"},
+      "March": {"temp": -3.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 6.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -2.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "penza": {
+    "city": "Penza",
+    "lat": 53.2000,
+    "lon": 45.0000,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -6.0, "snow": 35, "season": "winter"},
+      "January": {"temp": -8.0, "snow": 40, "season": "winter"},
+      "February": {"temp": -7.0, "snow": 35, "season": "winter"},
+      "March": {"temp": -1.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 7.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": -1.0, "snow": 20, "season": "autumn"}
+    }
+  },
+  "perm": {
+    "city": "Perm",
+    "lat": 58.0105,
+    "lon": 56.2502,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -9.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -12.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -10.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -3.5, "snow": 30, "season": "spring"},
+      "April": {"temp": 4.0, "snow": 10, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 1, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -4.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "petropavlovsk_kamchatsky": {
+    "city": "Petropavlovsk-Kamchatsky",
+    "lat": 53.0167,
+    "lon": 158.6500,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -5.5, "snow": 80, "season": "winter"},
+      "January": {"temp": -7.0, "snow": 90, "season": "winter"},
+      "February": {"temp": -6.0, "snow": 85, "season": "winter"},
+      "March": {"temp": -3.0, "snow": 75, "season": "spring"},
+      "April": {"temp": 0.5, "snow": 50, "season": "spring"},
+      "May": {"temp": 4.5, "snow": 20, "season": "spring"},
+      "June": {"temp": 9.0, "snow": 5, "season": "summer"},
+      "July": {"temp": 12.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 12.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.0, "snow": 5, "season": "autumn"},
+      "October": {"temp": 3.5, "snow": 25, "season": "autumn"},
+      "November": {"temp": -1.5, "snow": 60, "season": "autumn"}
+    }
+  },
+  "pskov": {
+    "city": "Pskov",
+    "lat": 57.8167,
+    "lon": 28.3333,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -3.5, "snow": 30, "season": "winter"},
+      "January": {"temp": -5.5, "snow": 35, "season": "winter"},
+      "February": {"temp": -4.5, "snow": 30, "season": "winter"},
+      "March": {"temp": -0.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 8, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "pyatigorsk": {
+    "city": "Pyatigorsk",
+    "lat": 44.0333,
+    "lon": 43.0500,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 12, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 15, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 10, "season": "winter"},
+      "March": {"temp": 2.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 8.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 3.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "rostov": {
+    "city": "Rostov-on-Don",
+    "lat": 47.2313,
+    "lon": 39.7233,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -1.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 25, "season": "winter"},
+      "February": {"temp": -2.5, "snow": 20, "season": "winter"},
+      "March": {"temp": 2.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 2.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "ryazan": {
+    "city": "Ryazan",
+    "lat": 54.6167,
+    "lon": 39.7167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -5.5, "snow": 35, "season": "winter"},
+      "January": {"temp": -7.5, "snow": 40, "season": "winter"},
+      "February": {"temp": -6.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -1.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 5, "season": "autumn"},
+      "November": {"temp": -1.0, "snow": 25, "season": "autumn"}
+    }
+  },
+  "saint_petersburg": {
+    "city": "Saint Petersburg",
+    "lat": 59.9343,
+    "lon": 30.3351,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -3.5, "snow": 35, "season": "winter"},
+      "January": {"temp": -5.0, "snow": 40, "season": "winter"},
+      "February": {"temp": -4.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -0.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 8, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "samara": {
+    "city": "Samara",
+    "lat": 53.1959,
+    "lon": 50.1000,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -7.5, "snow": 35, "season": "winter"},
+      "January": {"temp": -10.0, "snow": 40, "season": "winter"},
+      "February": {"temp": -8.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -2.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 6.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": -1.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "saransk": {
+    "city": "Saransk",
+    "lat": 54.1833,
+    "lon": 45.1833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -7.0, "snow": 40, "season": "winter"},
+      "January": {"temp": -9.5, "snow": 45, "season": "winter"},
+      "February": {"temp": -8.0, "snow": 35, "season": "winter"},
+      "March": {"temp": -2.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.5, "snow": 8, "season": "autumn"},
+      "November": {"temp": -1.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "saratov": {
+    "city": "Saratov",
+    "lat": 51.5333,
+    "lon": 46.0167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -6.0, "snow": 30, "season": "winter"},
+      "January": {"temp": -8.5, "snow": 35, "season": "winter"},
+      "February": {"temp": -7.0, "snow": 30, "season": "winter"},
+      "March": {"temp": -1.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 7.5, "snow": 3, "season": "spring"},
+      "May": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 20, "season": "autumn"}
+    }
+  },
+  "smolensk": {
+    "city": "Smolensk",
+    "lat": 54.7828,
+    "lon": 32.0402,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -4.5, "snow": 30, "season": "winter"},
+      "January": {"temp": -6.5, "snow": 35, "season": "winter"},
+      "February": {"temp": -5.5, "snow": 30, "season": "winter"},
+      "March": {"temp": -0.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 6.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 8, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "sochi": {
+    "city": "Sochi",
+    "lat": 43.5853,
+    "lon": 39.7203,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 5.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 8.5, "snow": 1, "season": "spring"},
+      "April": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 9.5, "snow": 1, "season": "autumn"}
+    }
+  },
+  "stavropol": {
+    "city": "Stavropol",
+    "lat": 45.0500,
+    "lon": 41.9667,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 20, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 2.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 9.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 3.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "surgut": {
+    "city": "Surgut",
+    "lat": 61.2500,
+    "lon": 73.4167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -17.0, "snow": 45, "season": "winter"},
+      "January": {"temp": -20.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -17.5, "snow": 40, "season": "winter"},
+      "March": {"temp": -9.0, "snow": 30, "season": "spring"},
+      "April": {"temp": -1.0, "snow": 15, "season": "spring"},
+      "May": {"temp": 6.5, "snow": 5, "season": "spring"},
+      "June": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 7.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": -0.5, "snow": 20, "season": "autumn"},
+      "November": {"temp": -10.0, "snow": 40, "season": "autumn"}
+    }
+  },
+  "syktyvkar": {
+    "city": "Syktyvkar",
+    "lat": 61.6667,
+    "lon": 50.8167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -10.0, "snow": 45, "season": "winter"},
+      "January": {"temp": -13.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -11.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -4.5, "snow": 30, "season": "spring"},
+      "April": {"temp": 2.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 9.5, "snow": 2, "season": "spring"},
+      "June": {"temp": 15.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 14.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 7.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 1.0, "snow": 15, "season": "autumn"},
+      "November": {"temp": -5.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "tambov": {
+    "city": "Tambov",
+    "lat": 52.7167,
+    "lon": 41.4333,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -5.5, "snow": 30, "season": "winter"},
+      "January": {"temp": -7.5, "snow": 35, "season": "winter"},
+      "February": {"temp": -6.5, "snow": 30, "season": "winter"},
+      "March": {"temp": -1.0, "snow": 20, "season": "spring"},
+      "April": {"temp": 7.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 20, "season": "autumn"}
+    }
+  },
+  "tomsk": {
+    "city": "Tomsk",
+    "lat": 56.4886,
+    "lon": 84.9486,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -14.0, "snow": 45, "season": "winter"},
+      "January": {"temp": -16.5, "snow": 50, "season": "winter"},
+      "February": {"temp": -14.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -6.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 2.5, "snow": 8, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 1.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -7.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "tula": {
+    "city": "Tula",
+    "lat": 54.2048,
+    "lon": 37.6181,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -5.0, "snow": 35, "season": "winter"},
+      "January": {"temp": -7.0, "snow": 40, "season": "winter"},
+      "February": {"temp": -6.0, "snow": 35, "season": "winter"},
+      "March": {"temp": -1.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 6.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 8, "season": "autumn"},
+      "November": {"temp": -0.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "tver": {
+    "city": "Tver",
+    "lat": 56.8586,
+    "lon": 35.9006,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -5.5, "snow": 35, "season": "winter"},
+      "January": {"temp": -7.5, "snow": 40, "season": "winter"},
+      "February": {"temp": -6.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -1.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.5, "snow": 10, "season": "autumn"},
+      "November": {"temp": -1.0, "snow": 25, "season": "autumn"}
+    }
+  },
+  "tyumen": {
+    "city": "Tyumen",
+    "lat": 57.1522,
+    "lon": 65.5272,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -12.0, "snow": 40, "season": "winter"},
+      "January": {"temp": -15.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -12.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -5.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 4.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -5.5, "snow": 35, "season": "autumn"}
+    }
+  },
+  "ufa": {
+    "city": "Ufa",
+    "lat": 54.7355,
+    "lon": 55.9919,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -9.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -12.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -10.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -4.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 3.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -3.5, "snow": 30, "season": "autumn"}
+    }
+  },
+  "ulan_ude": {
+    "city": "Ulan-Ude",
+    "lat": 51.8333,
+    "lon": 107.6167,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -20.0, "snow": 25, "season": "winter"},
+      "January": {"temp": -23.0, "snow": 30, "season": "winter"},
+      "February": {"temp": -18.0, "snow": 20, "season": "winter"},
+      "March": {"temp": -8.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 2.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 10.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 0.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -11.0, "snow": 20, "season": "autumn"}
+    }
+  },
+  "ulyanovsk": {
+    "city": "Ulyanovsk",
+    "lat": 54.3167,
+    "lon": 48.3667,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -7.5, "snow": 35, "season": "winter"},
+      "January": {"temp": -10.0, "snow": 40, "season": "winter"},
+      "February": {"temp": -8.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -2.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.5, "snow": 8, "season": "autumn"},
+      "November": {"temp": -2.0, "snow": 25, "season": "autumn"}
+    }
+  },
+  "vladikavkaz": {
+    "city": "Vladikavkaz",
+    "lat": 43.0333,
+    "lon": 44.6833,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 20, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 3.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 4.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "vladimir": {
+    "city": "Vladimir",
+    "lat": 56.1283,
+    "lon": 40.4083,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -6.0, "snow": 35, "season": "winter"},
+      "January": {"temp": -8.0, "snow": 40, "season": "winter"},
+      "February": {"temp": -7.0, "snow": 35, "season": "winter"},
+      "March": {"temp": -1.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -1.5, "snow": 25, "season": "autumn"}
+    }
+  },
+  "volgograd": {
+    "city": "Volgograd",
+    "lat": 48.7080,
+    "lon": 44.5133,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -3.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -5.5, "snow": 25, "season": "winter"},
+      "February": {"temp": -4.5, "snow": 20, "season": "winter"},
+      "March": {"temp": 1.0, "snow": 10, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 8.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 1.5, "snow": 10, "season": "autumn"}
+    }
+  },
+  "vologda": {
+    "city": "Vologda",
+    "lat": 59.2167,
+    "lon": 39.9000,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -7.5, "snow": 40, "season": "winter"},
+      "January": {"temp": -10.0, "snow": 45, "season": "winter"},
+      "February": {"temp": -8.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -3.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 4.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 15.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 9.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 2.5, "snow": 15, "season": "autumn"},
+      "November": {"temp": -3.0, "snow": 35, "season": "autumn"}
+    }
+  },
+  "voronezh": {
+    "city": "Voronezh",
+    "lat": 51.6600,
+    "lon": 39.2000,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -3.5, "snow": 25, "season": "winter"},
+      "January": {"temp": -5.5, "snow": 30, "season": "winter"},
+      "February": {"temp": -4.5, "snow": 25, "season": "winter"},
+      "March": {"temp": 0.5, "snow": 15, "season": "spring"},
+      "April": {"temp": 8.5, "snow": 3, "season": "spring"},
+      "May": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": 0.5, "snow": 15, "season": "autumn"}
+    }
+  },
+  "yakutsk": {
+    "city": "Yakutsk",
+    "lat": 62.0333,
+    "lon": 129.7333,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -35.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -38.0, "snow": 20, "season": "winter"},
+      "February": {"temp": -32.0, "snow": 15, "season": "winter"},
+      "March": {"temp": -18.0, "snow": 10, "season": "spring"},
+      "April": {"temp": -4.0, "snow": 5, "season": "spring"},
+      "May": {"temp": 7.0, "snow": 1, "season": "spring"},
+      "June": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 15.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 5.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": -7.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -25.0, "snow": 15, "season": "autumn"}
+    }
+  },
+  "yaroslavl": {
+    "city": "Yaroslavl",
+    "lat": 57.6167,
+    "lon": 39.8500,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -6.5, "snow": 35, "season": "winter"},
+      "January": {"temp": -8.5, "snow": 40, "season": "winter"},
+      "February": {"temp": -7.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -2.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -1.5, "snow": 25, "season": "autumn"}
+    }
+  }
+}
