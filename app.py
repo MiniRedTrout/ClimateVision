@@ -32,6 +32,20 @@ bot = Bot(token=TOKEN)
 telegram_app = Application.builder().token(TOKEN).build()
 ollama_client = ollama.Client(host=OLLAMA_HOST)
 
+# Глобальная переменная для хранения инициализированного приложения
+initialized_app = None
+
+
+def init_telegram_app():
+    """Инициализирует Telegram приложение (синхронная обёртка)"""
+    global initialized_app
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(telegram_app.initialize())
+    loop.close()
+    initialized_app = telegram_app
+    logger.info("✅ Telegram application initialized")
+
 
 async def get_climate_context(lat: float, lon: float) -> str:
     """Получает климатические данные через Open-Meteo API"""
@@ -187,17 +201,16 @@ def index():
 @app.route(f'/webhook/{TOKEN}', methods=['POST'])
 def webhook():
     """Принимает обновления от Telegram"""
+    global initialized_app
+    
     try:
         json_data = request.get_json(force=True)
         update = Update.de_json(json_data, bot)
         
-        # Инициализируем приложение (ВАЖНО!)
-        telegram_app.initialize()
-        
-        # Запускаем асинхронную обработку
+        # Используем уже инициализированное приложение
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_until_complete(telegram_app.process_update(update))
+        loop.run_until_complete(initialized_app.process_update(update))
         loop.close()
         
         return 'ok', 200
@@ -226,7 +239,13 @@ def set_webhook():
 
 
 if __name__ == "__main__":
+    # Инициализируем Telegram приложение ДО запуска Flask
+    init_telegram_app()
+    
+    # Устанавливаем вебхук
     set_webhook()
+    
+    # Запускаем Flask сервер
     port = int(os.getenv("PORT", 10000))
     logger.info(f"🚀 Starting Flask server on port {port}")
     app.run(host='0.0.0.0', port=port)
