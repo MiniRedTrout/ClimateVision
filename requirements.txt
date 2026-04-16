@@ -2,3 +2,4 @@ python-telegram-bot
 ollama
 python-dotenv
 Pillow
+aiohttp
