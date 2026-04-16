@@ -13,31 +13,25 @@ import asyncio
 
 load_dotenv()
 
-# Настройка логирования
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Переменные окружения
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 OLLAMA_HOST = os.getenv("OLLAMA_HOST")
 
 if not TOKEN:
     raise ValueError("TELEGRAM_BOT_TOKEN не найден!")
 
-# Flask приложение
 app = Flask(__name__)
 
-# Создаём бота и приложение Telegram
 bot = Bot(token=TOKEN)
 telegram_app = Application.builder().token(TOKEN).build()
 ollama_client = ollama.Client(host=OLLAMA_HOST)
 
-# Глобальная переменная для хранения инициализированного приложения
 initialized_app = None
 
 
 def init_telegram_app():
-    """Инициализирует Telegram приложение (синхронная обёртка)"""
     global initialized_app
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
@@ -46,9 +40,7 @@ def init_telegram_app():
     initialized_app = telegram_app
     logger.info("✅ Telegram application initialized")
 
-
 async def get_climate_context(lat: float, lon: float) -> str:
-    """Получает климатические данные через Open-Meteo API"""
     try:
         url = "https://archive-api.open-meteo.com/v1/archive"
         params = {
@@ -93,7 +85,6 @@ async def get_climate_context(lat: float, lon: float) -> str:
 
 
 async def analyze_photo(image_path: str, lat: float = None, lon: float = None, city: str = None) -> str:
-    """Анализирует фото с учётом климатических данных"""
     climate_context = ""
     if lat and lon:
         climate_context = await get_climate_context(lat, lon)
@@ -108,13 +99,16 @@ async def analyze_photo(image_path: str, lat: float = None, lon: float = None, c
 {location_text}
 {climate_context}
 
-Analyze this image and determine the season and month.
+Analyze this image. You MUST determine BOTH season AND month.
+If you cannot determine, use "unknown" for season and "unknown" for month.
 
-IMPORTANT: Use climate data as PRIMARY reference.
-If climate data shows March has temp above 0°C → it's SPRING, not winter.
+Possible seasons: winter, spring, summer, autumn
+Possible months: January, February, March, April, May, June, July, August, September, October, November, December
 
-Respond in JSON ONLY: {{"season": "...", "month": "...", "confidence": "..."}}
-"""
+Respond ONLY with valid JSON. No other text.
+Example: {{"season": "winter", "month": "December", "confidence": "high"}}
+
+Your response:"""
     
     response = ollama_client.chat(
         model='llama3.2-vision:11b',
@@ -129,16 +123,14 @@ Respond in JSON ONLY: {{"season": "...", "month": "...", "confidence": "..."}}
 
 
 async def start(update: Update, context):
-    """Обработчик команды /start"""
     await update.message.reply_text(
-        "🌍 Привет! Я определяю сезон и месяц по фотографии!\n\n"
-        "📸 Отправьте фото с геолокацией или укажите город в подписи."
+        "Привет! Я определяю сезон и месяц по фотографии!\n\n"
+        "Отправьте фото с геолокацией или укажите город в подписи."
     )
 
 
 async def handle_photo(update: Update, context):
-    """Обработчик фотографий"""
-    await update.message.reply_text("🔍 Анализирую фотографию...")
+    await update.message.reply_text(" Анализирую фотографию...")
     
     lat = None
     lon = None
@@ -161,38 +153,54 @@ async def handle_photo(update: Update, context):
         tmp_path = tmp.name
     
     try:
-        result_text = await analyze_photo(tmp_path, lat, lon, city)
-        
-        clean = result_text.strip()
-        if clean.startswith('```json'):
-            clean = clean[7:]
-        if clean.startswith('```'):
-            clean = clean[3:]
-        if clean.endswith('```'):
-            clean = clean[:-3]
-        clean = clean.strip()
-        
-        result = json.loads(clean)
-        
-        season_ru = {"winter": "❄️ Зима", "spring": "🌸 Весна", "summer": "☀️ Лето", "autumn": "🍂 Осень"}.get(result.get("season", ""), "❓ Неизвестно")
-        month_ru = {"January": "Январь", "February": "Февраль", "March": "Март", "April": "Апрель", "May": "Май", "June": "Июнь", "July": "Июль", "August": "Август", "September": "Сентябрь", "October": "Октябрь", "November": "Ноябрь", "December": "Декабрь"}.get(result.get("month", ""), "Неизвестно")
-        
-        answer = f"📸 Результат:\n\n🌿 Сезон: {season_ru}\n📅 Месяц: {month_ru}"
-        await update.message.reply_text(answer)
-        
+      result_text = await analyze_photo(tmp_path, lat, lon, city)
+    
+      logger.info(f"Raw response: {result_text}")
+      clean = result_text.strip()
+      if clean.startswith('```json'):
+        clean = clean[7:]
+      if clean.startswith('```'):
+        clean = clean[3:]
+      if clean.endswith('```'):
+        clean = clean[:-3]
+      clean = clean.strip()
+    
+      result = json.loads(clean)
+    
+      if result.get("season") == "unknown" and result.get("month") != "unknown":
+        month_to_season = {
+            "December": "winter", "January": "winter", "February": "winter",
+            "March": "spring", "April": "spring", "May": "spring",
+            "June": "summer", "July": "summer", "August": "summer",
+            "September": "autumn", "October": "autumn", "November": "autumn"
+        }
+        month = result.get("month")
+        if month in month_to_season:
+            result["season"] = month_to_season[month]
+            logger.info(f"Auto-corrected season to {result['season']}")
+    
+      if result.get("season") == "unknown" and result.get("month") == "unknown":
+        await update.message.reply_text("❌ Не удалось определить сезон и месяц по этому фото. Попробуйте другое фото или добавьте геолокацию.")
+        return
+    
+      season_ru = {"winter": "❄️ Зима", "spring": "🌸 Весна", "summer": "☀️ Лето", "autumn": "🍂 Осень"}.get(result.get("season", ""), "❓ Неизвестно")
+      month_ru = {"January": "Январь", "February": "Февраль", "March": "Март", "April": "Апрель", "May": "Май", "June": "Июнь", "July": "Июль", "August": "Август", "September": "Сентябрь", "October": "Октябрь", "November": "Ноябрь", "December": "Декабрь"}.get(result.get("month", ""), "Неизвестно")
+    
+      answer = f"📸 Результат:\n\n🌿 Сезон: {season_ru}\n📅 Месяц: {month_ru}"
+      await update.message.reply_text(answer)
+    
+    except json.JSONDecodeError as e:
+      logger.error(f"JSON parse error: {e}, response: {result_text}")
+      await update.message.reply_text(f"❌ Ошибка обработки ответа от модели. Техническая проблема.")
     except Exception as e:
-        logger.error(f"Error: {e}")
-        await update.message.reply_text(f"❌ Ошибка: {str(e)[:100]}")
-    finally:
-        os.unlink(tmp_path)
+      logger.error(f"Error: {e}")
+      await update.message.reply_text(f"❌ Ошибка: {str(e)[:100]}")
 
 
-# Регистрация обработчиков
 telegram_app.add_handler(CommandHandler("start", start))
 telegram_app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
 
 
-# ========== Flask маршруты ==========
 @app.route('/')
 def index():
     return "Season bot is running!"
@@ -200,14 +208,12 @@ def index():
 
 @app.route(f'/webhook/{TOKEN}', methods=['POST'])
 def webhook():
-    """Принимает обновления от Telegram"""
     global initialized_app
     
     try:
         json_data = request.get_json(force=True)
         update = Update.de_json(json_data, bot)
         
-        # Используем уже инициализированное приложение
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         loop.run_until_complete(initialized_app.process_update(update))
@@ -220,7 +226,6 @@ def webhook():
 
 
 def set_webhook():
-    """Устанавливает вебхук при старте приложения"""
     host = os.getenv('RENDER_EXTERNAL_HOSTNAME')
     if not host:
         logger.warning("RENDER_EXTERNAL_HOSTNAME not set, using localhost")
@@ -239,13 +244,10 @@ def set_webhook():
 
 
 if __name__ == "__main__":
-    # Инициализируем Telegram приложение ДО запуска Flask
     init_telegram_app()
     
-    # Устанавливаем вебхук
     set_webhook()
     
-    # Запускаем Flask сервер
     port = int(os.getenv("PORT", 10000))
-    logger.info(f"🚀 Starting Flask server on port {port}")
+    logger.info(f" Starting Flask server on port {port}")
     app.run(host='0.0.0.0', port=port)
