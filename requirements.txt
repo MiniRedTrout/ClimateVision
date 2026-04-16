@@ -6,3 +6,4 @@ aiohttp
 flask
 requests
 flask[async]
+numpy
