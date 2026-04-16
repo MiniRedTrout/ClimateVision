@@ -178,19 +178,28 @@ telegram_app.add_handler(CommandHandler("start", start))
 telegram_app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
 
 
-# ========== ИСПРАВЛЕННЫЙ Flask маршрут (БЕЗ async) ==========
+# ========== Flask маршруты ==========
 @app.route('/')
 def index():
     return "Season bot is running!"
 
 
 @app.route(f'/webhook/{TOKEN}', methods=['POST'])
-def webhook():  # ← НЕТ async
+def webhook():
     """Принимает обновления от Telegram"""
     try:
         json_data = request.get_json(force=True)
         update = Update.de_json(json_data, bot)
-        asyncio.run(telegram_app.process_update(update))
+        
+        # Инициализируем приложение (ВАЖНО!)
+        telegram_app.initialize()
+        
+        # Запускаем асинхронную обработку
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(telegram_app.process_update(update))
+        loop.close()
+        
         return 'ok', 200
     except Exception as e:
         logger.error(f"Webhook error: {e}")
