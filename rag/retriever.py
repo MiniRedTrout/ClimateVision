@@ -4,7 +4,7 @@ from typing import Dict, Optional, Tuple
 from .vector_store import VectorStore 
 
 class ClimateRetriever:
-    def __init__(self, knowledge_path: str ='rag/knowledge_base.json'):
+    def __init__(self, knowledge_path: str ='./knowledge_base.json'):
         with open(knowledge_path, 'r', encoding='utf-8') as f:
             self.data = json.load(f)
         self.vector_store = VectorStore(knowledge_path)
