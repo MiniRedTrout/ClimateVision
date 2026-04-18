@@ -218,19 +218,22 @@ def webhook():
     try:
         json_data = request.get_json(force=True)
         update = Update.de_json(json_data, bot)
+        try:
+            loop = asyncio.get_event_loop()
+            if loop.is_closed():
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
 
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
         loop.run_until_complete(initialized_app.process_update(update))
-        loop.close()
-
-
-
+        
         return 'ok', 200
+        
     except Exception as e:
         logger.error(f"Webhook error: {e}")
         return 'error', 500
-
 
 def set_webhook():
     host = os.getenv('RENDER_EXTERNAL_HOSTNAME')
