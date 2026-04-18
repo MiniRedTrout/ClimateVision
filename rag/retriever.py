@@ -2,7 +2,7 @@ import math
 import json
 from typing import Dict, Optional, Tuple 
 from .vector_store import VectorStore 
-
+import os
 class ClimateRetriever:
     def __init__(self, knowledge_path: str =None):
         if knowledge_path is None:
