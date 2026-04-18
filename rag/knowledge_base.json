@@ -1478,5 +1478,3346 @@
       "October": {"temp": 4.0, "snow": 10, "season": "autumn"},
       "November": {"temp": -1.5, "snow": 25, "season": "autumn"}
     }
+  },
+  "abidjan": {
+    "city": "Abidjan",
+    "lat": 5.3200,
+    "lon": -4.0200,
+    "country": "Ivory Coast",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 28.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "abuja": {
+    "city": "Abuja",
+    "lat": 9.0579,
+    "lon": 7.4951,
+    "country": "Nigeria",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 29.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 30.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "addis_ababa": {
+    "city": "Addis Ababa",
+    "lat": 9.0320,
+    "lon": 38.7469,
+    "country": "Ethiopia",
+    "monthly": {
+      "December": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 15.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 16.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 15.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "algiers": {
+    "city": "Algiers",
+    "lat": 36.7538,
+    "lon": 3.0588,
+    "country": "Algeria",
+    "monthly": {
+      "December": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 19.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 24.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 15.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "amman": {
+    "city": "Amman",
+    "lat": 31.9454,
+    "lon": 35.9284,
+    "country": "Jordan",
+    "monthly": {
+      "December": {"temp": 8.0, "snow": 2, "season": "winter"},
+      "January": {"temp": 7.0, "snow": 5, "season": "winter"},
+      "February": {"temp": 8.5, "snow": 3, "season": "winter"},
+      "March": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 23.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 13.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "amsterdam": {
+    "city": "Amsterdam",
+    "lat": 52.3676,
+    "lon": 4.9041,
+    "country": "Netherlands",
+    "monthly": {
+      "December": {"temp": 4.0, "snow": 10, "season": "winter"},
+      "January": {"temp": 3.0, "snow": 12, "season": "winter"},
+      "February": {"temp": 3.5, "snow": 10, "season": "winter"},
+      "March": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 9.0, "snow": 1, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.0, "snow": 3, "season": "autumn"}
+    }
+  },
+  "ankara": {
+    "city": "Ankara",
+    "lat": 39.9334,
+    "lon": 32.8597,
+    "country": "Turkey",
+    "monthly": {
+      "December": {"temp": 2.0, "snow": 15, "season": "winter"},
+      "January": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 2.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 6.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 1, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "ashgabat": {
+    "city": "Ashgabat",
+    "lat": 37.9601,
+    "lon": 58.3261,
+    "country": "Turkmenistan",
+    "monthly": {
+      "December": {"temp": 5.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 3.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 5.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 10.0, "snow": 1, "season": "spring"},
+      "April": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 23.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 31.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 23.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 10.0, "snow": 2, "season": "autumn"}
+    }
+  },
+  "astana": {
+    "city": "Astana",
+    "lat": 51.1694,
+    "lon": 71.4491,
+    "country": "Kazakhstan",
+    "monthly": {
+      "December": {"temp": -12.0, "snow": 25, "season": "winter"},
+      "January": {"temp": -14.0, "snow": 30, "season": "winter"},
+      "February": {"temp": -13.0, "snow": 25, "season": "winter"},
+      "March": {"temp": -6.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 5.0, "snow": 3, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 5, "season": "autumn"},
+      "November": {"temp": -5.0, "snow": 15, "season": "autumn"}
+    }
+  },
+  "athens": {
+    "city": "Athens",
+    "lat": 37.9838,
+    "lon": 23.7275,
+    "country": "Greece",
+    "monthly": {
+      "December": {"temp": 10.0, "snow": 2, "season": "winter"},
+      "January": {"temp": 9.0, "snow": 3, "season": "winter"},
+      "February": {"temp": 9.5, "snow": 2, "season": "winter"},
+      "March": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 24.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 14.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "auckland": {
+    "city": "Auckland",
+    "lat": -36.8485,
+    "lon": 174.7633,
+    "country": "New Zealand",
+    "monthly": {
+      "December": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 11.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 16.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "baghdad": {
+    "city": "Baghdad",
+    "lat": 33.3152,
+    "lon": 44.3661,
+    "country": "Iraq",
+    "monthly": {
+      "December": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 10.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 23.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 30.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 34.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 37.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 36.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 32.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 17.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "baku": {
+    "city": "Baku",
+    "lat": 40.4093,
+    "lon": 49.8671,
+    "country": "Azerbaijan",
+    "monthly": {
+      "December": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 4.5, "snow": 8, "season": "winter"},
+      "February": {"temp": 5.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 7.5, "snow": 2, "season": "spring"},
+      "April": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 10.5, "snow": 2, "season": "autumn"}
+    }
+  },
+  "bangkok": {
+    "city": "Bangkok",
+    "lat": 13.7367,
+    "lon": 100.5231,
+    "country": "Thailand",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 28.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 30.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "barcelona": {
+    "city": "Barcelona",
+    "lat": 41.3851,
+    "lon": 2.1734,
+    "country": "Spain",
+    "monthly": {
+      "December": {"temp": 10.0, "snow": 1, "season": "winter"},
+      "January": {"temp": 9.0, "snow": 1, "season": "winter"},
+      "February": {"temp": 10.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 18.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 13.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "beijing": {
+    "city": "Beijing",
+    "lat": 39.9042,
+    "lon": 116.4074,
+    "country": "China",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 10, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 15, "season": "winter"},
+      "February": {"temp": 0.0, "snow": 10, "season": "winter"},
+      "March": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "beirut": {
+    "city": "Beirut",
+    "lat": 33.8938,
+    "lon": 35.5018,
+    "country": "Lebanon",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 13.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 22.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 23.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 18.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "belgrade": {
+    "city": "Belgrade",
+    "lat": 44.7866,
+    "lon": 20.4489,
+    "country": "Serbia",
+    "monthly": {
+      "December": {"temp": 2.0, "snow": 15, "season": "winter"},
+      "January": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 2.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 7.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 18.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "berlin": {
+    "city": "Berlin",
+    "lat": 52.5200,
+    "lon": 13.4050,
+    "country": "Germany",
+    "monthly": {
+      "December": {"temp": 2.0, "snow": 15, "season": "winter"},
+      "January": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 4.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 9.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 4.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "bern": {
+    "city": "Bern",
+    "lat": 46.9480,
+    "lon": 7.4474,
+    "country": "Switzerland",
+    "monthly": {
+      "December": {"temp": 1.0, "snow": 20, "season": "winter"},
+      "January": {"temp": -0.5, "snow": 25, "season": "winter"},
+      "February": {"temp": 1.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 4.5, "snow": 10, "season": "spring"},
+      "April": {"temp": 8.0, "snow": 3, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.0, "snow": 2, "season": "autumn"},
+      "November": {"temp": 4.0, "snow": 10, "season": "autumn"}
+    }
+  },
+  "bishkek": {
+    "city": "Bishkek",
+    "lat": 42.8746,
+    "lon": 74.5698,
+    "country": "Kyrgyzstan",
+    "monthly": {
+      "December": {"temp": -3.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -4.5, "snow": 20, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 4.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 11.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 4.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "bogota": {
+    "city": "Bogota",
+    "lat": 4.7110,
+    "lon": -74.0721,
+    "country": "Colombia",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 14.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 13.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 13.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 13.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "brasilia": {
+    "city": "Brasilia",
+    "lat": -15.8267,
+    "lon": -47.9218,
+    "country": "Brazil",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 19.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 19.5, "snow": 0, "season": "winter"},
+      "August": {"temp": 21.0, "snow": 0, "season": "winter"},
+      "September": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 22.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "bratislava": {
+    "city": "Bratislava",
+    "lat": 48.1486,
+    "lon": 17.1077,
+    "country": "Slovakia",
+    "monthly": {
+      "December": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -0.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "brussels": {
+    "city": "Brussels",
+    "lat": 50.8503,
+    "lon": 4.3517,
+    "country": "Belgium",
+    "monthly": {
+      "December": {"temp": 4.0, "snow": 10, "season": "winter"},
+      "January": {"temp": 3.0, "snow": 12, "season": "winter"},
+      "February": {"temp": 3.5, "snow": 10, "season": "winter"},
+      "March": {"temp": 6.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 6.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "bucharest": {
+    "city": "Bucharest",
+    "lat": 44.4268,
+    "lon": 26.1025,
+    "country": "Romania",
+    "monthly": {
+      "December": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -1.0, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 17.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "budapest": {
+    "city": "Budapest",
+    "lat": 47.4979,
+    "lon": 19.0402,
+    "country": "Hungary",
+    "monthly": {
+      "December": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -1.0, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "buenos_aires": {
+    "city": "Buenos Aires",
+    "lat": -34.6037,
+    "lon": -58.3816,
+    "country": "Argentina",
+    "monthly": {
+      "December": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 18.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 20.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "cairo": {
+    "city": "Cairo",
+    "lat": 30.0444,
+    "lon": 31.2357,
+    "country": "Egypt",
+    "monthly": {
+      "December": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 15.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 22.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 23.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 19.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "calcutta": {
+    "city": "Kolkata",
+    "lat": 22.5726,
+    "lon": 88.3639,
+    "country": "India",
+    "monthly": {
+      "December": {"temp": 20.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 19.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 22.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 30.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 30.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 30.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 23.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "cape_town": {
+    "city": "Cape Town",
+    "lat": -33.9249,
+    "lon": 18.4241,
+    "country": "South Africa",
+    "monthly": {
+      "December": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 17.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "November": {"temp": 18.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "caracas": {
+    "city": "Caracas",
+    "lat": 10.4806,
+    "lon": -66.9036,
+    "country": "Venezuela",
+    "monthly": {
+      "December": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 23.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 24.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 24.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 24.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 23.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "casablanca": {
+    "city": "Casablanca",
+    "lat": 33.5731,
+    "lon": -7.5898,
+    "country": "Morocco",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 19.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 16.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "chennai": {
+    "city": "Chennai",
+    "lat": 13.0827,
+    "lon": 80.2707,
+    "country": "India",
+    "monthly": {
+      "December": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 24.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 30.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 32.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 31.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 30.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 30.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 29.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 26.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "chicago": {
+    "city": "Chicago",
+    "lat": 41.8781,
+    "lon": -87.6298,
+    "country": "USA",
+    "monthly": {
+      "December": {"temp": -0.5, "snow": 25, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 30, "season": "winter"},
+      "February": {"temp": -1.0, "snow": 25, "season": "winter"},
+      "March": {"temp": 4.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 10.0, "snow": 3, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 19.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 12.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 5.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "chisinau": {
+    "city": "Chisinau",
+    "lat": 47.0105,
+    "lon": 28.8638,
+    "country": "Moldova",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -1.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 0.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 4.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 10.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 4.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "colombo": {
+    "city": "Colombo",
+    "lat": 6.9271,
+    "lon": 79.8612,
+    "country": "Sri Lanka",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "copenhagen": {
+    "city": "Copenhagen",
+    "lat": 55.6761,
+    "lon": 12.5683,
+    "country": "Denmark",
+    "monthly": {
+      "December": {"temp": 2.0, "snow": 12, "season": "winter"},
+      "January": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 12, "season": "winter"},
+      "March": {"temp": 3.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 7.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "dakar": {
+    "city": "Dakar",
+    "lat": 14.7167,
+    "lon": -17.4677,
+    "country": "Senegal",
+    "monthly": {
+      "December": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 22.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 23.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 24.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 26.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "damascus": {
+    "city": "Damascus",
+    "lat": 33.5138,
+    "lon": 36.2765,
+    "country": "Syria",
+    "monthly": {
+      "December": {"temp": 7.0, "snow": 2, "season": "winter"},
+      "January": {"temp": 5.5, "snow": 5, "season": "winter"},
+      "February": {"temp": 7.5, "snow": 3, "season": "winter"},
+      "March": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 24.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 12.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "delhi": {
+    "city": "Delhi",
+    "lat": 28.7041,
+    "lon": 77.1025,
+    "country": "India",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 15.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 21.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 32.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 33.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 31.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 30.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 29.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 19.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "denver": {
+    "city": "Denver",
+    "lat": 39.7392,
+    "lon": -104.9903,
+    "country": "USA",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 20, "season": "winter"},
+      "January": {"temp": -1.0, "snow": 25, "season": "winter"},
+      "February": {"temp": 0.5, "snow": 22, "season": "winter"},
+      "March": {"temp": 4.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 8.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 2, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 17.5, "snow": 1, "season": "autumn"},
+      "October": {"temp": 10.5, "snow": 8, "season": "autumn"},
+      "November": {"temp": 4.0, "snow": 15, "season": "autumn"}
+    }
+  },
+  "dhaka": {
+    "city": "Dhaka",
+    "lat": 23.8103,
+    "lon": 90.4125,
+    "country": "Bangladesh",
+    "monthly": {
+      "December": {"temp": 20.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 19.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 26.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 23.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "doha": {
+    "city": "Doha",
+    "lat": 25.2854,
+    "lon": 51.5310,
+    "country": "Qatar",
+    "monthly": {
+      "December": {"temp": 19.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 17.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 18.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 22.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 32.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 35.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 36.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 36.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 33.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 29.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 24.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "dubai": {
+    "city": "Dubai",
+    "lat": 25.2048,
+    "lon": 55.2708,
+    "country": "UAE",
+    "monthly": {
+      "December": {"temp": 21.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 19.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 20.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 23.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 32.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 34.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 36.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 35.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 33.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 29.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 24.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "dublin": {
+    "city": "Dublin",
+    "lat": 53.3498,
+    "lon": -6.2603,
+    "country": "Ireland",
+    "monthly": {
+      "December": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 5.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 5.5, "snow": 5, "season": "winter"},
+      "March": {"temp": 7.0, "snow": 3, "season": "spring"},
+      "April": {"temp": 8.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.5, "snow": 2, "season": "autumn"}
+    }
+  },
+  "dushanbe": {
+    "city": "Dushanbe",
+    "lat": 38.5598,
+    "lon": 68.7870,
+    "country": "Tajikistan",
+    "monthly": {
+      "December": {"temp": 3.0, "snow": 10, "season": "winter"},
+      "January": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "February": {"temp": 3.5, "snow": 10, "season": "winter"},
+      "March": {"temp": 8.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 9.0, "snow": 3, "season": "autumn"}
+    }
+  },
+  "edinburgh": {
+    "city": "Edinburgh",
+    "lat": 55.9533,
+    "lon": -3.1883,
+    "country": "UK",
+    "monthly": {
+      "December": {"temp": 4.0, "snow": 10, "season": "winter"},
+      "January": {"temp": 3.0, "snow": 12, "season": "winter"},
+      "February": {"temp": 3.5, "snow": 10, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 7.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 13.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 6.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "erbil": {
+    "city": "Erbil",
+    "lat": 36.1912,
+    "lon": 44.0092,
+    "country": "Iraq",
+    "monthly": {
+      "December": {"temp": 8.0, "snow": 3, "season": "winter"},
+      "January": {"temp": 6.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 8.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 12.5, "snow": 1, "season": "spring"},
+      "April": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 30.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 34.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 34.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 29.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 14.0, "snow": 1, "season": "autumn"}
+    }
+  },
+  "erzurum": {
+    "city": "Erzurum",
+    "lat": 39.9086,
+    "lon": 41.2769,
+    "country": "Turkey",
+    "monthly": {
+      "December": {"temp": -6.0, "snow": 30, "season": "winter"},
+      "January": {"temp": -9.0, "snow": 35, "season": "winter"},
+      "February": {"temp": -7.0, "snow": 30, "season": "winter"},
+      "March": {"temp": -1.0, "snow": 25, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 2, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 8.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": 1.5, "snow": 20, "season": "autumn"}
+    }
+  },
+  "frankfurt": {
+    "city": "Frankfurt",
+    "lat": 50.1109,
+    "lon": 8.6821,
+    "country": "Germany",
+    "monthly": {
+      "December": {"temp": 2.5, "snow": 12, "season": "winter"},
+      "January": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "February": {"temp": 2.0, "snow": 12, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "freetown": {
+    "city": "Freetown",
+    "lat": 8.4845,
+    "lon": -13.2349,
+    "country": "Sierra Leone",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "geneva": {
+    "city": "Geneva",
+    "lat": 46.2044,
+    "lon": 6.1432,
+    "country": "Switzerland",
+    "monthly": {
+      "December": {"temp": 2.5, "snow": 15, "season": "winter"},
+      "January": {"temp": 1.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 3.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 6.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 10.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 6.0, "snow": 8, "season": "autumn"}
+    }
+  },
+  "guatemala_city": {
+    "city": "Guatemala City",
+    "lat": 14.6349,
+    "lon": -90.5069,
+    "country": "Guatemala",
+    "monthly": {
+      "December": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 18.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 19.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 20.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 18.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "hanoi": {
+    "city": "Hanoi",
+    "lat": 21.0285,
+    "lon": 105.8542,
+    "country": "Vietnam",
+    "monthly": {
+      "December": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 16.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 21.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 25.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 24.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 21.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "harare": {
+    "city": "Harare",
+    "lat": -17.8252,
+    "lon": 31.0335,
+    "country": "Zimbabwe",
+    "monthly": {
+      "December": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "March": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 14.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 16.0, "snow": 0, "season": "winter"},
+      "September": {"temp": 19.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 21.0, "snow": 0, "season": "spring"},
+      "November": {"temp": 21.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "havana": {
+    "city": "Havana",
+    "lat": 23.1136,
+    "lon": -82.3666,
+    "country": "Cuba",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 21.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 23.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 25.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 26.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 23.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "helsinki": {
+    "city": "Helsinki",
+    "lat": 60.1699,
+    "lon": 24.9384,
+    "country": "Finland",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 25, "season": "winter"},
+      "January": {"temp": -3.5, "snow": 30, "season": "winter"},
+      "February": {"temp": -3.0, "snow": 25, "season": "winter"},
+      "March": {"temp": -0.5, "snow": 20, "season": "spring"},
+      "April": {"temp": 4.5, "snow": 8, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.5, "snow": 3, "season": "autumn"},
+      "November": {"temp": 2.0, "snow": 15, "season": "autumn"}
+    }
+  },
+  "ho_chi_minh": {
+    "city": "Ho Chi Minh City",
+    "lat": 10.8231,
+    "lon": 106.6297,
+    "country": "Vietnam",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 26.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "hong_kong": {
+    "city": "Hong Kong",
+    "lat": 22.3193,
+    "lon": 114.1694,
+    "country": "China",
+    "monthly": {
+      "December": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 16.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 17.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 19.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 23.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 26.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 21.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "honolulu": {
+    "city": "Honolulu",
+    "lat": 21.3069,
+    "lon": -157.8583,
+    "country": "USA",
+    "monthly": {
+      "December": {"temp": 23.5, "snow": 0, "season": "winter"},
+      "January": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 23.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 25.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "istanbul": {
+    "city": "Istanbul",
+    "lat": 41.0082,
+    "lon": 28.9784,
+    "country": "Turkey",
+    "monthly": {
+      "December": {"temp": 8.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 6.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 7.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 9.0, "snow": 2, "season": "spring"},
+      "April": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 12.0, "snow": 1, "season": "autumn"}
+    }
+  },
+  "jakarta": {
+    "city": "Jakarta",
+    "lat": -6.2088,
+    "lon": 106.8456,
+    "country": "Indonesia",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "March": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 28.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "August": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "November": {"temp": 27.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "jeddah": {
+    "city": "Jeddah",
+    "lat": 21.5433,
+    "lon": 39.1728,
+    "country": "Saudi Arabia",
+    "monthly": {
+      "December": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 31.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 33.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 34.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 34.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 32.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 30.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 26.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "jerusalem": {
+    "city": "Jerusalem",
+    "lat": 31.7683,
+    "lon": 35.2137,
+    "country": "Israel",
+    "monthly": {
+      "December": {"temp": 9.0, "snow": 2, "season": "winter"},
+      "January": {"temp": 8.0, "snow": 5, "season": "winter"},
+      "February": {"temp": 9.0, "snow": 3, "season": "winter"},
+      "March": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 23.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 14.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "johannesburg": {
+    "city": "Johannesburg",
+    "lat": -26.2041,
+    "lon": 28.0473,
+    "country": "South Africa",
+    "monthly": {
+      "December": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "January": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "February": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 18.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 15.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 10.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 10.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 18.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "kabul": {
+    "city": "Kabul",
+    "lat": 34.5553,
+    "lon": 69.2075,
+    "country": "Afghanistan",
+    "monthly": {
+      "December": {"temp": 0.5, "snow": 15, "season": "winter"},
+      "January": {"temp": -1.0, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 18, "season": "winter"},
+      "March": {"temp": 7.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 12.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "kampala": {
+    "city": "Kampala",
+    "lat": 0.3136,
+    "lon": 32.5811,
+    "country": "Uganda",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 22.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 22.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 22.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 21.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 21.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "karachi": {
+    "city": "Karachi",
+    "lat": 24.8607,
+    "lon": 67.0011,
+    "country": "Pakistan",
+    "monthly": {
+      "December": {"temp": 20.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 18.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 20.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 30.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 31.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 30.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 29.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 24.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "kathmandu": {
+    "city": "Kathmandu",
+    "lat": 27.7172,
+    "lon": 85.3240,
+    "country": "Nepal",
+    "monthly": {
+      "December": {"temp": 10.0, "snow": 2, "season": "winter"},
+      "January": {"temp": 9.0, "snow": 5, "season": "winter"},
+      "February": {"temp": 11.0, "snow": 3, "season": "winter"},
+      "March": {"temp": 15.0, "snow": 1, "season": "spring"},
+      "April": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 21.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 14.0, "snow": 1, "season": "autumn"}
+    }
+  },
+  "khartoum": {
+    "city": "Khartoum",
+    "lat": 15.5007,
+    "lon": 32.5599,
+    "country": "Sudan",
+    "monthly": {
+      "December": {"temp": 24.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 33.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 35.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 35.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 33.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 32.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 34.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 32.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 28.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "kiev": {
+    "city": "Kyiv",
+    "lat": 50.4501,
+    "lon": 30.5234,
+    "country": "Ukraine",
+    "monthly": {
+      "December": {"temp": -2.0, "snow": 20, "season": "winter"},
+      "January": {"temp": -4.0, "snow": 25, "season": "winter"},
+      "February": {"temp": -3.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 1.5, "snow": 10, "season": "spring"},
+      "April": {"temp": 9.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 8.5, "snow": 2, "season": "autumn"},
+      "November": {"temp": 2.0, "snow": 10, "season": "autumn"}
+    }
+  },
+  "kingston": {
+    "city": "Kingston",
+    "lat": 18.0179,
+    "lon": -76.8099,
+    "country": "Jamaica",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 26.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 26.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "kinshasa": {
+    "city": "Kinshasa",
+    "lat": -4.4419,
+    "lon": 15.2663,
+    "country": "DR Congo",
+    "monthly": {
+      "December": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "February": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 24.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "September": {"temp": 26.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 26.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 26.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "kuala_lumpur": {
+    "city": "Kuala Lumpur",
+    "lat": 3.1390,
+    "lon": 101.6869,
+    "country": "Malaysia",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "kuwait_city": {
+    "city": "Kuwait City",
+    "lat": 29.3759,
+    "lon": 47.9774,
+    "country": "Kuwait",
+    "monthly": {
+      "December": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 31.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 35.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 37.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 37.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 33.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 20.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "lagos": {
+    "city": "Lagos",
+    "lat": 6.5244,
+    "lon": 3.3792,
+    "country": "Nigeria",
+    "monthly": {
+      "December": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 28.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "lahore": {
+    "city": "Lahore",
+    "lat": 31.5497,
+    "lon": 74.3436,
+    "country": "Pakistan",
+    "monthly": {
+      "December": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 11.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 20.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 26.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 31.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 34.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 32.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 31.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 30.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 19.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "la_paz": {
+    "city": "La Paz",
+    "lat": -16.5000,
+    "lon": -68.1500,
+    "country": "Bolivia",
+    "monthly": {
+      "December": {"temp": 11.0, "snow": 1, "season": "summer"},
+      "January": {"temp": 11.0, "snow": 1, "season": "summer"},
+      "February": {"temp": 11.0, "snow": 1, "season": "summer"},
+      "March": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 10.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 9.5, "snow": 1, "season": "autumn"},
+      "June": {"temp": 8.5, "snow": 2, "season": "winter"},
+      "July": {"temp": 8.0, "snow": 3, "season": "winter"},
+      "August": {"temp": 8.5, "snow": 2, "season": "winter"},
+      "September": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "October": {"temp": 10.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 11.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "lima": {
+    "city": "Lima",
+    "lat": -12.0464,
+    "lon": -77.0428,
+    "country": "Peru",
+    "monthly": {
+      "December": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "March": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 17.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 16.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 16.0, "snow": 0, "season": "winter"},
+      "September": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 19.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "lisbon": {
+    "city": "Lisbon",
+    "lat": 38.7223,
+    "lon": -9.1393,
+    "country": "Portugal",
+    "monthly": {
+      "December": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 14.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "ljubljana": {
+    "city": "Ljubljana",
+    "lat": 46.0569,
+    "lon": 14.5058,
+    "country": "Slovenia",
+    "monthly": {
+      "December": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -0.5, "snow": 25, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 20, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 10, "season": "spring"},
+      "April": {"temp": 10.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.5, "snow": 2, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 10, "season": "autumn"}
+    }
+  },
+  "london": {
+    "city": "London",
+    "lat": 51.5074,
+    "lon": -0.1278,
+    "country": "UK",
+    "monthly": {
+      "December": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 5.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 5.5, "snow": 5, "season": "winter"},
+      "March": {"temp": 8.0, "snow": 2, "season": "spring"},
+      "April": {"temp": 10.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 8.0, "snow": 2, "season": "autumn"}
+    }
+  },
+  "los_angeles": {
+    "city": "Los Angeles",
+    "lat": 34.0522,
+    "lon": -118.2437,
+    "country": "USA",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 13.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 16.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "luanda": {
+    "city": "Luanda",
+    "lat": -8.8390,
+    "lon": 13.2894,
+    "country": "Angola",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "February": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 23.5, "snow": 0, "season": "winter"},
+      "August": {"temp": 23.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 26.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "lubumbashi": {
+    "city": "Lubumbashi",
+    "lat": -11.6645,
+    "lon": 27.4823,
+    "country": "DR Congo",
+    "monthly": {
+      "December": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "January": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "February": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "March": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 16.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 16.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "September": {"temp": 21.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 22.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "lusaka": {
+    "city": "Lusaka",
+    "lat": -15.3875,
+    "lon": 28.3228,
+    "country": "Zambia",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 17.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 15.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 17.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 21.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 23.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 23.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "luxembourg": {
+    "city": "Luxembourg",
+    "lat": 49.6117,
+    "lon": 6.1300,
+    "country": "Luxembourg",
+    "monthly": {
+      "December": {"temp": 2.0, "snow": 15, "season": "winter"},
+      "January": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 4.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 8.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.0, "snow": 1, "season": "autumn"},
+      "November": {"temp": 4.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "madrid": {
+    "city": "Madrid",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "country": "Spain",
+    "monthly": {
+      "December": {"temp": 6.0, "snow": 2, "season": "winter"},
+      "January": {"temp": 5.0, "snow": 3, "season": "winter"},
+      "February": {"temp": 6.5, "snow": 2, "season": "winter"},
+      "March": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "April": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 9.0, "snow": 1, "season": "autumn"}
+    }
+  },
+  "malabo": {
+    "city": "Malabo",
+    "lat": 3.7500,
+    "lon": 8.7833,
+    "country": "Equatorial Guinea",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "male": {
+    "city": "Male",
+    "lat": 4.1755,
+    "lon": 73.5093,
+    "country": "Maldives",
+    "monthly": {
+      "December": {"temp": 28.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 28.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 28.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 28.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "managua": {
+    "city": "Managua",
+    "lat": 12.1150,
+    "lon": -86.2362,
+    "country": "Nicaragua",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "manama": {
+    "city": "Manama",
+    "lat": 26.2285,
+    "lon": 50.5865,
+    "country": "Bahrain",
+    "monthly": {
+      "December": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 17.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 21.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 30.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 33.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 34.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 34.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 32.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 29.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 23.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "manila": {
+    "city": "Manila",
+    "lat": 14.5995,
+    "lon": 120.9842,
+    "country": "Philippines",
+    "monthly": {
+      "December": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 25.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "maputo": {
+    "city": "Maputo",
+    "lat": -25.9692,
+    "lon": 32.5732,
+    "country": "Mozambique",
+    "monthly": {
+      "December": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 23.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 21.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 18.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 18.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 19.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 21.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 24.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "marrakesh": {
+    "city": "Marrakesh",
+    "lat": 31.6295,
+    "lon": -7.9811,
+    "country": "Morocco",
+    "monthly": {
+      "December": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 21.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 21.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 16.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "maseru": {
+    "city": "Maseru",
+    "lat": -29.3167,
+    "lon": 27.4833,
+    "country": "Lesotho",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "March": {"temp": 19.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "May": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 9.5, "snow": 2, "season": "winter"},
+      "July": {"temp": 9.0, "snow": 3, "season": "winter"},
+      "August": {"temp": 11.5, "snow": 1, "season": "winter"},
+      "September": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 19.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "mexico_city": {
+    "city": "Mexico City",
+    "lat": 19.4326,
+    "lon": -99.1332,
+    "country": "Mexico",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 13.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 15.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "minsk": {
+    "city": "Minsk",
+    "lat": 53.9045,
+    "lon": 27.5615,
+    "country": "Belarus",
+    "monthly": {
+      "December": {"temp": -2.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -4.5, "snow": 25, "season": "winter"},
+      "February": {"temp": -3.5, "snow": 20, "season": "winter"},
+      "March": {"temp": 0.5, "snow": 12, "season": "spring"},
+      "April": {"temp": 7.0, "snow": 3, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.0, "snow": 3, "season": "autumn"},
+      "November": {"temp": 0.5, "snow": 12, "season": "autumn"}
+    }
+  },
+  "mogadishu": {
+    "city": "Mogadishu",
+    "lat": 2.0469,
+    "lon": 45.3182,
+    "country": "Somalia",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "monrovia": {
+    "city": "Monrovia",
+    "lat": 6.3106,
+    "lon": -10.8048,
+    "country": "Liberia",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "montevideo": {
+    "city": "Montevideo",
+    "lat": -34.9011,
+    "lon": -56.1645,
+    "country": "Uruguay",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "March": {"temp": 21.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 17.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 10.5, "snow": 0, "season": "winter"},
+      "August": {"temp": 11.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 18.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "montreal": {
+    "city": "Montreal",
+    "lat": 45.5017,
+    "lon": -73.5673,
+    "country": "Canada",
+    "monthly": {
+      "December": {"temp": -5.0, "snow": 40, "season": "winter"},
+      "January": {"temp": -8.5, "snow": 45, "season": "winter"},
+      "February": {"temp": -6.5, "snow": 40, "season": "winter"},
+      "March": {"temp": -1.0, "snow": 30, "season": "spring"},
+      "April": {"temp": 6.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 13.5, "snow": 1, "season": "spring"},
+      "June": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 8.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": 2.0, "snow": 20, "season": "autumn"}
+    }
+  },
+  "moscow": {
+    "city": "Moscow",
+    "lat": 55.7558,
+    "lon": 37.6173,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -5.5, "snow": 45, "season": "winter"},
+      "January": {"temp": -7.0, "snow": 50, "season": "winter"},
+      "February": {"temp": -6.0, "snow": 40, "season": "winter"},
+      "March": {"temp": -1.0, "snow": 30, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 5.0, "snow": 10, "season": "autumn"},
+      "November": {"temp": -1.5, "snow": 30, "season": "autumn"}
+    }
+  },
+  "mumbai": {
+    "city": "Mumbai",
+    "lat": 19.0760,
+    "lon": 72.8777,
+    "country": "India",
+    "monthly": {
+      "December": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 24.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 30.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "muscat": {
+    "city": "Muscat",
+    "lat": 23.5880,
+    "lon": 58.3829,
+    "country": "Oman",
+    "monthly": {
+      "December": {"temp": 21.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 20.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 21.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 34.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 36.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 37.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 36.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 33.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 29.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 25.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "nairobi": {
+    "city": "Nairobi",
+    "lat": -1.2921,
+    "lon": 36.8219,
+    "country": "Kenya",
+    "monthly": {
+      "December": {"temp": 18.5, "snow": 0, "season": "winter"},
+      "January": {"temp": 18.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 19.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 19.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 19.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 17.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 18.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "nassau": {
+    "city": "Nassau",
+    "lat": 25.0443,
+    "lon": -77.3504,
+    "country": "Bahamas",
+    "monthly": {
+      "December": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 22.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 23.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 25.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 26.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 24.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "ndjamena": {
+    "city": "N'Djamena",
+    "lat": 12.1348,
+    "lon": 15.0557,
+    "country": "Chad",
+    "monthly": {
+      "December": {"temp": 24.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 30.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 34.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 35.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 32.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 30.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 30.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 26.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "new_york": {
+    "city": "New York",
+    "lat": 40.7128,
+    "lon": -74.0060,
+    "country": "USA",
+    "monthly": {
+      "December": {"temp": 3.0, "snow": 15, "season": "winter"},
+      "January": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 5.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 8.0, "snow": 3, "season": "autumn"}
+    }
+  },
+  "nicosia": {
+    "city": "Nicosia",
+    "lat": 35.1856,
+    "lon": 33.3823,
+    "country": "Cyprus",
+    "monthly": {
+      "December": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 10.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 10.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 13.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 22.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 16.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "niamey": {
+    "city": "Niamey",
+    "lat": 13.5127,
+    "lon": 2.1126,
+    "country": "Niger",
+    "monthly": {
+      "December": {"temp": 24.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 23.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 32.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 35.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 36.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 33.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 30.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 31.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 32.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 28.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "nur_sultan": {
+    "city": "Nur-Sultan",
+    "lat": 51.1694,
+    "lon": 71.4491,
+    "country": "Kazakhstan",
+    "monthly": {
+      "December": {"temp": -12.0, "snow": 25, "season": "winter"},
+      "January": {"temp": -14.0, "snow": 30, "season": "winter"},
+      "February": {"temp": -13.0, "snow": 25, "season": "winter"},
+      "March": {"temp": -6.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 5.0, "snow": 3, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.0, "snow": 5, "season": "autumn"},
+      "November": {"temp": -5.0, "snow": 15, "season": "autumn"}
+    }
+  },
+  "oslo": {
+    "city": "Oslo",
+    "lat": 59.9139,
+    "lon": 10.7522,
+    "country": "Norway",
+    "monthly": {
+      "December": {"temp": -1.5, "snow": 25, "season": "winter"},
+      "January": {"temp": -3.5, "snow": 30, "season": "winter"},
+      "February": {"temp": -2.5, "snow": 25, "season": "winter"},
+      "March": {"temp": 0.5, "snow": 15, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 5, "season": "spring"},
+      "May": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.5, "snow": 3, "season": "autumn"},
+      "November": {"temp": 1.5, "snow": 15, "season": "autumn"}
+    }
+  },
+  "ottawa": {
+    "city": "Ottawa",
+    "lat": 45.4215,
+    "lon": -75.6972,
+    "country": "Canada",
+    "monthly": {
+      "December": {"temp": -6.0, "snow": 35, "season": "winter"},
+      "January": {"temp": -9.5, "snow": 40, "season": "winter"},
+      "February": {"temp": -7.5, "snow": 35, "season": "winter"},
+      "March": {"temp": -1.5, "snow": 25, "season": "spring"},
+      "April": {"temp": 6.0, "snow": 8, "season": "spring"},
+      "May": {"temp": 13.0, "snow": 1, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 8.0, "snow": 5, "season": "autumn"},
+      "November": {"temp": 1.5, "snow": 20, "season": "autumn"}
+    }
+  },
+  "ouagadougou": {
+    "city": "Ouagadougou",
+    "lat": 12.3714,
+    "lon": -1.5197,
+    "country": "Burkina Faso",
+    "monthly": {
+      "December": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 25.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 28.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 32.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 35.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 34.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 31.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 29.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 31.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 29.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "panama_city": {
+    "city": "Panama City",
+    "lat": 8.9824,
+    "lon": -79.5199,
+    "country": "Panama",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "paris": {
+    "city": "Paris",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "country": "France",
+    "monthly": {
+      "December": {"temp": 5.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 4.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 5.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 8.0, "snow": 2, "season": "spring"},
+      "April": {"temp": 10.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 8.0, "snow": 2, "season": "autumn"}
+    }
+  },
+  "phnom_penh": {
+    "city": "Phnom Penh",
+    "lat": 11.5564,
+    "lon": 104.9282,
+    "country": "Cambodia",
+    "monthly": {
+      "December": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 30.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 29.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "podgorica": {
+    "city": "Podgorica",
+    "lat": 42.4304,
+    "lon": 19.2594,
+    "country": "Montenegro",
+    "monthly": {
+      "December": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 4.5, "snow": 8, "season": "winter"},
+      "February": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 9.5, "snow": 2, "season": "spring"},
+      "April": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 10.5, "snow": 2, "season": "autumn"}
+    }
+  },
+  "port_au_prince": {
+    "city": "Port-au-Prince",
+    "lat": 18.5944,
+    "lon": -72.3074,
+    "country": "Haiti",
+    "monthly": {
+      "December": {"temp": 27.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 26.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 26.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 27.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "port_au_spain": {
+    "city": "Port of Spain",
+    "lat": 10.6667,
+    "lon": -61.5189,
+    "country": "Trinidad and Tobago",
+    "monthly": {
+      "December": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 26.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 26.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 27.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 26.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "portland": {
+    "city": "Portland",
+    "lat": 45.5051,
+    "lon": -122.6750,
+    "country": "USA",
+    "monthly": {
+      "December": {"temp": 5.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 4.5, "snow": 5, "season": "winter"},
+      "February": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "March": {"temp": 8.5, "snow": 2, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 17.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.5, "snow": 2, "season": "autumn"}
+    }
+  },
+  "porto": {
+    "city": "Porto",
+    "lat": 41.1579,
+    "lon": -8.6291,
+    "country": "Portugal",
+    "monthly": {
+      "December": {"temp": 10.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 9.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 10.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 12.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "porto_novo": {
+    "city": "Porto-Novo",
+    "lat": 6.4969,
+    "lon": 2.6036,
+    "country": "Benin",
+    "monthly": {
+      "December": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "January": {"temp": 27.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 28.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 29.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 28.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "prague": {
+    "city": "Prague",
+    "lat": 50.0755,
+    "lon": 14.4378,
+    "country": "Czech Republic",
+    "monthly": {
+      "December": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -0.5, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 4.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 9.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 4.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "pretoria": {
+    "city": "Pretoria",
+    "lat": -25.7479,
+    "lon": 28.2293,
+    "country": "South Africa",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "February": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 17.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 11.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 13.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 19.5, "snow": 0, "season": "spring"},
+      "November": {"temp": 20.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "pyongyang": {
+    "city": "Pyongyang",
+    "lat": 39.0392,
+    "lon": 125.7625,
+    "country": "North Korea",
+    "monthly": {
+      "December": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -4.5, "snow": 20, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 4.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "quito": {
+    "city": "Quito",
+    "lat": -0.1807,
+    "lon": -78.4678,
+    "country": "Ecuador",
+    "monthly": {
+      "December": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 14.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 14.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "rabat": {
+    "city": "Rabat",
+    "lat": 34.0209,
+    "lon": -6.8416,
+    "country": "Morocco",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 22.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 16.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "reykjavik": {
+    "city": "Reykjavik",
+    "lat": 64.1466,
+    "lon": -21.9426,
+    "country": "Iceland",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 20, "season": "winter"},
+      "January": {"temp": -0.5, "snow": 25, "season": "winter"},
+      "February": {"temp": 0.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 1.0, "snow": 15, "season": "spring"},
+      "April": {"temp": 3.5, "snow": 10, "season": "spring"},
+      "May": {"temp": 6.5, "snow": 3, "season": "spring"},
+      "June": {"temp": 9.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 11.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 11.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 8.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 4.5, "snow": 5, "season": "autumn"},
+      "November": {"temp": 1.5, "snow": 15, "season": "autumn"}
+    }
+  },
+  "riga": {
+    "city": "Riga",
+    "lat": 56.9496,
+    "lon": 24.1052,
+    "country": "Latvia",
+    "monthly": {
+      "December": {"temp": -0.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -2.5, "snow": 25, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 0.5, "snow": 10, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 3, "season": "spring"},
+      "May": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 15.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 7.5, "snow": 2, "season": "autumn"},
+      "November": {"temp": 2.5, "snow": 10, "season": "autumn"}
+    }
+  },
+  "riyadh": {
+    "city": "Riyadh",
+    "lat": 24.7136,
+    "lon": 46.6753,
+    "country": "Saudi Arabia",
+    "monthly": {
+      "December": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 16.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 21.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 32.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 35.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 37.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 37.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 33.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 28.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 21.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "rome": {
+    "city": "Rome",
+    "lat": 41.9028,
+    "lon": 12.4964,
+    "country": "Italy",
+    "monthly": {
+      "December": {"temp": 8.0, "snow": 1, "season": "winter"},
+      "January": {"temp": 7.0, "snow": 2, "season": "winter"},
+      "February": {"temp": 8.0, "snow": 1, "season": "winter"},
+      "March": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 17.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 11.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "rostov": {
+    "city": "Rostov-on-Don",
+    "lat": 47.2313,
+    "lon": 39.7233,
+    "country": "Russia",
+    "monthly": {
+      "December": {"temp": -1.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -3.0, "snow": 25, "season": "winter"},
+      "February": {"temp": -2.5, "snow": 20, "season": "winter"},
+      "March": {"temp": 2.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 2.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "san_jose": {
+    "city": "San Jose",
+    "lat": 9.9281,
+    "lon": -84.0907,
+    "country": "Costa Rica",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 22.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 23.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 23.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 21.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "san_salvador": {
+    "city": "San Salvador",
+    "lat": 13.6929,
+    "lon": -89.2182,
+    "country": "El Salvador",
+    "monthly": {
+      "December": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 23.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 23.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 25.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 24.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 23.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 23.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 23.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "sanaa": {
+    "city": "Sanaa",
+    "lat": 15.3694,
+    "lon": 44.1910,
+    "country": "Yemen",
+    "monthly": {
+      "December": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 17.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 14.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "santiago": {
+    "city": "Santiago",
+    "lat": -33.4489,
+    "lon": -70.6693,
+    "country": "Chile",
+    "monthly": {
+      "December": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "January": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "February": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 18.0, "snow": 0, "season": "autumn"},
+      "April": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 9.0, "snow": 1, "season": "winter"},
+      "July": {"temp": 8.5, "snow": 2, "season": "winter"},
+      "August": {"temp": 9.5, "snow": 1, "season": "winter"},
+      "September": {"temp": 11.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "November": {"temp": 17.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "santo_domingo": {
+    "city": "Santo Domingo",
+    "lat": 18.4861,
+    "lon": -69.9312,
+    "country": "Dominican Republic",
+    "monthly": {
+      "December": {"temp": 25.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 24.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 24.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 25.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 26.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 25.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "sao_paulo": {
+    "city": "Sao Paulo",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "country": "Brazil",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "January": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "February": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "March": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 19.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 17.0, "snow": 0, "season": "autumn"},
+      "June": {"temp": 15.5, "snow": 0, "season": "winter"},
+      "July": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "August": {"temp": 16.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "October": {"temp": 19.0, "snow": 0, "season": "spring"},
+      "November": {"temp": 20.5, "snow": 0, "season": "spring"}
+    }
+  },
+  "seoul": {
+    "city": "Seoul",
+    "lat": 37.5665,
+    "lon": 126.9780,
+    "country": "South Korea",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 12, "season": "winter"},
+      "January": {"temp": -2.0, "snow": 15, "season": "winter"},
+      "February": {"temp": 0.5, "snow": 10, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 3, "season": "spring"},
+      "April": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.0, "snow": 2, "season": "autumn"}
+    }
+  },
+  "skopje": {
+    "city": "Skopje",
+    "lat": 41.9973,
+    "lon": 21.4280,
+    "country": "North Macedonia",
+    "monthly": {
+      "December": {"temp": 2.5, "snow": 15, "season": "winter"},
+      "January": {"temp": 1.0, "snow": 20, "season": "winter"},
+      "February": {"temp": 3.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 7.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 19.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.5, "snow": 5, "season": "autumn"}
+    }
+  },
+  "sofia": {
+    "city": "Sofia",
+    "lat": 42.6977,
+    "lon": 23.3219,
+    "country": "Bulgaria",
+    "monthly": {
+      "December": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -1.0, "snow": 25, "season": "winter"},
+      "February": {"temp": 1.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 5.0, "snow": 10, "season": "spring"},
+      "April": {"temp": 10.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 17.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 5.0, "snow": 8, "season": "autumn"}
+    }
+  },
+  "stockholm": {
+    "city": "Stockholm",
+    "lat": 59.3293,
+    "lon": 18.0686,
+    "country": "Sweden",
+    "monthly": {
+      "December": {"temp": -0.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -1.5, "snow": 25, "season": "winter"},
+      "February": {"temp": -1.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 1.5, "snow": 12, "season": "spring"},
+      "April": {"temp": 5.5, "snow": 3, "season": "spring"},
+      "May": {"temp": 10.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 15.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 7.5, "snow": 2, "season": "autumn"},
+      "November": {"temp": 2.5, "snow": 12, "season": "autumn"}
+    }
+  },
+  "sydney": {
+    "city": "Sydney",
+    "lat": -33.8688,
+    "lon": 151.2093,
+    "country": "Australia",
+    "monthly": {
+      "December": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "January": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "February": {"temp": 23.0, "snow": 0, "season": "summer"},
+      "March": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "April": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "May": {"temp": 15.5, "snow": 0, "season": "autumn"},
+      "June": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "July": {"temp": 12.5, "snow": 0, "season": "winter"},
+      "August": {"temp": 13.5, "snow": 0, "season": "winter"},
+      "September": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "October": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "November": {"temp": 20.0, "snow": 0, "season": "spring"}
+    }
+  },
+  "taipei": {
+    "city": "Taipei",
+    "lat": 25.0330,
+    "lon": 121.5654,
+    "country": "Taiwan",
+    "monthly": {
+      "December": {"temp": 17.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 16.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 16.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 22.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 25.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 29.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 29.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 24.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 20.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "tallinn": {
+    "city": "Tallinn",
+    "lat": 59.4370,
+    "lon": 24.7536,
+    "country": "Estonia",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 20, "season": "winter"},
+      "January": {"temp": -2.5, "snow": 25, "season": "winter"},
+      "February": {"temp": -2.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 0.0, "snow": 12, "season": "spring"},
+      "April": {"temp": 4.5, "snow": 3, "season": "spring"},
+      "May": {"temp": 9.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 14.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 11.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 6.5, "snow": 3, "season": "autumn"},
+      "November": {"temp": 2.0, "snow": 12, "season": "autumn"}
+    }
+  },
+  "tashkent": {
+    "city": "Tashkent",
+    "lat": 41.2995,
+    "lon": 69.2401,
+    "country": "Uzbekistan",
+    "monthly": {
+      "December": {"temp": 2.0, "snow": 10, "season": "winter"},
+      "January": {"temp": 0.5, "snow": 12, "season": "winter"},
+      "February": {"temp": 3.0, "snow": 8, "season": "winter"},
+      "March": {"temp": 8.5, "snow": 2, "season": "spring"},
+      "April": {"temp": 15.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 13.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 7.5, "snow": 3, "season": "autumn"}
+    }
+  },
+  "tbilisi": {
+    "city": "Tbilisi",
+    "lat": 41.7151,
+    "lon": 44.8271,
+    "country": "Georgia",
+    "monthly": {
+      "December": {"temp": 3.0, "snow": 10, "season": "winter"},
+      "January": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "February": {"temp": 3.0, "snow": 10, "season": "winter"},
+      "March": {"temp": 7.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 12.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 17.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 8.0, "snow": 5, "season": "autumn"}
+    }
+  },
+  "tehran": {
+    "city": "Tehran",
+    "lat": 35.6892,
+    "lon": 51.3890,
+    "country": "Iran",
+    "monthly": {
+      "December": {"temp": 6.0, "snow": 5, "season": "winter"},
+      "January": {"temp": 4.0, "snow": 8, "season": "winter"},
+      "February": {"temp": 6.5, "snow": 5, "season": "winter"},
+      "March": {"temp": 11.5, "snow": 1, "season": "spring"},
+      "April": {"temp": 17.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 30.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 30.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 19.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 11.5, "snow": 1, "season": "autumn"}
+    }
+  },
+  "tel_aviv": {
+    "city": "Tel Aviv",
+    "lat": 32.0853,
+    "lon": 34.7818,
+    "country": "Israel",
+    "monthly": {
+      "December": {"temp": 15.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 13.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 14.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 19.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 23.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 23.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 19.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "tirana": {
+    "city": "Tirana",
+    "lat": 41.3275,
+    "lon": 19.8187,
+    "country": "Albania",
+    "monthly": {
+      "December": {"temp": 8.0, "snow": 3, "season": "winter"},
+      "January": {"temp": 6.5, "snow": 5, "season": "winter"},
+      "February": {"temp": 8.0, "snow": 3, "season": "winter"},
+      "March": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "April": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 12.0, "snow": 1, "season": "autumn"}
+    }
+  },
+  "tokyo": {
+    "city": "Tokyo",
+    "lat": 35.6895,
+    "lon": 139.6917,
+    "country": "Japan",
+    "monthly": {
+      "December": {"temp": 7.5, "snow": 2, "season": "winter"},
+      "January": {"temp": 5.5, "snow": 5, "season": "winter"},
+      "February": {"temp": 6.5, "snow": 3, "season": "winter"},
+      "March": {"temp": 9.5, "snow": 1, "season": "spring"},
+      "April": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 19.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 24.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 18.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 12.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "tripoli": {
+    "city": "Tripoli",
+    "lat": 32.8872,
+    "lon": 13.1913,
+    "country": "Libya",
+    "monthly": {
+      "December": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 22.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 23.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 18.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "tunis": {
+    "city": "Tunis",
+    "lat": 36.8065,
+    "lon": 10.1815,
+    "country": "Tunisia",
+    "monthly": {
+      "December": {"temp": 12.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 11.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 11.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 16.0, "snow": 0, "season": "spring"},
+      "May": {"temp": 19.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 27.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 24.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 20.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 16.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "ulan_bator": {
+    "city": "Ulaanbaatar",
+    "lat": 47.8864,
+    "lon": 106.9057,
+    "country": "Mongolia",
+    "monthly": {
+      "December": {"temp": -16.5, "snow": 10, "season": "winter"},
+      "January": {"temp": -19.0, "snow": 12, "season": "winter"},
+      "February": {"temp": -15.0, "snow": 8, "season": "winter"},
+      "March": {"temp": -6.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 2.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 10.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 8.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 0.0, "snow": 3, "season": "autumn"},
+      "November": {"temp": -9.0, "snow": 8, "season": "autumn"}
+    }
+  },
+  "vaduz": {
+    "city": "Vaduz",
+    "lat": 47.1410,
+    "lon": 9.5209,
+    "country": "Liechtenstein",
+    "monthly": {
+      "December": {"temp": 0.5, "snow": 20, "season": "winter"},
+      "January": {"temp": -0.5, "snow": 25, "season": "winter"},
+      "February": {"temp": 1.0, "snow": 20, "season": "winter"},
+      "March": {"temp": 4.5, "snow": 10, "season": "spring"},
+      "April": {"temp": 8.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 16.0, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 9.5, "snow": 2, "season": "autumn"},
+      "November": {"temp": 4.0, "snow": 10, "season": "autumn"}
+    }
+  },
+  "valletta": {
+    "city": "Valletta",
+    "lat": 35.8989,
+    "lon": 14.5146,
+    "country": "Malta",
+    "monthly": {
+      "December": {"temp": 14.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 13.0, "snow": 0, "season": "winter"},
+      "February": {"temp": 13.5, "snow": 0, "season": "winter"},
+      "March": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "April": {"temp": 16.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 20.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 24.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 27.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 25.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 17.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "vancouver": {
+    "city": "Vancouver",
+    "lat": 49.2827,
+    "lon": -123.1207,
+    "country": "Canada",
+    "monthly": {
+      "December": {"temp": 4.0, "snow": 15, "season": "winter"},
+      "January": {"temp": 3.5, "snow": 18, "season": "winter"},
+      "February": {"temp": 4.5, "snow": 12, "season": "winter"},
+      "March": {"temp": 6.5, "snow": 5, "season": "spring"},
+      "April": {"temp": 9.0, "snow": 1, "season": "spring"},
+      "May": {"temp": 12.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 18.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 6.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "vatican": {
+    "city": "Vatican City",
+    "lat": 41.9029,
+    "lon": 12.4534,
+    "country": "Vatican",
+    "monthly": {
+      "December": {"temp": 8.0, "snow": 1, "season": "winter"},
+      "January": {"temp": 7.0, "snow": 2, "season": "winter"},
+      "February": {"temp": 8.0, "snow": 1, "season": "winter"},
+      "March": {"temp": 11.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 22.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.5, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 17.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 11.5, "snow": 0, "season": "autumn"}
+    }
+  },
+  "vienna": {
+    "city": "Vienna",
+    "lat": 48.2082,
+    "lon": 16.3738,
+    "country": "Austria",
+    "monthly": {
+      "December": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "January": {"temp": 0.0, "snow": 20, "season": "winter"},
+      "February": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 5.5, "snow": 8, "season": "spring"},
+      "April": {"temp": 10.0, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 18.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 20.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 20.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 15.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 10.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 5.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "vientiane": {
+    "city": "Vientiane",
+    "lat": 17.9757,
+    "lon": 102.6331,
+    "country": "Laos",
+    "monthly": {
+      "December": {"temp": 22.0, "snow": 0, "season": "winter"},
+      "January": {"temp": 21.5, "snow": 0, "season": "winter"},
+      "February": {"temp": 24.0, "snow": 0, "season": "winter"},
+      "March": {"temp": 27.0, "snow": 0, "season": "spring"},
+      "April": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 28.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 28.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 28.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 27.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 26.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 24.0, "snow": 0, "season": "autumn"}
+    }
+  },
+  "vilnius": {
+    "city": "Vilnius",
+    "lat": 54.6872,
+    "lon": 25.2797,
+    "country": "Lithuania",
+    "monthly": {
+      "December": {"temp": -1.0, "snow": 20, "season": "winter"},
+      "January": {"temp": -2.5, "snow": 25, "season": "winter"},
+      "February": {"temp": -1.5, "snow": 20, "season": "winter"},
+      "March": {"temp": 1.5, "snow": 10, "season": "spring"},
+      "April": {"temp": 6.5, "snow": 3, "season": "spring"},
+      "May": {"temp": 12.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 15.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 17.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 12.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 7.5, "snow": 2, "season": "autumn"},
+      "November": {"temp": 2.0, "snow": 12, "season": "autumn"}
+    }
+  },
+  "warsaw": {
+    "city": "Warsaw",
+    "lat": 52.2297,
+    "lon": 21.0122,
+    "country": "Poland",
+    "monthly": {
+      "December": {"temp": 0.0, "snow": 15, "season": "winter"},
+      "January": {"temp": -1.5, "snow": 20, "season": "winter"},
+      "February": {"temp": -0.5, "snow": 15, "season": "winter"},
+      "March": {"temp": 3.0, "snow": 8, "season": "spring"},
+      "April": {"temp": 8.5, "snow": 2, "season": "spring"},
+      "May": {"temp": 14.0, "snow": 0, "season": "spring"},
+      "June": {"temp": 17.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 19.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 14.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 8.5, "snow": 1, "season": "autumn"},
+      "November": {"temp": 3.5, "snow": 8, "season": "autumn"}
+    }
+  },
+  "washington": {
+    "city": "Washington, D.C.",
+    "lat": 38.9072,
+    "lon": -77.0369,
+    "country": "USA",
+    "monthly": {
+      "December": {"temp": 4.5, "snow": 8, "season": "winter"},
+      "January": {"temp": 2.5, "snow": 12, "season": "winter"},
+      "February": {"temp": 4.0, "snow": 8, "season": "winter"},
+      "March": {"temp": 8.0, "snow": 3, "season": "spring"},
+      "April": {"temp": 13.5, "snow": 0, "season": "spring"},
+      "May": {"temp": 18.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 23.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 26.0, "snow": 0, "season": "summer"},
+      "August": {"temp": 25.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 21.0, "snow": 0, "season": "autumn"},
+      "October": {"temp": 14.5, "snow": 0, "season": "autumn"},
+      "November": {"temp": 9.0, "snow": 2, "season": "autumn"}
+    }
+  },
+  "zagreb": {
+    "city": "Zagreb",
+    "lat": 45.8150,
+    "lon": 15.9819,
+    "country": "Croatia",
+    "monthly": {
+      "December": {"temp": 1.5, "snow": 15, "season": "winter"},
+      "January": {"temp": 0.0, "snow": 20, "season": "winter"},
+      "February": {"temp": 2.0, "snow": 15, "season": "winter"},
+      "March": {"temp": 6.0, "snow": 5, "season": "spring"},
+      "April": {"temp": 10.5, "snow": 1, "season": "spring"},
+      "May": {"temp": 15.5, "snow": 0, "season": "spring"},
+      "June": {"temp": 19.5, "snow": 0, "season": "summer"},
+      "July": {"temp": 21.5, "snow": 0, "season": "summer"},
+      "August": {"temp": 21.0, "snow": 0, "season": "summer"},
+      "September": {"temp": 16.5, "snow": 0, "season": "autumn"},
+      "October": {"temp": 11.0, "snow": 0, "season": "autumn"},
+      "November": {"temp": 6.0, "snow": 5, "season": "autumn"}
+    }
   }
 }
+
