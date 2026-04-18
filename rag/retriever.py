@@ -5,7 +5,8 @@ from .vector_store import VectorStore
 
 class ClimateRetriever:
     def __init__(self, knowledge_path: str ='rag/knowledge_base.json'):
-        self.data = self._load_data(knowledge_path)
+        with open(knowledge_path, 'r', encoding='utf-8') as f:
+            self.data = json.load(f)
         self.vector_store = VectorStore(knowledge_path)
     def _load_data(self,path:str)->Dict:
         with open(path,'r',encoding='utf-8') as f:

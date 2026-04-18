@@ -38,7 +38,7 @@ def init_telegram_app():
     loop.run_until_complete(telegram_app.initialize())
     loop.close()
     initialized_app = telegram_app
-    logger.info("✅ Telegram application initialized")
+    logger.info("Telegram application initialized")
 
 async def get_climate_context_api(lat: float, lon: float) -> str:
     try:
@@ -69,7 +69,7 @@ async def get_climate_context_api(lat: float, lon: float) -> str:
             months_data[month]["temps"].append(temp)
             months_data[month]["snow"] += snow or 0
         month_names = {12: "December", 1: "January", 2: "February", 3: "March", 4: "April"}
-        context = "\n📊 Climate data for this location (based on 2023):\n"
+        context = "\nClimate data for this location (based on 2023):\n"
         for month in [12, 1, 2, 3, 4]:
             if month in months_data:
                 avg_temp = sum(months_data[month]["temps"]) / len(months_data[month]["temps"])
@@ -245,9 +245,9 @@ def set_webhook():
     response = requests.post(url, json={"url": webhook_url})
     
     if response.status_code == 200 and response.json().get('ok'):
-        logger.info(f"✅ Webhook set to: {webhook_url}")
+        logger.info(f"Webhook set to: {webhook_url}")
     else:
-        logger.error(f"❌ Failed to set webhook: {response.text}")
+        logger.error(f"Failed to set webhook: {response.text}")
 
 
 if __name__ == "__main__":

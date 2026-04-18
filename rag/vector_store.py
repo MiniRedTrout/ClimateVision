@@ -8,9 +8,6 @@ from typing import List, Dict, Tuple
 
 class VectorStore:
     def __init__(self, knowledge_path: str):
-        if not os.path.exists(knowledge_path):
-            raise FileNotFoundError(f"Knowledge file not found: {knowledge_path}")
-        
         with open(knowledge_path, 'r', encoding='utf-8') as f:
             self.data = json.load(f)
         self.vectors = {}
