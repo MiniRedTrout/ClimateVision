@@ -26,28 +26,32 @@ if not TOKEN:
 
 app = Flask(__name__)
 
-bot = Bot(token=TOKEN)
+# Создаём приложение Telegram
 telegram_app = Application.builder().token(TOKEN).build()
 ollama_client = ollama.Client(host=OLLAMA_HOST)
 
 # Глобальный цикл событий
 main_loop = None
 initialized_app = None
+initialized_bot = None
 
 
 def init_telegram_app():
     """Инициализирует Telegram приложение в отдельном потоке"""
-    global main_loop, initialized_app
+    global main_loop, initialized_app, initialized_bot
     
     def run_loop():
-        global main_loop, initialized_app
+        global main_loop, initialized_app, initialized_bot
         main_loop = asyncio.new_event_loop()
         asyncio.set_event_loop(main_loop)
         
-        # Инициализируем приложение
+        # Инициализируем приложение и бота
         main_loop.run_until_complete(telegram_app.initialize())
+        main_loop.run_until_complete(telegram_app.bot.initialize())
+        
         initialized_app = telegram_app
-        logger.info("✅ Telegram application initialized")
+        initialized_bot = telegram_app.bot
+        logger.info("✅ Telegram application and bot initialized")
         
         # Запускаем цикл навсегда
         main_loop.run_forever()
@@ -251,14 +255,14 @@ def webhook():
     
     try:
         json_data = request.get_json(force=True)
-        update = Update.de_json(json_data, bot)
+        update = Update.de_json(json_data, initialized_bot)
         
         # Запускаем обработку в глобальном цикле событий
         future = asyncio.run_coroutine_threadsafe(
             initialized_app.process_update(update), 
             main_loop
         )
-        future.result(timeout=30)  # ждём до 30 секунд
+        future.result(timeout=30)
         
         return 'ok', 200
         
