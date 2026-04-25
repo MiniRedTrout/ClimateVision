@@ -7,7 +7,8 @@ from middleware import rate_limiter
 from utils.logger import logger
 import sys
 import asyncio
-
+from utils.geocoding import get_coordinates_by_city
+from utils.helpers import extract_city, parse_coordinates
 
 class BotHandlers:
     def __init__(self, agent, rate_limiter):
@@ -74,10 +75,19 @@ class BotHandlers:
             lat = update.message.location.latitude
             lon = update.message.location.longitude
             logger.info(f" Location: {lat}, {lon}")
-        if update.message.caption:
-            city = extract_city(update.message.caption)
-            if city:
-                logger.info(f" City: {city}")
+        if update.message.caption and not (lat and lon):
+            coords = parse_coordinates(update.message.caption)
+            if coords:
+                lat,lon = coords
+                logger.info(f'Coords:{lat},{lon}')
+            else:
+                city = extract_city(update.message.caption)
+                if city:
+                    logger.info(f" City: {city}")
+        if city and not (lat and lon):
+            lat,lon = await get_coordinates_by_city(city)
+            if lat and lon:
+                logger.info(f'Geocoded:{city}'->{lat},{lon})
         photo_file = await update.message.photo[-1].get_file()
         if photo_file.file_size > 10 * 1024 * 1024:
             await update.message.reply_text(" Фото слишком большое (максимум 10 МБ)")

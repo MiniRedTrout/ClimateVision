@@ -38,3 +38,19 @@ def location(lat: Optional[float], lon: Optional[float], city: Optional[str])->s
     elif lat and lon:
         return f'Location: {lat:.4f}, {lon:.4f}'
     return ""
+def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
+    if not text:
+        return None
+    patterns = [
+        r'lat(?:itude)?\s*[:=]\s*([+-]?\d+\.?\d*)\s*[,;]\s*lon(?:gitude)?\s*[:=]\s*([+-]?\d+\.?\d*)',
+        r'([+-]?\d+\.?\d*)\s*[,;]\s*([+-]?\d+\.?\d*)',
+        r'([+-]?\d+\.?\d*)\s+([+-]?\d+\.?\d*)',
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            lat = float(match.group(1))
+            lon = float(match.group(2))
+            if -90 <= lat <= 90 and -180 <= lon <= 180:
+                return lat, lon
+    return None
