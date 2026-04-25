@@ -7,8 +7,9 @@ from telegram import Bot
 from telegram.ext import Application
 import ollama
 import hydra
+import asyncio 
 from omegaconf import DictConfig, OmegaConf
-from utils import logger, setup_logger
+from utils import logger
 from core.analyzer import analyze_photo
 from core.climate import climate_retriever
 from graph import build_agent_graph
