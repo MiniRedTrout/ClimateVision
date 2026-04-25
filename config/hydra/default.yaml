@@ -1,0 +1,6 @@
+max_photo_size_mb: 10
+allowed_types:
+  - jpg
+  - jpeg
+  - png
+  - webp

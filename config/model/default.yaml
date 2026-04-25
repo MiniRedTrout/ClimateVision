@@ -1,0 +1,4 @@
+name: llama3.2-vision:11b
+temperature: 0.1
+max_tokens: 512
+cache_ttl: 3600

@@ -1,0 +1,7 @@
+type: memory  
+ttl:
+  ollama: 3600
+  climate: 86400
+  api: 3600
+redis_url: ${oc.env:REDIS_URL, null}
+file_cache_dir: cache_files

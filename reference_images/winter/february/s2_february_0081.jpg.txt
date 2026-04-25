@@ -1,0 +1,4 @@
+lat: -0.4221
+lon: -0.7420
+month: 2
+season: winter

@@ -1,0 +1,5 @@
+enabled: true
+model_name: google/siglip-base-patch16-256-i18n
+reference_dir: reference_images
+similarity_threshold: 0.85
+device: cpu

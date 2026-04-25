@@ -1,0 +1,20 @@
+SEASON_NAMES_RU:
+  winter: "❄️ Зима"
+  spring: "🌸 Весна"
+  summer: "☀️ Лето"
+  autumn: "🍂 Осень"
+  unknown: "❓ Неизвестно"
+
+MONTH_NAMES_RU:
+  January: "Январь"
+  February: "Февраль"
+  March: "Март"
+  April: "Апрель"
+  May: "Май"
+  June: "Июнь"
+  July: "Июль"
+  August: "Август"
+  September: "Сентябрь"
+  October: "Октябрь"
+  November: "Ноябрь"
+  December: "Декабрь"

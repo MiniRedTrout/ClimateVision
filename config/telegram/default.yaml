@@ -1,0 +1,4 @@
+token: ${oc.env:TELEGRAM_BOT_TOKEN, null}
+webhook_host: ${oc.env:RENDER_EXTERNAL_HOSTNAME, localhost}
+port: ${oc.env:PORT, 10000}
+timeout: 30

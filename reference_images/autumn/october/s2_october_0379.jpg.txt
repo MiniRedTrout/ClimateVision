@@ -1,0 +1,4 @@
+lat: 0.6708
+lon: 0.6908
+month: 10
+season: autumn

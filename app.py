@@ -1,298 +1,88 @@
-import os
-import json
-import tempfile
-import logging
 import threading
-import asyncio
+import time
+import logging
 from dotenv import load_dotenv
+from flask import Flask
+from telegram import Bot
+from telegram.ext import Application
 import ollama
-from telegram import Update, Bot
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
-from flask import Flask, request
-import aiohttp
-from datetime import datetime
-from rag.retriever import ClimateRetriever
-
+import hydra
+from omegaconf import DictConfig, OmegaConf
+from utils import logger, setup_logger
+from core.analyzer import analyze_photo
+from core.climate import climate_retriever
+from graph import build_agent_graph
+from bot import BotHandlers, create_webhook_app
+from middleware.rate_limiter import RateLimiter
+from middleware.error_handler import handle_errors
 load_dotenv()
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-OLLAMA_HOST = os.getenv("OLLAMA_HOST")
-
-if not TOKEN:
-    raise ValueError("TELEGRAM_BOT_TOKEN не найден!")
-
-app = Flask(__name__)
-
-# Создаём приложение Telegram
-telegram_app = Application.builder().token(TOKEN).build()
-ollama_client = ollama.Client(host=OLLAMA_HOST)
-
-# Глобальный цикл событий
 main_loop = None
-initialized_app = None
-initialized_bot = None
+telegram_app = None
+agent = None
 
-
-def init_telegram_app():
-    """Инициализирует Telegram приложение в отдельном потоке"""
-    global main_loop, initialized_app, initialized_bot
+def init_global_loop():
+    global main_loop, telegram_app, agent
+    main_loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(main_loop)
+    telegram_app = Application.builder().token(cfg_global.telegram.token).build()
+    main_loop.run_until_complete(telegram_app.initialize())
+    main_loop.run_until_complete(telegram_app.bot.initialize())
+    logger.info(" Telegram application initialized")
     
-    def run_loop():
-        global main_loop, initialized_app, initialized_bot
-        main_loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(main_loop)
-        
-        # Инициализируем приложение и бота
-        main_loop.run_until_complete(telegram_app.initialize())
-        main_loop.run_until_complete(telegram_app.bot.initialize())
-        
-        initialized_app = telegram_app
-        initialized_bot = telegram_app.bot
-        logger.info("✅ Telegram application and bot initialized")
-        
-        # Запускаем цикл навсегда
+    ollama_client = ollama.Client(host=cfg_global.ollama.host)
+    agent = build_agent_graph(ollama_client, climate_retriever, analyze_photo)
+    logger.info("Agent graph built")
+
+    try:
         main_loop.run_forever()
-    
-    # Запускаем фоновый поток
-    thread = threading.Thread(target=run_loop, daemon=True)
+    except KeyboardInterrupt:
+        logger.info("Shutting down...")
+        main_loop.close()
+
+def start_loop_in_thread():
+    thread = threading.Thread(target=init_global_loop, daemon=True)
     thread.start()
-    
-    # Даём время на инициализацию
-    import time
-    time.sleep(2)
-
-
-async def get_climate_context_api(lat: float, lon: float) -> str:
-    try:
-        url = "https://archive-api.open-meteo.com/v1/archive"
-        params = {
-            "latitude": lat,
-            "longitude": lon,
-            "start_date": "2023-01-01",
-            "end_date": "2023-12-31",
-            "daily": ["temperature_2m_mean", "snowfall_sum"],
-            "timezone": "auto"
-        }
-
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, params=params) as resp:
-                data = await resp.json()
-        
-        if "daily" not in data:
-            return ""
-        
-        months_data = {}
-        for i, date_str in enumerate(data["daily"]["time"]):
-            month = datetime.strptime(date_str, "%Y-%m-%d").month
-            temp = data["daily"]["temperature_2m_mean"][i]
-            snow = data["daily"]["snowfall_sum"][i]
-
-            if month not in months_data:
-                months_data[month] = {"temps": [], "snow": 0}
-            months_data[month]["temps"].append(temp)
-            months_data[month]["snow"] += snow or 0
-        
-        month_names = {12: "December", 1: "January", 2: "February", 3: "March", 4: "April"}
-        context = "\n📊 Climate data for this location (based on 2023):\n"
-        for month in [12, 1, 2, 3, 4]:
-            if month in months_data:
-                avg_temp = sum(months_data[month]["temps"]) / len(months_data[month]["temps"])
-                snow = months_data[month]["snow"]
-                context += f"   • {month_names[month]}: {avg_temp:.1f}°C, snow {snow:.0f}mm\n"
-
-        return context
-    except Exception as e:
-        logger.warning(f"Climate API error: {e}")
-        return ""
-
-
-climate_retriever = ClimateRetriever()
-
-
-async def get_climate_context_hybrid(lat: float = None, lon: float = None, city: str = None):
-    context = climate_retriever.get_climate_context(lat, lon, city)
-    if context:
-        logger.info('Using RAG')
-        return context 
-    if lat and lon:
-        logger.info('RAG not found, using API Open-Meteo')
-        return await get_climate_context_api(lat, lon)
-    return ''
-
-
-async def analyze_photo(image_path: str, lat: float = None, lon: float = None, city: str = None) -> str:
-    climate_context = await get_climate_context_hybrid(lat, lon, city)
-    
-    location_text = ""
-    if city:
-        location_text = f"Location: {city}"
-    elif lat and lon:
-        location_text = f"Location: {lat:.4f}, {lon:.4f}"
-    
-    prompt = f"""
-{location_text}
-{climate_context}
-
-Analyze this image. You MUST determine BOTH season AND month.
-If you cannot determine, use "unknown" for season and "unknown" for month.
-
-Possible seasons: winter, spring, summer, autumn
-Possible months: January, February, March, April, May, June, July, August, September, October, November, December
-
-Respond ONLY with valid JSON. No other text.
-Example: {{"season": "winter", "month": "December", "confidence": "high"}}
-
-Your response:"""
-    
-    response = ollama_client.chat(
-        model='llama3.2-vision:11b',
-        messages=[{
-            'role': 'user',
-            'content': prompt,
-            'images': [image_path]
-        }]
-    )
-    
-    return response['message']['content']
-
-
-async def start(update: Update, context):
-    await update.message.reply_text(
-        "🌍 Привет! Я определяю сезон и месяц по фотографии!\n\n"
-        "📸 Отправьте фото с геолокацией или укажите город в подписи."
-    )
-
-
-async def handle_photo(update: Update, context):
-    await update.message.reply_text("🔍 Анализирую фотографию...")
-    
-    lat = None
-    lon = None
-    city = None
-    
-    if update.message.location:
-        lat = update.message.location.latitude
-        lon = update.message.location.longitude
-        logger.info(f"📍 Location: {lat}, {lon}")
-    
-    if update.message.caption:
-        import re
-        city_match = re.search(r'(?:город|в|из)\s+([А-Яа-яA-Za-z\-]+)', update.message.caption)
-        if city_match:
-            city = city_match.group(1)
-            logger.info(f"🏙️ City: {city}")
-    
-    photo_file = await update.message.photo[-1].get_file()
-    
-    with tempfile.NamedTemporaryFile(suffix='.jpg', delete=False) as tmp:
-        await photo_file.download_to_drive(tmp.name)
-        tmp_path = tmp.name
-    
-    try:
-        result_text = await analyze_photo(tmp_path, lat, lon, city)
-        logger.info(f"Raw response: {result_text}")
-        
-        clean = result_text.strip()
-        if clean.startswith('```json'):
-            clean = clean[7:]
-        if clean.startswith('```'):
-            clean = clean[3:]
-        if clean.endswith('```'):
-            clean = clean[:-3]
-        clean = clean.strip()
-        
-        result = json.loads(clean)
-        
-        if result.get("season") == "unknown" and result.get("month") != "unknown":
-            month_to_season = {
-                "December": "winter", "January": "winter", "February": "winter",
-                "March": "spring", "April": "spring", "May": "spring",
-                "June": "summer", "July": "summer", "August": "summer",
-                "September": "autumn", "October": "autumn", "November": "autumn"
-            }
-            month = result.get("month")
-            if month in month_to_season:
-                result["season"] = month_to_season[month]
-                logger.info(f"Auto-corrected season to {result['season']}")
-        
-        if result.get("season") == "unknown" and result.get("month") == "unknown":
-            await update.message.reply_text("❌ Не удалось определить сезон и месяц по этому фото. Попробуйте другое фото или добавьте геолокацию.")
-            return
-        
-        season_ru = {"winter": "❄️ Зима", "spring": "🌸 Весна", "summer": "☀️ Лето", "autumn": "🍂 Осень"}.get(result.get("season", ""), "❓ Неизвестно")
-        month_ru = {"January": "Январь", "February": "Февраль", "March": "Март", "April": "Апрель", "May": "Май", "June": "Июнь", "July": "Июль", "August": "Август", "September": "Сентябрь", "October": "Октябрь", "November": "Ноябрь", "December": "Декабрь"}.get(result.get("month", ""), "Неизвестно")
-        
-        answer = f"📸 Результат:\n\n🌿 Сезон: {season_ru}\n📅 Месяц: {month_ru}"
-        await update.message.reply_text(answer)
-        
-    except json.JSONDecodeError as e:
-        logger.error(f"JSON parse error: {e}, response: {result_text}")
-        await update.message.reply_text(f"❌ Ошибка обработки ответа от модели. Техническая проблема.")
-    except Exception as e:
-        logger.error(f"Error: {e}")
-        await update.message.reply_text(f"❌ Ошибка: {str(e)[:100]}")
-    finally:
-        os.unlink(tmp_path)
-
-
-# Регистрация обработчиков
-telegram_app.add_handler(CommandHandler("start", start))
-telegram_app.add_handler(MessageHandler(filters.PHOTO, handle_photo))
-
-
-@app.route('/')
-def index():
-    return "Season bot is running!"
-
-
-@app.route(f'/webhook/{TOKEN}', methods=['POST'])
-def webhook():
-    """Принимает обновления от Telegram"""
-    global main_loop, initialized_app
-    
-    try:
-        json_data = request.get_json(force=True)
-        update = Update.de_json(json_data, initialized_bot)
-        
-        # Запускаем обработку в глобальном цикле событий
-        future = asyncio.run_coroutine_threadsafe(
-            initialized_app.process_update(update), 
-            main_loop
-        )
-        future.result(timeout=30)
-        
-        return 'ok', 200
-        
-    except Exception as e:
-        logger.error(f"Webhook error: {e}")
-        return 'error', 500
+    time.sleep(3) 
+    logger.info("Event loop running in background thread")
 
 
 def set_webhook():
-    host = os.getenv('RENDER_EXTERNAL_HOSTNAME')
-    if not host:
-        logger.warning("RENDER_EXTERNAL_HOSTNAME not set, using localhost")
-        webhook_url = f"https://localhost/webhook/{TOKEN}"
-    else:
-        webhook_url = f"https://{host}/webhook/{TOKEN}"
-    
+    if not cfg_global.telegram.webhook_host or cfg_global.telegram.webhook_host == "localhost":
+        logger.warning("Webhook host not set, skipping webhook setup")
+        return
+    webhook_url = f"https://{cfg_global.telegram.webhook_host}/webhook/{cfg_global.telegram.token}"
     import requests
-    url = f"https://api.telegram.org/bot{TOKEN}/setWebhook"
+    url = f"https://api.telegram.org/bot{cfg_global.telegram.token}/setWebhook"
     response = requests.post(url, json={"url": webhook_url})
-    
     if response.status_code == 200 and response.json().get('ok'):
-        logger.info(f"✅ Webhook set to: {webhook_url}")
+        logger.info(f"Webhook set to: {webhook_url}")
     else:
-        logger.error(f"❌ Failed to set webhook: {response.text}")
+        logger.error(f"Failed to set webhook: {response.text}")
 
+
+@hydra.main(version_base=None, config_path="config", config_name="config")
+def main(cfg: DictConfig):
+    global cfg_global
+    cfg_global = cfg
+    logger.info("Starting Season Bot...")
+    logger.info(f"   Ollama host: {cfg.ollama.host}")
+    logger.info(f"   Model: {cfg.model.name}")
+    logger.info(f"   Port: {cfg.telegram.port}")
+    rate_limiter = RateLimiter(cfg)
+    start_loop_in_thread()
+    set_webhook()
+    bot_handlers = BotHandlers(agent, rate_limiter)
+    
+    from telegram.ext import CommandHandler, MessageHandler, filters
+    telegram_app.add_handler(CommandHandler("start", bot_handlers.start_command))
+    telegram_app.add_handler(CommandHandler("help", bot_handlers.help_command))
+    telegram_app.add_handler(CommandHandler("stats", bot_handlers.stats_command))
+    telegram_app.add_handler(MessageHandler(filters.PHOTO, bot_handlers.handle_photo))
+    flask_app = create_webhook_app(agent, telegram_app, main_loop)
+    logger.info(f" Starting Flask server on port {cfg.telegram.port}")
+    flask_app.run(host="0.0.0.0", port=cfg.telegram.port)
 
 if __name__ == "__main__":
-    init_telegram_app()
-    set_webhook()
-    
-    port = int(os.getenv("PORT", 10000))
-    logger.info(f"🚀 Starting Flask server on port {port}")
-    app.run(host='0.0.0.0', port=port)
+    main()
+

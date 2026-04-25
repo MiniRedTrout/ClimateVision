@@ -1,0 +1,4 @@
+enabled: true
+requests_per_minute: 10
+burst_size: 3
+seconds: 60

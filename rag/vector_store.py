@@ -61,3 +61,16 @@ class VectorStore:
                 result.append((city_key, self.data[city_key], score))
         
         return result
+    def find_similar_by_vector(self,vector:np.ndarray,top_k: int = 3)->List[Tuple[str,Dict, float]]:
+        if not self.vectors:
+            return []
+        similarities = []
+        for city_key,city_vector in self.vectors.items():
+            cos_sim = np.dot(vector,city_vector)/(np.linalg.norm(vector) * np.linalg.norm(city_vector) + 1e-8)
+            similarities.append((city_key,cos_sim))
+        similarities.sort(key=lambda x: x[1],reverse=True)
+        result = []
+        for city_key, score in similarities[:top_k]:
+            if score > 0.7:
+                result.append((city_key, self.data[city_key], score))
+        return result 

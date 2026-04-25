@@ -1,0 +1,4 @@
+lat: 0.4419
+lon: -0.9573
+month: 5
+season: spring

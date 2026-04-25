@@ -1,0 +1,4 @@
+lat: 0.7713
+lon: -0.8739
+month: 8
+season: summer
