@@ -27,8 +27,8 @@ class AgentNodes:
                 logger.warning(f"Invalid coordinates: {error}")
                 state['errors'] = state.get('errors', []) + [error]
                 state['has_location'] = False
-        logger.info(f'Photo: {state['has_photo']}')
-        logger.info(f'Location: {state['has_location']}')
+        logger.info(f"Photo: {state['has_photo']}")
+        logger.info(f"Location: {state['has_location']}")
         return state 
     async def analysis_node(self,state:AgentState)->AgentState:
         logger.info('Photo Analysis')
