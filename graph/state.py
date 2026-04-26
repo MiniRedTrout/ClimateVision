@@ -1,22 +1,24 @@
 from typing import TypedDict,Optional,List,Dict,Any 
 from langchain_core.messages import BaseMessage
-class AgentState(TypedDict):
+from dataclasses import dataclass, field
+@dataclass 
+class AgentState:
     """Состояние"""
     user_id: Optional[int]
-    user_message:Optional[str]
-    photo_path:Optional[str]
-    lat:Optional[float]
-    lon: Optional[float]
-    city: Optional[str]
-    route: Optional[str]
-    has_photo: bool
-    has_location: bool 
-    photo_analysis: Optional[Dict[str,Any]]
-    photo_raw_response: Optional[str]
-    rag_context: Optional[str]
-    synthesized: Optional[Dict[str, Any]]
-    answer: Optional[str]
-    errors: List[str]
-    messages: List[BaseMessage]
+    user_message:Optional[str] = ""
+    photo_path:Optional[str] = None 
+    lat:Optional[float] = None 
+    lon: Optional[float] = None 
+    city: Optional[str] = None 
+    route: Optional[str] = None 
+    has_photo: bool = False 
+    has_location: bool = False 
+    photo_analysis: Optional[Dict[str,Any]] = None 
+    photo_raw_response: Optional[str] = None 
+    rag_context: Optional[str] = None 
+    synthesized: Optional[Dict[str, Any]] = None 
+    answer: Optional[str] = None 
+    errors: List[str] = field(default_factory=list)
+    messages: List[BaseMessage] = field(default_factory=list)
 
 

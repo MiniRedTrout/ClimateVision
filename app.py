@@ -73,14 +73,7 @@ def main(cfg: DictConfig):
     rate_limiter = RateLimiter(cfg)
     start_loop_in_thread()
     set_webhook()
-    bot_handlers = BotHandlers(agent, rate_limiter)
-    
-    from telegram.ext import CommandHandler, MessageHandler, filters
-    telegram_app.add_handler(CommandHandler("start", bot_handlers.start_command))
-    telegram_app.add_handler(CommandHandler("help", bot_handlers.help_command))
-    telegram_app.add_handler(CommandHandler("stats", bot_handlers.stats_command))
-    telegram_app.add_handler(MessageHandler(filters.PHOTO, bot_handlers.handle_photo))
-    flask_app = create_webhook_app(agent, telegram_app, main_loop)
+    flask_app = create_webhook_app(agent, telegram_app, main_loop,rate_limiter)
     logger.info(f" Starting Flask server on port {cfg.telegram.port}")
     flask_app.run(host="0.0.0.0", port=cfg.telegram.port)
 
