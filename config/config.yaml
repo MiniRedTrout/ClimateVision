@@ -2,12 +2,8 @@ defaults:
   - telegram: default
   - ollama: default
   - model: default
-  - rag: default
-  - cache: default
-  - rate_limiter: default
-  - validation: default
+  - photo: default
+  - rate_limit: default
   - _self_
 
-hydra:
-  run:
-    dir: logs/hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
+debug: false
