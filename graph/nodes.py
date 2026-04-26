@@ -12,7 +12,7 @@ from langchain_core.messages import HumanMessage, AIMessage
 from core.mcp_client import OpenMeteoMCPClient
 
 class AgentNodes:
-    def __init__(self,cfg, ollama_client, climate_retriever,analyze_photo):
+    def __init__(self,cfg, ollama_client,analyze_photo):
         self.ollama_client = ollama_client
         self.analyze_photo = analyze_photo
         self.cfg = cfg

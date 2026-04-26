@@ -5,9 +5,9 @@ from .tools import ALL_TOOLS
 from langgraph.prebuilt import ToolNode
 from langchain_core.messages import HumanMessage, AIMessage
 
-def build_agent_graph(cfg, ollama_client, climate_retriever, analyze_photo_func):
+def build_agent_graph(cfg, ollama_client, analyze_photo_func):
     workflow = StateGraph(AgentState)
-    nodes = AgentNodes(cfg, ollama_client, climate_retriever, analyze_photo_func)
+    nodes = AgentNodes(cfg, ollama_client, analyze_photo_func)
     tool_node = ToolNode(ALL_TOOLS)
     def should_continue(state: AgentState):
         last_message = state.get('last_llm_response')

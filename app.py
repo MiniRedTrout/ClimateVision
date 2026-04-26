@@ -11,7 +11,6 @@ import asyncio
 from omegaconf import DictConfig, OmegaConf
 from utils import logger
 from core.analyzer import analyze_photo
-from core.climate import climate_retriever
 from graph.builder import build_agent_graph
 from bot import create_webhook_app
 from middleware.rate_limiter import RateLimiter
@@ -32,7 +31,7 @@ def init_global_loop():
     logger.info(" Telegram application initialized")
     
     ollama_client = ollama.Client(host=cfg_global.ollama.host)
-    agent = build_agent_graph(ollama_client, climate_retriever, analyze_photo)
+    agent = build_agent_graph(ollama_client, analyze_photo)
     logger.info("Agent graph built")
 
     try:
