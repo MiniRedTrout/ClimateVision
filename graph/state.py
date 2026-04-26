@@ -17,6 +17,7 @@ class AgentState:
     photo_raw_response: Optional[str] = None 
     rag_context: Optional[str] = None 
     synthesized: Optional[Dict[str, Any]] = None 
+    tool_result: Dict[str,List[str]] = field(default_factory=list)
     answer: Optional[str] = None 
     errors: List[str] = field(default_factory=list)
     messages: List[BaseMessage] = field(default_factory=list)

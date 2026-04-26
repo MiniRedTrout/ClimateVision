@@ -7,28 +7,33 @@ from .state import AgentState
 from utils.helpers import parse
 from utils.logger import logger 
 from utils.validators import validate_size, validate_type, validate_coords
+from .tools import ALL_TOOLS
+from langchain_core.messages import HumanMessage, AIMessage
+from core.mcp_client import OpenMeteoMCPClient
 
 class AgentNodes:
     def __init__(self,cfg, ollama_client, climate_retriever,analyze_photo):
         self.ollama_client = ollama_client
-        self.climate_retriever = climate_retriever
         self.analyze_photo = analyze_photo
         self.cfg = cfg
-        self._siglip = None
-    def router_node(self, state:AgentState)->AgentState:
+        self.openmeteo = OpenMeteoMCPClient()
+        self.llm_with_tools = ollama_client.bind_tools(ALL_TOOLS)
+    async def router_node(self, state:AgentState)->AgentState:
         logger.info("Router:анализирует")
+        if not state.get('messages'):
+            state['messages'] = []
         state['has_photo'] = bool(state.get('photo_path'))
         state['has_location'] = bool(
             (state.get('lat') and state.get('lon')) or state.get('city')
         )
-        if state.get('lat') and state.get('lon'):
-            is_valid, error = validate_coords(state['lat'], state['lon'])
-            if not is_valid:
-                logger.warning(f"Invalid coordinates: {error}")
-                state['errors'] = state.get('errors', []) + [error]
-                state['has_location'] = False
-        logger.info(f"Photo: {state['has_photo']}")
-        logger.info(f"Location: {state['has_location']}")
+        if state.get('user_message'):
+            state['messages'].append(HumanMessage(content=state['user_message']))
+        if state['messages']:
+            response = await self.llm_with_tools.ainvoke(state['messages'])
+            state['messages'].append(response)
+            if hasattr(response, 'tool_calls') and response.tool_calls:
+                logger.info(f"LLM requested tools: {[tc['name'] for tc in response.tool_calls]}")
+        
         return state 
     async def analysis_node(self,state:AgentState)->AgentState:
         logger.info('Photo Analysis')
@@ -46,16 +51,25 @@ class AgentNodes:
             state['errors'].append(type_error)
             return state
         try:
+            climate_context = state.get('rag_context', '')
             result = await self.analyze_photo(
                 self.cfg,
                 state['photo_path'],
                 state.get('lat'),
                 state.get('lon'),
                 state.get('city'),
-                self.ollama_client
+                self.ollama_client,
+                climate_context
             )
             state["photo_raw_response"] = result
             state["photo_analysis"] = parse(result)
+            state['messages'].append({
+               "role": "assistant",
+               "content": f"Photo analysis complete: season={state['photo_analysis'].get('season')}, month={state['photo_analysis'].get('month')}",
+               "timestamp": datetime.now().isoformat(),
+               "type": "photo_analysis"
+            })
+
             logger.info(f"Результат: {state['photo_analysis']}")
         except Exception as e:
             logger.error(f"Ошибка: {e}")
@@ -65,25 +79,37 @@ class AgentNodes:
                 "month": "unknown",
                 "confidence": "low"
             }
+        if state.get('photo_analysis'):
+            state['messages'].append({
+               "role": "assistant",
+               "content": f"Photo analysis complete: season={state['photo_analysis'].get('season')}, month={state['photo_analysis'].get('month')}",
+               "timestamp": datetime.now().isoformat(),
+               "type": "photo_analysis"
+            })
         
         return state
-    async def siglip_node(self,state:AgentState)->AgentState:
-        logger.info('SigLIP node')
-        if not hasattr(self,'siglip'):
-            from core.siglip import siglip
-            self.siglip = siglip 
-        match = self.siglip.find_similar(state['photo_path'])
-        if match and match.get('similarity', 0) > 0.85:
-            state['siglip_match'] = match
-            state['photo_analysis'] = {
-            "season": match['season'],
-            "month": match['month'],
-            "confidence": "high",
-            "source": "siglip"
-            }
-            logger.info(f"SigLIP match: {match['season']}/{match['month']} (sim: {match['similarity']:.2f})")
-        else:
-            logger.info("SigLIP: похожих эталонов не найдено")
+    async def climate_node(self,state:AgentState)->AgentState:
+        if state.get('rag_context'):
+            return state 
+        if state.get('lat') and state.get('lon'):
+            try:
+                climate_mcp = await self.openmeteo.get_climate_history(
+                    state['lat'], 
+                    state['lon']
+                )
+                state['rag_context'] = climate_mcp
+                logger.info(f"Climate context retrieved")
+            except Exception as e:
+                logger.error(f"Climate MCP error: {e}")
+    
+        elif state.get('city'):
+            try:
+                climate_mcp = await self.openmeteo.get_city_climate(state['city'])
+                state['rag_context'] = climate_mcp
+            
+            except Exception as e:
+                logger.error(f"City climate error: {e}")
+    
         return state
     def synthesis_node(self,state:AgentState)->AgentState:
         logger.info("Synthesis node")
@@ -97,6 +123,12 @@ class AgentNodes:
             'confidence': confidence
         }
         logger.info(f"Итог: сезон={season}, месяц={month}, уверенность={confidence}")
+        state['messages'].append({
+            "role": "assistant",
+            "content": f"Synthesis complete: Detected {season}, {month} with {confidence} confidence",
+            "timestamp": datetime.now().isoformat(),
+            "type": "synthesis"
+        })
         return state
     def formatter_node(self, state: AgentState) -> AgentState:
         logger.info("Formatter Node")
