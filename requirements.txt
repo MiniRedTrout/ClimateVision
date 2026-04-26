@@ -2,6 +2,7 @@ python-telegram-bot
 ollama
 flask
 requests
+sentence-transformers
 aiohttp
 python-dotenv
 langgraph
@@ -14,6 +15,7 @@ opencv-python
 numpy
 transformers
 torch
+httpx
 torchvision
 faiss-cpu
 h5py
