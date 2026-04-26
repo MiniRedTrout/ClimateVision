@@ -26,14 +26,14 @@ class AgentNodes:
         state['has_location'] = bool(
             (state.get('lat') and state.get('lon')) or state.get('city')
         )
+        if state.get('lat') and state.get('lon'):
+            is_valid, error = validate_coords(state['lat'], state['lon'])
+            if not is_valid:
+                logger.warning(f"Invalid coordinates: {error}")
+                state['errors'].append(error)
+                state['has_location'] = False
         if state.get('user_message'):
             state['messages'].append(HumanMessage(content=state['user_message']))
-        if state['messages']:
-            response = await self.llm_with_tools.ainvoke(state['messages'])
-            state['messages'].append(response)
-            if hasattr(response, 'tool_calls') and response.tool_calls:
-                logger.info(f"LLM requested tools: {[tc['name'] for tc in response.tool_calls]}")
-        
         return state 
     async def analysis_node(self,state:AgentState)->AgentState:
         logger.info('Photo Analysis')
@@ -79,16 +79,10 @@ class AgentNodes:
                 "month": "unknown",
                 "confidence": "low"
             }
-        if state.get('photo_analysis'):
-            state['messages'].append({
-               "role": "assistant",
-               "content": f"Photo analysis complete: season={state['photo_analysis'].get('season')}, month={state['photo_analysis'].get('month')}",
-               "timestamp": datetime.now().isoformat(),
-               "type": "photo_analysis"
-            })
         
         return state
     async def climate_node(self,state:AgentState)->AgentState:
+        logger.info('Climate node')
         if state.get('rag_context'):
             return state 
         if state.get('lat') and state.get('lon'):
@@ -111,24 +105,40 @@ class AgentNodes:
                 logger.error(f"City climate error: {e}")
     
         return state
-    def synthesis_node(self,state:AgentState)->AgentState:
+    async def synthesis_node(self,state:AgentState)->AgentState:
         logger.info("Synthesis node")
         photo = state.get('photo_analysis',{})
-        season = photo.get('season','unknown')
-        month = photo.get('month', 'unknown')
-        confidence = photo.get('confidence', 'medium')
+        climate = state.get('rag_context', '')
+        user_message = state.get('user_message', '')
         state['synthesized'] = {
-            'season': season,
-            'month': month,
-            'confidence': confidence
+            'season': photo.get('season', 'unknown'),
+            'month': photo.get('month', 'unknown'),
+            'confidence': photo.get('confidence', 'medium')
         }
-        logger.info(f"Итог: сезон={season}, месяц={month}, уверенность={confidence}")
-        state['messages'].append({
-            "role": "assistant",
-            "content": f"Synthesis complete: Detected {season}, {month} with {confidence} confidence",
-            "timestamp": datetime.now().isoformat(),
-            "type": "synthesis"
-        })
+        prompt = f"""
+Ты помощник, который определяет сезон по фотографии.
+
+Данные с фото:
+- Сезон: {photo.get('season', 'unknown')}
+- Месяц: {photo.get('month', 'unknown')}
+- Уверенность: {photo.get('confidence', 'medium')}
+
+Климатический контекст:
+{climate}
+
+Вопрос пользователя: {user_message}
+
+Если пользователь спрашивает о погоде, климате или сравнении городов - используй доступные инструменты.
+Ответь полезно и дружелюбно.
+"""
+        messages = state.get('messages', [])
+        messages.append(HumanMessage(content=prompt))
+        response = await self.llm_with_tools.ainvoke(messages)
+        messages.append(response)
+        state['messages'] = messages
+        state['last_llm_response'] = response
+        logger.info(f"LLM response has tool_calls: {hasattr(response, 'tool_calls') and bool(response.tool_calls)}")
+        
         return state
     def formatter_node(self, state: AgentState) -> AgentState:
         logger.info("Formatter Node")

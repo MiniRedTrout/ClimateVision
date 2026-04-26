@@ -136,6 +136,7 @@ def create_webhook_app(agent, telegram_app, main_loop, rate_limiter):
               photo_analysis=None,
               photo_raw_response=None,
               rag_context=None,
+              last_llm_response=None,
               synthesized=None,
               tool_result=[],
               answer=None,
