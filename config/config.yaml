@@ -2,8 +2,12 @@ defaults:
   - telegram: default
   - ollama: default
   - model: default
-  - photo: default
+  - siglip: default
   - rate_limit: default
+  - rag: default 
+  - hydra: default 
+  - graph: default 
+  - cache: default 
   - _self_
 
 debug: false
