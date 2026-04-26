@@ -5,7 +5,7 @@ defaults:
   - siglip: default
   - rate_limit: default
   - rag: default 
-  - hydra: default 
+  - photo: default 
   - graph: default 
   - cache: default 
   - _self_
