@@ -9,7 +9,7 @@ from utils import logger
 class FileCache:
     """Кэш"""
     def __init__(self,cache_dir: str = "cache_files"):
-        self.cache_dir = cache_dir
+        self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(exist_ok=True)
         self._hits = 0
         self._misses = 0
