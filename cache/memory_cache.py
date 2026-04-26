@@ -40,21 +40,4 @@ class MemoryCache:
             'hit_rate':hit_rate
         }
 
-def cached(cache:MemoryCache,key_prefix: str="",ttl:int=3600):
-    """Декоратор для кэширования"""
-    def decorator(func):
-        @wraps(func)
-        async def wrapper(*args, **kwargs):
-            import json 
-            cache_key = f'{key_prefix}:{func.__name__}:{json.dumps(args, sort_keys=True)}:{json.dumps(kwargs, sort_keys=True)}'
-            result = cache.get(cache_key)
-            if result is not None:
-                logger.info(f'Cache hit for {func.__name__}')
-                return result
-            logger.info(f'Cache miss for {func.__name__}')
-            result = await func(*args, **kwargs)
-            cache.set(cache_key,result,ttl)
-            return result 
-        return wrapper
-    return decorator
 

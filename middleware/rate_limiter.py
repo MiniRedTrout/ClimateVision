@@ -11,7 +11,7 @@ class RateLimiter:
         self.cfg = cfg
     def is_allowed(self,user_id:int)->Tuple[bool,int]:
         now = time.time()
-        window_start = now - self.cfg.middleware.rate_seconds
+        window_start = now - self.cfg.rate_limiter.seconds
         self._requests[user_id] = [
             req_time for req_time in self._requests[user_id]
             if req_time > window_start

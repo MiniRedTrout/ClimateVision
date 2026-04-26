@@ -1,4 +1,4 @@
-from langchain.core import tool 
+from langchain_core import tool 
 from rag.retriever import ClimateRetriever 
 from pathlib import Path 
 from typing import Optional 
