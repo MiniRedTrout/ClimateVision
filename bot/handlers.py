@@ -2,7 +2,7 @@ import os
 import tempfile 
 from telegram import Update
 from telegram.ext import ContextTypes
-from utils.helpers import extract_city, validate_size, validate_type
+from utils.validators import validate_size, validate_type
 from middleware import rate_limiter
 from utils.logger import logger
 import sys
