@@ -1,8 +1,14 @@
 import aiohttp 
 from utils import logger 
+from cache import api_cache
+import asyncio
 async def get_coordinates_by_city(city:str)->tuple:
     if not city:
         return None,None 
+    cache_key = f'geocode:{city.lower()}'
+    cached = api_cache.get(cache_key)
+    if cached:
+        return cached 
     url = "https://nominatim.openstreetmap.org/search"
     params = {
         "q": city,
@@ -19,6 +25,7 @@ async def get_coordinates_by_city(city:str)->tuple:
                 if data:
                     lat = float(data[0]["lat"])
                     lon = float(data[0]["lon"])
+                    api_cache.set(cache_key, (lat, lon), ttl=604800)
                     logger.info(f"📍 Geocoded '{city}' → {lat}, {lon}")
                     return lat, lon
     except Exception as e:

@@ -3,6 +3,7 @@ import asyncio
 import subprocess
 import json
 from pathlib import Path
+from cache import climate_cache
 
 class OpenMeteoMCPClient:
     
@@ -52,7 +53,13 @@ class OpenMeteoMCPClient:
         return await self.call_tool("get_current_weather", lat=lat, lon=lon)
     
     async def get_climate_history(self, lat: float, lon: float, year: int = 2023) -> str:
-        return await self.call_tool("get_climate_history", lat=lat, lon=lon, year=year)
+        cache_key = f'climate:{lat}:{lon}:{year}'
+        cached = climate_cache.get(cache_key)
+        if cached:
+            return cached 
+        result = await self.call_tool("get_climate_history", lat=lat, lon=lon, year=year)
+        climate_cache.set(cache_key,result,ttl=86400)
+        return result 
     
     async def get_forecast(self, lat: float, lon: float, days: int = 3) -> str:
         return await self.call_tool("get_forecast", lat=lat, lon=lon, days=days)
