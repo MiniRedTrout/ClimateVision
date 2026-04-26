@@ -87,7 +87,7 @@ class BotHandlers:
         if city and not (lat and lon):
             lat,lon = await get_coordinates_by_city(city)
             if lat and lon:
-                logger.info(f'Geocoded:{city}'->{lat},{lon})
+                logger.info(f'Geocoded:{city}->{lat},{lon}')
         photo_file = await update.message.photo[-1].get_file()
         if photo_file.file_size > 10 * 1024 * 1024:
             await update.message.reply_text(" Фото слишком большое (максимум 10 МБ)")
@@ -96,7 +96,7 @@ class BotHandlers:
             await photo_file.download_to_drive(tmp.name)
             tmp_path = tmp.name
         try:
-            from graph import AgentState
+            from graph.state import AgentState
             
             initial_state = AgentState(
                 user_id=user_id,
