@@ -13,7 +13,7 @@ from utils import logger
 from core.analyzer import analyze_photo
 from core.climate import climate_retriever
 from graph.builder import build_agent_graph
-from bot import BotHandlers, create_webhook_app
+from bot import create_webhook_app
 from middleware.rate_limiter import RateLimiter
 from middleware.error_handler import handle_errors
 load_dotenv()
