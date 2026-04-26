@@ -2,7 +2,7 @@ import os
 import json 
 import math 
 from typing import Dict, Optional, Tuple
-from .vector_store import VectoreStore 
+from .vector_store import VectorStore 
 from utils import logger 
 
 class ClimateRetriever:
