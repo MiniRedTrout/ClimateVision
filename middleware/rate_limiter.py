@@ -36,5 +36,3 @@ class RateLimiter:
             'user_id':user_id,
             'requests_in_window':len(recent)
         }
-
-rate_limiter = RateLimiter()
