@@ -1,0 +1,6 @@
+max_size: 10
+types:
+  - jpg
+  - jpeg
+  - png
+  - webp
