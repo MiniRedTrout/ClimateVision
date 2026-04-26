@@ -18,7 +18,7 @@ class ClimateRetriever:
             with open(path,'r',encoding='utf-8') as f:
                 self.data = json.load(f)
             logger.info(f'Loaded {len(self.data)} cities')
-        self.vector_store = VectoreStore(path) if self.data else None 
+        self.vector_store = VectorStore(path) if self.data else None 
     def find_city_coords(self,lat:float,lon:float)->Tuple[Optional[str],Optional[dict]]:
         nearest_city = None 
         nearest_data = None 
