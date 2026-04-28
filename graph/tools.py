@@ -140,6 +140,9 @@ async def compare_cities_climate(city1: str, city2: str) -> str:
                 result += f"(equal)\n"
     return result
 
+server_url = "https://nearest-unifier-pretty.ngrok-free.dev"
+import aiohttp
+
 @tool 
 async def analyze_with_siglip(path:str,lat:Optional[float]=None ,lon:Optional[float]=None)->str:
     """Analyze a photo to detect season and month using SigLIP vision model.
@@ -153,25 +156,30 @@ async def analyze_with_siglip(path:str,lat:Optional[float]=None ,lon:Optional[fl
         Detailed analysis including detected season, month, and confidence score.
     """
     try:
-        if not Path(path).exists():
-            return f"Image file not found"
-        siglip = get_siglip()
-        result = siglip.find_similar(path,lat=lat,lon=lon)
-        if not result:
-            return "Could not analyze photo. No similar images found in database."
-        season = result.get('season', 'unknown')
-        month = result.get('month', 'unknown')
-        similarity = result.get('similarity', 0)
-        source = result.get('source', 'siglip')
-        analysis = f"""
-    **Photo Analysis Results:**
-    - Detected Season: {season}
-    - Estimated Month: {month}
-    - Confidence Score: {similarity:.2f}
-    - Detection Method: {source}
-    Based on the visual features, this photo appears to be taken in **{season}**, specifically **{month}**.
-    """
-        return analysis.strip()
+        async with aiohttp.ClientSession() as session:
+            data = aiohttp.FormData()
+            data.add_field("file", open(path, "rb"), filename="image.jpg")
+            if lat is not None:
+                data.add_field("lat", str(lat))
+            if lon is not None:
+                data.add_field("lon", str(lon))
+            
+            async with session.post(
+                f"{server_url}/analyze",
+                data=data,
+                timeout=aiohttp.ClientTimeout(total=30)
+            ) as resp:
+                if resp.status == 200:
+                    result = await resp.json()
+                    return (
+                        f"**Photo Analysis Results:**\n"
+                        f"- Detected Season: {result.get('season', 'unknown')}\n"
+                        f"- Estimated Month: {result.get('month', 'unknown')}\n"
+                        f"- Confidence Score: {result.get('confidence', 0):.2f}\n"
+                        f"- Detection Method: {result.get('source', 'siglip')}\n"
+                    )
+                else:
+                    return f"Error from SigLIP server: {resp.status}"
     except Exception as e:
         return f"Error analyzing photo: {str(e)}"
     
