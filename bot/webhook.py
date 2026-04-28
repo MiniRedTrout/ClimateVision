@@ -87,11 +87,9 @@ def create_webhook_app(agent, telegram_app, main_loop, rate_limiter):
                     return 'ok', 200
             if not message.photo:
                 return 'ok', 200
-            asyncio.run_coroutine_threadsafe(
-                send_message_async(telegram_app.bot, user_id, "🔍 Анализирую фотографию..."),
-                main_loop
-            )
+            send_message_sync(telegram_app.bot,user_id,"Анализирую фото", main_loop)
             lon = None
+            lat = None 
             city = None
             if message.location:
                 lat = message.location.latitude
@@ -145,16 +143,12 @@ def create_webhook_app(agent, telegram_app, main_loop, rate_limiter):
             )
             result = await_async(agent.ainvoke(state), main_loop, timeout=90)
             if result.get("errors"):
-                error_msg = f"⚠️ Частичная ошибка: {result['errors'][0][:100]}"
-                asyncio.run_coroutine_threadsafe(
-                    send_message_async(telegram_app.bot, user_id, error_msg),
-                    main_loop
-                )
+                error_msg = f" Частичная ошибка: {result['errors'][0][:100]}"
+                send_message_sync(telegram_app.bot, user_id, error_msg, main_loop)
             if result.get("answer"):
-                asyncio.run_coroutine_threadsafe(
-                    send_message_async(telegram_app.bot, user_id, result["answer"]),
-                    main_loop
-                )
+                send_message_sync(telegram_app.bot, user_id,result['answer'],main_loop)
+            else:
+                send_message_sync(telegram_app.bot, user_id, "Не удалось определить сезон. Попробуйте другое фото.", main_loop)
             if photo_path.exists():
                 photo_path.unlink()
             return 'ok', 200
@@ -182,3 +176,9 @@ async def download_photo_async(photo_file, user_id):
     photo_path = photos_dir / f"user_{user_id}_latest.jpg"
     await photo_file.download_to_drive(photo_path)
     return str(photo_path)
+
+def send_message_sync(bot,user_id,text,loop):
+    asyncio.run_coroutine_threadsafe(
+        send_message_async(bot, user_id,text),
+        loop 
+    )
