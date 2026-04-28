@@ -83,7 +83,7 @@ def main(cfg: DictConfig):
     set_webhook(cfg_global)
     flask_app = create_webhook_app(agent, telegram_app, main_loop,rate_limiter)
     logger.info(f" Starting Flask server on port {cfg.telegram.port}")
-    flask_app.run(host="0.0.0.0", port=int(os.getenv('PORT',10000)))
+    flask_app.run(host="0.0.0.0", port=int(os.environ.get('PORT',10000)))
 
 if __name__ == "__main__":
     main()
