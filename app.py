@@ -63,6 +63,7 @@ def set_webhook():
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(cfg: DictConfig):
+    import os 
     global cfg_global
     cfg_global = cfg
     logger.info("Starting Season Bot...")
@@ -74,7 +75,7 @@ def main(cfg: DictConfig):
     set_webhook()
     flask_app = create_webhook_app(agent, telegram_app, main_loop,rate_limiter)
     logger.info(f" Starting Flask server on port {cfg.telegram.port}")
-    flask_app.run(host="0.0.0.0", port=cfg.telegram.port)
+    flask_app.run(host="0.0.0.0", port=int(os.getenv('PORT',10000)))
 
 if __name__ == "__main__":
     main()
