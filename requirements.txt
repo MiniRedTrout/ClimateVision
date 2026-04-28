@@ -8,6 +8,8 @@ python-dotenv
 langgraph
 langchain
 langchain-core
+sentencepiece
+protobuf
 typing-extensions
 pydantic
 Pillow
