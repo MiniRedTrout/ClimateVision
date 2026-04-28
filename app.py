@@ -21,7 +21,7 @@ main_loop = None
 telegram_app = None
 agent = None
 
-def init_global_loop():
+def init_global_loop(cfg_global: OmegaConf):
     global main_loop, telegram_app, agent
     main_loop = asyncio.new_event_loop()
     asyncio.set_event_loop(main_loop)
@@ -40,14 +40,14 @@ def init_global_loop():
         logger.info("Shutting down...")
         main_loop.close()
 
-def start_loop_in_thread():
-    thread = threading.Thread(target=init_global_loop, daemon=True)
+def start_loop_in_thread(cfg: OmegaConf):
+    thread = threading.Thread(target=init_global_loop, args=(cfg,), daemon=True)
     thread.start()
     time.sleep(3) 
     logger.info("Event loop running in background thread")
 
 
-def set_webhook():
+def set_webhook(cfg_global: OmegaConf):
     if not cfg_global.telegram.webhook_host or cfg_global.telegram.webhook_host == "localhost":
         logger.warning("Webhook host not set, skipping webhook setup")
         return
@@ -64,15 +64,16 @@ def set_webhook():
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(cfg: DictConfig):
     import os 
-    global cfg_global
+    global cfg_global, agent, telegram_app, main_loop
     cfg_global = cfg
     logger.info("Starting Season Bot...")
     logger.info(f"   Ollama host: {cfg.ollama.host}")
     logger.info(f"   Model: {cfg.model.name}")
     logger.info(f"   Port: {cfg.telegram.port}")
     rate_limiter = RateLimiter(cfg)
-    start_loop_in_thread()
-    set_webhook()
+    start_loop_in_thread(cfg_global)
+    time.sleep(2)
+    set_webhook(cfg_global)
     flask_app = create_webhook_app(agent, telegram_app, main_loop,rate_limiter)
     logger.info(f" Starting Flask server on port {cfg.telegram.port}")
     flask_app.run(host="0.0.0.0", port=int(os.getenv('PORT',10000)))
