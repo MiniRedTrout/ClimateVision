@@ -43,7 +43,14 @@ def init_global_loop(cfg_global: OmegaConf):
 def start_loop_in_thread(cfg: OmegaConf):
     thread = threading.Thread(target=init_global_loop, args=(cfg,), daemon=True)
     thread.start()
-    time.sleep(3) 
+    timeout = 30
+    start_time = time.time()
+    while agent is None and (time.time() - start_time) < timeout:
+        time.sleep(0.5)
+    if agent is None:
+        logger.error("❌ Agent initialization timed out!")
+    else:
+        logger.info("✅ Agent initialized")
     logger.info("Event loop running in background thread")
 
 
