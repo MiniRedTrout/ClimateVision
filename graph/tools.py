@@ -139,52 +139,8 @@ async def compare_cities_climate(city1: str, city2: str) -> str:
             else:
                 result += f"(equal)\n"
     return result
-
-server_url = "https://nearest-unifier-pretty.ngrok-free.dev"
-import aiohttp
-
-@tool 
-async def analyze_with_siglip(path:str,lat:Optional[float]=None ,lon:Optional[float]=None)->str:
-    """Analyze a photo to detect season and month using SigLIP vision model.
-    Use this tool for any photo analysis tasks.
-    Args:
-        image_path: Path to the image file on disk
-        lat: Optional latitude for geo-weighted similarity
-        lon: Optional longitude for geo-weighted similarity
-    
-    Returns:
-        Detailed analysis including detected season, month, and confidence score.
-    """
-    try:
-        async with aiohttp.ClientSession() as session:
-            data = aiohttp.FormData()
-            data.add_field("file", open(path, "rb"), filename="image.jpg")
-            if lat is not None:
-                data.add_field("lat", str(lat))
-            if lon is not None:
-                data.add_field("lon", str(lon))
-            
-            async with session.post(
-                f"{server_url}/analyze",
-                data=data,
-                timeout=aiohttp.ClientTimeout(total=30)
-            ) as resp:
-                if resp.status == 200:
-                    result = await resp.json()
-                    return (
-                        f"**Photo Analysis Results:**\n"
-                        f"- Detected Season: {result.get('season', 'unknown')}\n"
-                        f"- Estimated Month: {result.get('month', 'unknown')}\n"
-                        f"- Confidence Score: {result.get('confidence', 0):.2f}\n"
-                        f"- Detection Method: {result.get('source', 'siglip')}\n"
-                    )
-                else:
-                    return f"Error from SigLIP server: {resp.status}"
-    except Exception as e:
-        return f"Error analyzing photo: {str(e)}"
     
 ALL_TOOLS = [
-    analyze_with_siglip,
     compare_cities_climate,
     search_climate_by_description,
     find_similar_climate,
