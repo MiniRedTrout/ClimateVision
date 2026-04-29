@@ -14,9 +14,8 @@ from omegaconf import DictConfig
 from utils import logger
 from utils.helpers import extract_city, parse_coordinates
 from utils.geocoding import get_coordinates_by_city
-from utils.validators import validate_photo_size
+from utils.validators import validate_size
 from core.analyzer import analyze_photo
-from core.climate import climate_retriever
 from graph.builder import build_agent_graph
 from graph.state import AgentState
 from middleware.rate_limiter import RateLimiter
@@ -33,18 +32,17 @@ class SeasonBot:
 
         self.ollama_client = ollama.Client(host=self.ollama_host)
         self.rate_limiter = RateLimiter(cfg)
-        self.climate_retriever = climate_retriever
         
         self.agent = build_agent_graph(
+            cfg,
             self.ollama_client, 
-            self.climate_retriever, 
             analyze_photo
         )
         
         self.application = Application.builder().token(self.token).build()
         self._register_handlers()
         
-        logger.info("✅ SeasonBot initialized")
+        logger.info(" SeasonBot initialized")
         logger.info(f"   Ollama: {self.ollama_host}")
         logger.info(f"   Model: {self.ollama_model}")
     
