@@ -1,5 +1,5 @@
-# bot_worker.py (исправленная версия)
 
+print("=== 1. STARTING BOT ===", flush=True)
 import asyncio
 import os
 import tempfile
@@ -22,10 +22,11 @@ from graph.builder import build_agent_graph
 from graph.state import AgentState
 from middleware.rate_limiter import RateLimiter
 
+print("=== 2. IMPORTS DONE ===", flush=True)
 load_dotenv()
-
+print("=== 3. ENV LOADED ===", flush=True)
 http_app = Flask(__name__)
-
+print("=== 4. FLASK APP CREATED ===", flush=True)
 @http_app.route('/')
 def health():
     return "Season bot is running", 200
@@ -44,6 +45,7 @@ print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
 
 class SeasonBot:
     def __init__(self, cfg: DictConfig):
+        print("=== 5. SEASONBOT INIT START ===", flush=True)
         self.cfg = cfg
         self.token = cfg.telegram.token
         self.ollama_host = cfg.ollama.host
@@ -64,7 +66,7 @@ class SeasonBot:
         logger.info(" SeasonBot initialized")
         logger.info(f"   Ollama: {self.ollama_host}")
         logger.info(f"   Model: {self.ollama_model}")
-    
+        print("=== 6. SEASONBOT INIT DONE ===", flush=True)
     def _register_handlers(self):
         self.application.add_handler(CommandHandler("start", self.start_command))
         self.application.add_handler(CommandHandler("help", self.help_command))
@@ -211,11 +213,16 @@ class SeasonBot:
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(cfg: DictConfig):
+    print("=== 7. MAIN START ===", flush=True)
     logger.info("Starting Season Bot Worker...")
     
     bot = SeasonBot(cfg)
+    print("=== 8. BOT CREATED ===", flush=True)
     asyncio.run(bot.run())
+    print("=== 9. BOT RUN DONE ===", flush=True)
 
 
+print("=== 10. BEFORE MAIN CALL ===", flush=True)
 if __name__ == "__main__":
     main()
+    print("=== 11. AFTER MAIN ===", flush=True)
