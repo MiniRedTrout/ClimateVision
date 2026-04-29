@@ -4,6 +4,7 @@ import re
 from datetime import datetime
 from typing import Dict, Any
 from .state import AgentState 
+from langchain_ollama import ChatOllama
 from utils.helpers import parse
 from utils.logger import logger 
 from utils.validators import validate_size, validate_type, validate_coords
@@ -16,8 +17,13 @@ class AgentNodes:
         self.ollama_client = ollama_client
         self.analyze_photo = analyze_photo
         self.cfg = cfg
+        self.llm = ChatOllama(
+            model=cfg.model.name,
+            base_url=cfg.ollama.host,
+            temperature=cfg.model.get('temperature', 0.1)
+        )
         self.openmeteo = OpenMeteoMCPClient()
-        self.llm_with_tools = ollama_client.bind_tools(ALL_TOOLS)
+        self.llm_with_tools = self.llm.bind_tools(ALL_TOOLS)
     async def router_node(self, state:AgentState)->AgentState:
         logger.info("Router:анализирует")
         if not state.get('messages'):
