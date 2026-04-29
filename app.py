@@ -199,3 +199,22 @@ def main(cfg: DictConfig):
 
 if __name__ == "__main__":
     main()
+    from flask import Flask
+    import threading
+    import os
+    
+    http_app = Flask(__name__)
+    
+    @http_app.route('/')
+    def health():
+        return "Season bot is running", 200
+    
+    @http_app.route('/health')
+    def health_check():
+        return {"status": "ok"}, 200
+    
+    def run_http():
+        port = int(os.environ.get("PORT", 10000))
+        http_app.run(host="0.0.0.0", port=port)
+    
+    threading.Thread(target=run_http, daemon=True).start()
