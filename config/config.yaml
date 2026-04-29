@@ -2,7 +2,6 @@ defaults:
   - telegram: default
   - ollama: default
   - model: default
-  - siglip: default
   - rate_limit: default
   - rag: default 
   - photo: default 

@@ -1,7 +1,9 @@
+# bot_worker.py (исправленная версия)
+
 import asyncio
 import os
 import tempfile
-import time
+import threading
 from pathlib import Path
 from dotenv import load_dotenv
 from telegram import Update
@@ -9,6 +11,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 import ollama
 import hydra
 from omegaconf import DictConfig
+from flask import Flask
 
 from utils import logger
 from utils.helpers import extract_city, parse_coordinates
@@ -21,6 +24,23 @@ from middleware.rate_limiter import RateLimiter
 
 load_dotenv()
 
+http_app = Flask(__name__)
+
+@http_app.route('/')
+def health():
+    return "Season bot is running", 200
+
+@http_app.route('/health')
+def health_check():
+    return {"status": "ok"}, 200
+
+def run_http():
+    port = int(os.environ.get("PORT", 10000))
+    http_app.run(host="0.0.0.0", port=port, debug=False)
+
+http_thread = threading.Thread(target=run_http, daemon=True)
+http_thread.start()
+print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
 
 class SeasonBot:
     def __init__(self, cfg: DictConfig):
@@ -54,7 +74,7 @@ class SeasonBot:
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             " Привет! Я определяю сезон и месяц по фотографии!\n\n"
-            "Отправьте фото с геолокацией или укажите город в подписи.\n\n"
+            " Отправьте фото с геолокацией или укажите город в подписи.\n\n"
             " Команды:\n"
             "/help - помощь\n"
             "/stats - статистика использования"
@@ -156,14 +176,14 @@ class SeasonBot:
         if update.message.location:
             lat = update.message.location.latitude
             lon = update.message.location.longitude
-            logger.info(f"Location from Telegram: {lat}, {lon}")
+            logger.info(f" Location from Telegram: {lat}, {lon}")
             return lat, lon, city
         caption = update.message.caption or ""
         if caption:
             coords = parse_coordinates(caption)
             if coords:
                 lat, lon = coords
-                logger.info(f"Coordinates from caption: {lat}, {lon}")
+                logger.info(f" Coordinates from caption: {lat}, {lon}")
                 return lat, lon, city
             
             city = extract_city(caption)
@@ -171,19 +191,19 @@ class SeasonBot:
                 logger.info(f" City from caption: {city}")
                 lat, lon = await get_coordinates_by_city(city)
                 if lat and lon:
-                    logger.info(f"Geocoded: {city} -> {lat}, {lon}")
+                    logger.info(f" Geocoded: {city} -> {lat}, {lon}")
         
         return lat, lon, city
     
     async def run(self):
-        logger.info(" Starting bot in polling mode...")
+        logger.info("Starting bot in polling mode...")
         await self.application.initialize()
         await self.application.start()
         await self.application.updater.start_polling()
         try:
             while True:
                 await asyncio.sleep(3600)
-                logger.info(" Bot is alive")
+                logger.info("Bot is alive")
         except KeyboardInterrupt:
             logger.info("Shutting down...")
             await self.application.stop()
@@ -191,7 +211,7 @@ class SeasonBot:
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(cfg: DictConfig):
-    logger.info(" Starting Season Bot Worker...")
+    logger.info("Starting Season Bot Worker...")
     
     bot = SeasonBot(cfg)
     asyncio.run(bot.run())
@@ -199,22 +219,3 @@ def main(cfg: DictConfig):
 
 if __name__ == "__main__":
     main()
-    from flask import Flask
-    import threading
-    import os
-    
-    http_app = Flask(__name__)
-    
-    @http_app.route('/')
-    def health():
-        return "Season bot is running", 200
-    
-    @http_app.route('/health')
-    def health_check():
-        return {"status": "ok"}, 200
-    
-    def run_http():
-        port = int(os.environ.get("PORT", 10000))
-        http_app.run(host="0.0.0.0", port=port)
-    
-    threading.Thread(target=run_http, daemon=True).start()
