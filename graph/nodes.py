@@ -143,7 +143,7 @@ class AgentNodes:
     def formatter_node(self, state: AgentState) -> AgentState:
         logger.info("Formatter Node")
         synthesized = state.get('synthesized', {})
-        season_ru = self.cfg.graph.SEASON_NAMES_RU.get(synthesized.get('season', 'unknown'), '❓ Неизвестно')
+        season_ru = self.cfg.graph.SEASON_NAMES_RU.get(synthesized.get('season', 'unknown'), 'Неизвестно')
         month_ru = self.cfg.graph.MONTH_NAMES_RU.get(synthesized.get('month', ''), 'Неизвестно')
 
         confidence_icon = {

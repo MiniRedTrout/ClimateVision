@@ -11,12 +11,6 @@ def get_retriever():
         _climate_retriever = ClimateRetriever
     return _climate_retriever
 
-def get_siglip():
-    global _siglip
-    if _siglip is None:
-        _siglip = SigLIP 
-    return _siglip 
-
 @tool 
 async def get_city_climate(city_name: str) -> str:
     """Get climate data for a specific city.
