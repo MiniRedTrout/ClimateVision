@@ -2,7 +2,6 @@ from langchain.tools import tool
 from rag.retriever import ClimateRetriever 
 from pathlib import Path 
 from typing import Optional 
-from core.siglip import SigLIP
 
 _siglip = None 
 _climate_retriever = None 
