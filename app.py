@@ -1,9 +1,25 @@
 
 print("=== 1. STARTING BOT ===", flush=True)
+from flask import Flask
+import threading
+http_app = Flask(__name__)
+@http_app.route('/')
+def health():
+    return "Season bot is running", 200
+
+@http_app.route('/health')
+def health_check():
+    return {"status": "ok"}, 200
+
+def run_http():
+    port = int(os.environ.get("PORT", 10000))
+    http_app.run(host="0.0.0.0", port=port, debug=False)
+
+http_thread = threading.Thread(target=run_http, daemon=True)
+http_thread.start()
 import asyncio
 import os
 import tempfile
-import threading
 from pathlib import Path
 from dotenv import load_dotenv
 from telegram import Update
@@ -11,7 +27,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 import ollama
 import hydra
 from omegaconf import DictConfig
-from flask import Flask
+
 
 from utils import logger
 from utils.helpers import extract_city, parse_coordinates
@@ -29,22 +45,7 @@ from middleware.rate_limiter import RateLimiter
 print("=== 2. IMPORTS DONE ===", flush=True)
 load_dotenv()
 print("=== 3. ENV LOADED ===", flush=True)
-http_app = Flask(__name__)
 print("=== 4. FLASK APP CREATED ===", flush=True)
-@http_app.route('/')
-def health():
-    return "Season bot is running", 200
-
-@http_app.route('/health')
-def health_check():
-    return {"status": "ok"}, 200
-
-def run_http():
-    port = int(os.environ.get("PORT", 10000))
-    http_app.run(host="0.0.0.0", port=port, debug=False)
-
-http_thread = threading.Thread(target=run_http, daemon=True)
-http_thread.start()
 print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
 
 class SeasonBot:
