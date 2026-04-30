@@ -1,51 +1,30 @@
-print("=== 1. STARTING BOT ===", flush=True)
 
+print("=== 1. STARTING BOT ===", flush=True)
+import asyncio
+import os
+import tempfile
+import threading
+from pathlib import Path
+from dotenv import load_dotenv
+from telegram import Update
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+import ollama
+import hydra
+from omegaconf import DictConfig
+from flask import Flask
+
+from utils import logger
+from utils.helpers import extract_city, parse_coordinates
+from utils.geocoding import get_coordinates_by_city
+from utils.validators import validate_size
+from core.analyzer import analyze_photo
 try:
-    import asyncio
-    print("=== 2.1 asyncio OK ===", flush=True)
-    import os
-    print("=== 2.2 os OK ===", flush=True)
-    import tempfile
-    print("=== 2.3 tempfile OK ===", flush=True)
-    import threading
-    print("=== 2.4 threading OK ===", flush=True)
-    from pathlib import Path
-    print("=== 2.5 Path OK ===", flush=True)
-    from dotenv import load_dotenv
-    print("=== 2.6 dotenv OK ===", flush=True)
-    from telegram import Update
-    from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-    print("=== 2.7 telegram OK ===", flush=True)
-    import ollama
-    print("=== 2.8 ollama OK ===", flush=True)
-    import hydra
-    from omegaconf import DictConfig
-    print("=== 2.9 hydra OK ===", flush=True)
-    from flask import Flask
-    print("=== 2.10 flask OK ===", flush=True)
-    
-    from utils import logger
-    print("=== 2.11 utils.logger OK ===", flush=True)
-    from utils.helpers import extract_city, parse_coordinates
-    print("=== 2.12 utils.helpers OK ===", flush=True)
-    from utils.geocoding import get_coordinates_by_city
-    print("=== 2.13 utils.geocoding OK ===", flush=True)
-    from utils.validators import validate_size
-    print("=== 2.14 utils.validators OK ===", flush=True)
-    from core.analyzer import analyze_photo
-    print("=== 2.15 core.analyzer OK ===", flush=True)
-    from graph.builder import build_agent_graph
-    print("=== 2.16 graph.builder OK ===", flush=True)
-    from graph.state import AgentState
-    print("=== 2.17 graph.state OK ===", flush=True)
-    from middleware.rate_limiter import RateLimiter
-    print("=== 2.18 middleware.rate_limiter OK ===", flush=True)
-    
+  from graph.builder import build_agent_graph
 except Exception as e:
-    print(f"!!! IMPORT ERROR: {e}", flush=True)
-    import traceback
-    traceback.print_exc()
+    print(f"!!! ERROR importing graph.builder: {e}", flush=True)
     raise
+from graph.state import AgentState
+from middleware.rate_limiter import RateLimiter
 
 print("=== 2. IMPORTS DONE ===", flush=True)
 load_dotenv()

@@ -1,11 +1,11 @@
 from langgraph.graph import StateGraph, END
 from .state import AgentState
-from .nodes import AgentNodes
 from .tools import ALL_TOOLS
 from langgraph.prebuilt import ToolNode
 from langchain_core.messages import HumanMessage, AIMessage
 
 def build_agent_graph(cfg, ollama_client, analyze_photo_func):
+    from .nodes import AgentNodes
     workflow = StateGraph(AgentState)
     nodes = AgentNodes(cfg, ollama_client, analyze_photo_func)
     tool_node = ToolNode(ALL_TOOLS)
