@@ -1,6 +1,7 @@
 
 print("=== 1. STARTING BOT ===", flush=True)
 from flask import Flask
+import os
 import threading
 http_app = Flask(__name__)
 @http_app.route('/')
@@ -18,7 +19,6 @@ def run_http():
 http_thread = threading.Thread(target=run_http, daemon=True)
 http_thread.start()
 import asyncio
-import os
 import tempfile
 from pathlib import Path
 from dotenv import load_dotenv
