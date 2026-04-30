@@ -2,6 +2,7 @@ python-telegram-bot
 ollama
 flask
 requests
+langchain_ollama
 sentence-transformers
 aiohttp
 python-dotenv
