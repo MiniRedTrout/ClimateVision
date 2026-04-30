@@ -1,46 +1,11 @@
-
-print("=== LOADING graph/builder.py ===", flush=True)
-
-try:
-    from langgraph.graph import StateGraph, END
-    print("  langgraph.graph imported", flush=True)
-except Exception as e:
-    print(f"  !!! Error importing langgraph: {e}", flush=True)
-    raise
-try:
-    from .tools import ALL_TOOLS
-    print("  ALL TOOLS imported", flush=True)
-except Exception as e:
-    print(f"  !!! Error importing tools: {e}", flush=True)
-    raise
-
-try:
-    from langgraph.prebuilt import ToolNode
-    print("  Toolode imported", flush=True)
-except Exception as e:
-    print(f"  !!! Error importing toolnode: {e}", flush=True)
-    raise
-
-
-try:
-    from .state import AgentState
-    print("  .state imported", flush=True)
-except Exception as e:
-    print(f"  !!! Error importing AgentState: {e}", flush=True)
-    raise
-
-try:
-    from .nodes import AgentNodes
-    print("  .nodes imported", flush=True)
-except Exception as e:
-    print(f"  !!! Error importing AgentNodes: {e}", flush=True)
-    raise
-
-print("=== graph/builder.py loaded successfully ===", flush=True)
-
+from langgraph.graph import StateGraph, END
+from .state import AgentState
+from .nodes import AgentNodes
+from .tools import ALL_TOOLS
+from langgraph.prebuilt import ToolNode
+from langchain_core.messages import HumanMessage, AIMessage
 
 def build_agent_graph(cfg, ollama_client, analyze_photo_func):
-    print("=== build_agent_graph called ===", flush=True)
     workflow = StateGraph(AgentState)
     nodes = AgentNodes(cfg, ollama_client, analyze_photo_func)
     tool_node = ToolNode(ALL_TOOLS)
