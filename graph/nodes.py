@@ -46,12 +46,12 @@ class AgentNodes:
         if not state.get('photo_path'):
             logger.warning('Нет фото')
             return state 
-        valid_size,size_error = validate_size(state['photo_path'])
+        valid_size,size_error = validate_size(self.cfg,state['photo_path'])
         if not valid_size:
             logger.error(size_error)
             state['errors'].append(size_error)
             return state
-        valid_type,type_error = validate_type(state['photo_path'])
+        valid_type,type_error = validate_type(self.cfg,state['photo_path'])
         if not valid_type:
             logger.error(type_error)
             state['errors'].append(type_error)
