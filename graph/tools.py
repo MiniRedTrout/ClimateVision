@@ -1,13 +1,12 @@
 from langchain.tools import tool
-from rag.retriever import ClimateRetriever 
 from pathlib import Path 
 from typing import Optional 
 
-_siglip = None 
 _climate_retriever = None 
 def get_retriever():
     global _climate_retriever
     if _climate_retriever is None:
+        from rag.retriever import ClimateRetriever 
         _climate_retriever = ClimateRetriever
     return _climate_retriever
 
