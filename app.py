@@ -1,3 +1,6 @@
+from flask import Flask
+import os
+import threading
 import asyncio
 import tempfile
 from pathlib import Path
@@ -7,8 +10,6 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 import ollama
 import hydra
 from omegaconf import DictConfig
-
-
 from utils import logger
 from utils.helpers import extract_city, parse_coordinates
 from utils.geocoding import get_coordinates_by_city
@@ -32,8 +33,35 @@ def run_http():
 
 http_thread = threading.Thread(target=run_http, daemon=True)
 http_thread.start()
+import asyncio
+import tempfile
+from pathlib import Path
+from dotenv import load_dotenv
+from telegram import Update
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+import ollama
+import hydra
+from omegaconf import DictConfig
 
+
+from utils import logger
+from utils.helpers import extract_city, parse_coordinates
+from utils.geocoding import get_coordinates_by_city
+from utils.validators import validate_size
+from core.analyzer import analyze_photo
+try:
+  from graph.builder import build_agent_graph
+except Exception as e:
+    print(f"!!! ERROR importing graph.builder: {e}", flush=True)
+    raise
+from graph.state import AgentState
+from middleware.rate_limiter import RateLimiter
+
+print("=== 2. IMPORTS DONE ===", flush=True)
 load_dotenv()
+print("=== 3. ENV LOADED ===", flush=True)
+print("=== 4. FLASK APP CREATED ===", flush=True)
+print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
 
 class SeasonBot:
     def __init__(self, cfg: DictConfig):
