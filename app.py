@@ -1,149 +1,3 @@
-
-print("=== 1. STARTING BOT ===", flush=True)
-try:
-    from flask import Flask
-    print("  Flask imported", flush=True)
-except Exception as e:
-    print(f"!!! Flask import error: {e}", flush=True)
-    raise
-
-try:
-    import os
-    print("  os imported", flush=True)
-except Exception as e:
-    print(f"!!! os import error: {e}", flush=True)
-    raise
-
-try:
-    import threading
-    print("  threading imported", flush=True)
-except Exception as e:
-    print(f"!!! threading import error: {e}", flush=True)
-    raise
-
-try:
-    import asyncio
-    print("  asyncio imported", flush=True)
-except Exception as e:
-    print(f"!!! asyncio import error: {e}", flush=True)
-    raise
-
-try:
-    import tempfile
-    print("  tempfile imported", flush=True)
-except Exception as e:
-    print(f"!!! tempfile import error: {e}", flush=True)
-    raise
-
-try:
-    from pathlib import Path
-    print("  Path imported", flush=True)
-except Exception as e:
-    print(f"!!! Path import error: {e}", flush=True)
-    raise
-
-try:
-    from dotenv import load_dotenv
-    print("  dotenv imported", flush=True)
-except Exception as e:
-    print(f"!!! dotenv import error: {e}", flush=True)
-    raise
-
-try:
-    from telegram import Update
-    from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-    print("  telegram imported", flush=True)
-except Exception as e:
-    print(f"!!! telegram import error: {e}", flush=True)
-    raise
-
-try:
-    import ollama
-    print("  ollama imported", flush=True)
-except Exception as e:
-    print(f"!!! ollama import error: {e}", flush=True)
-    raise
-
-try:
-    import hydra
-    from omegaconf import DictConfig
-    print("  hydra imported", flush=True)
-except Exception as e:
-    print(f"!!! hydra import error: {e}", flush=True)
-    raise
-
-try:
-    from utils import logger
-    print("  utils.logger imported", flush=True)
-except Exception as e:
-    print(f"!!! utils.logger import error: {e}", flush=True)
-    raise
-
-try:
-    from utils.helpers import extract_city, parse_coordinates
-    print("  utils.helpers imported", flush=True)
-except Exception as e:
-    print(f"!!! utils.helpers import error: {e}", flush=True)
-    raise
-
-try:
-    from utils.geocoding import get_coordinates_by_city
-    print("  utils.geocoding imported", flush=True)
-except Exception as e:
-    print(f"!!! utils.geocoding import error: {e}", flush=True)
-    raise
-
-try:
-    from utils.validators import validate_size
-    print("  utils.validators imported", flush=True)
-except Exception as e:
-    print(f"!!! utils.validators import error: {e}", flush=True)
-    raise
-
-try:
-    from core.analyzer import analyze_photo
-    print("  core.analyzer imported", flush=True)
-except Exception as e:
-    print(f"!!! core.analyzer import error: {e}", flush=True)
-    raise
-
-try:
-    from graph.builder import build_agent_graph
-    print("  graph.builder imported", flush=True)
-except Exception as e:
-    print(f"!!! graph.builder import error: {e}", flush=True)
-    raise
-
-try:
-    from graph.state import AgentState
-    print("  graph.state imported", flush=True)
-except Exception as e:
-    print(f"!!! graph.state import error: {e}", flush=True)
-    raise
-
-try:
-    from middleware.rate_limiter import RateLimiter
-    print("  middleware.rate_limiter imported", flush=True)
-except Exception as e:
-    print(f"!!! middleware.rate_limiter import error: {e}", flush=True)
-    raise
-
-print("=== 2. ALL IMPORTS DONE SUCCESSFULLY ===", flush=True)
-http_app = Flask(__name__)
-@http_app.route('/')
-def health():
-    return "Season bot is running", 200
-
-@http_app.route('/health')
-def health_check():
-    return {"status": "ok"}, 200
-
-def run_http():
-    port = int(os.environ.get("PORT", 10000))
-    http_app.run(host="0.0.0.0", port=port, debug=False)
-
-http_thread = threading.Thread(target=run_http, daemon=True)
-http_thread.start()
 import asyncio
 import tempfile
 from pathlib import Path
@@ -160,19 +14,26 @@ from utils.helpers import extract_city, parse_coordinates
 from utils.geocoding import get_coordinates_by_city
 from utils.validators import validate_size
 from core.analyzer import analyze_photo
-try:
-  from graph.builder import build_agent_graph
-except Exception as e:
-    print(f"!!! ERROR importing graph.builder: {e}", flush=True)
-    raise
+from graph.builder import build_agent_graph
 from graph.state import AgentState
 from middleware.rate_limiter import RateLimiter
+http_app = Flask(__name__)
+@http_app.route('/')
+def health():
+    return "Season bot is running", 200
 
-print("=== 2. IMPORTS DONE ===", flush=True)
+@http_app.route('/health')
+def health_check():
+    return {"status": "ok"}, 200
+
+def run_http():
+    port = int(os.environ.get("PORT", 10000))
+    http_app.run(host="0.0.0.0", port=port, debug=False)
+
+http_thread = threading.Thread(target=run_http, daemon=True)
+http_thread.start()
+
 load_dotenv()
-print("=== 3. ENV LOADED ===", flush=True)
-print("=== 4. FLASK APP CREATED ===", flush=True)
-print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
 
 class SeasonBot:
     def __init__(self, cfg: DictConfig):
