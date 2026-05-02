@@ -11,14 +11,14 @@ class RateLimiter:
         self.cfg = cfg
     def is_allowed(self,user_id:int)->Tuple[bool,int]:
         now = time.time()
-        window_start = now - self.cfg.rate_limiter.seconds
+        window_start = now - self.cfg.rate_limit.seconds
         self._requests[user_id] = [
             req_time for req_time in self._requests[user_id]
             if req_time > window_start
         ]
-        if len(self._requests[user_id]) >=self.cfg.rate_limiter.requests_per_minute:
+        if len(self._requests[user_id]) >=self.cfg.rate_limit.requests_per_minute:
             old = min(self._requests[user_id])
-            wait_time = int(self.cfg.rate_limiter.seconds - (now - old))
+            wait_time = int(self.cfg.rate_limit.seconds - (now - old))
             return False, max(1, wait_time)
         self._requests[user_id].append(now)
         return True, 0
@@ -27,7 +27,7 @@ class RateLimiter:
             del self._requests[user_id]
     def get_stats(self, user_id:int)->Dict:
         now = time.time()
-        window_start = now - self.cfg.rate_limiter.seconds
+        window_start = now - self.cfg.rate_limit.seconds
         recent = [
             req_time for req_time in self._requests.get(user_id,[])
             if req_time > window_start
