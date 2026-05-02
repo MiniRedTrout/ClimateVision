@@ -245,7 +245,7 @@ class SeasonBot:
     async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
         
-        allowed, wait_time = self.rate_limit.is_allowed(user_id)
+        allowed, wait_time = self.rate_limiter.is_allowed(user_id)
         if not allowed:
             await update.message.reply_text(f" Слишком много запросов. Подождите {wait_time} секунд.")
             return
