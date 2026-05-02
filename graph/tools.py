@@ -1,7 +1,7 @@
 from langchain.tools import tool
 from pathlib import Path 
 from typing import Optional 
-
+print('Imports imported')
 _climate_retriever = None 
 def get_retriever():
     global _climate_retriever
@@ -9,7 +9,7 @@ def get_retriever():
         from rag.retriever import ClimateRetriever 
         _climate_retriever = ClimateRetriever
     return _climate_retriever
-
+print('Im tired asf')
 @tool 
 async def get_city_climate(city_name: str) -> str:
     """Get climate data for a specific city.
@@ -20,7 +20,7 @@ async def get_city_climate(city_name: str) -> str:
     retriever = get_retriever()
     context = retriever.get_climate_context(city=city_name)
     return context 
-
+print('maybe this tool')
 @tool 
 async def get_climate_by_coordinates(lat:float,lon:float)->str:
     """Get climate data for geographical coordinates.
@@ -32,7 +32,7 @@ async def get_climate_by_coordinates(lat:float,lon:float)->str:
     retriever = get_retriever()
     context = retriever.get_climate_context(lat=lat,lon=lon)
     return context 
-
+print('Oh no - this')
 @tool 
 async def find_similar_climate(city_name: str) ->str:
     """Find cities with similar climate patterns.
@@ -52,7 +52,7 @@ async def find_similar_climate(city_name: str) ->str:
         result += f"• **{city}** (match: {score:.2f})\n"
         result += f"  → Winter: {jan_temp}°C, Summer: {jul_temp}°C\n"
     return result
-
+print('Oh, fuck off')
 @tool
 async def search_climate_by_description(description: str, top_k: int = 3) -> str:
     """
@@ -87,7 +87,7 @@ async def search_climate_by_description(description: str, top_k: int = 3) -> str
         return response
     else:
         return "Semantic search not available"
-
+print('Do you know what antidepressants im on to deal with rhis kind of shit')
 @tool
 async def compare_cities_climate(city1: str, city2: str) -> str:
     """
@@ -131,7 +131,7 @@ async def compare_cities_climate(city1: str, city2: str) -> str:
             else:
                 result += f"(equal)\n"
     return result
-    
+print('Not enough antidepressants i think')
 ALL_TOOLS = [
     compare_cities_climate,
     search_climate_by_description,
