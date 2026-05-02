@@ -51,7 +51,6 @@ class AgentNodes:
             logger.error(size_error)
             state['errors'].append(size_error)
             return state
-        print('uuuuu',flash=True)
         valid_type,type_error = validate_type(state['photo_path'],self.cfg)
         if not valid_type:
             logger.error(type_error)

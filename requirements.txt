@@ -12,6 +12,7 @@ langchain-core
 sentencepiece
 protobuf
 typing-extensions
+mcp
 pydantic
 Pillow
 opencv-python
