@@ -48,7 +48,7 @@ class OpenMeteoMCPClient:
             return await self.ensure_connection()
         
         return True
-    async def call_tool(self, tool_name: str, **kwargs) -> str:
+    async def call_tool(self, tool_name: str, timeout: int = 30, **kwargs) -> str:
 
         await self.ensure_connection()
 
@@ -62,12 +62,9 @@ class OpenMeteoMCPClient:
             "id": 1
         }
         try:
-            # Отправляем запрос
             request_json = json.dumps(request) + "\n"
             self.process.stdin.write(request_json.encode())
             await asyncio.wait_for(self.process.stdin.drain(), timeout=5)
-            
-            # Читаем ответ с таймаутом
             response_line = await asyncio.wait_for(
                 self.process.stdout.readline(), 
                 timeout=timeout
@@ -88,7 +85,7 @@ class OpenMeteoMCPClient:
                 
         except asyncio.TimeoutError:
             logger.error(f"Timeout calling MCP tool {tool_name}")
-            self.server_ready = False  # Сброс состояния для переподключения
+            self.server_ready = False  
             return "Error: Request timeout. Please try again."
         except Exception as e:
             logger.error(f"MCP call error: {e}")

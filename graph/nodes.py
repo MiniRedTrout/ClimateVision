@@ -102,14 +102,6 @@ class AgentNodes:
             except Exception as e:
                 logger.error(f"Climate MCP error: {e}")
     
-        elif state.get('city'):
-            try:
-                climate_mcp = await self.openmeteo.get_city_climate(state['city'])
-                state['rag_context'] = climate_mcp
-            
-            except Exception as e:
-                logger.error(f"City climate error: {e}")
-    
         return state
     async def synthesis_node(self,state:AgentState)->AgentState:
         logger.info("Synthesis node")
