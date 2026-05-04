@@ -2,6 +2,7 @@ from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from .state import AgentState
 from .nodes import AgentNodes
+print('build',flush=True)
 def build_agent_graph(cfg, ollama_client, analyze_photo_func):
     workflow = StateGraph(AgentState)
     nodes = AgentNodes(cfg, ollama_client, analyze_photo_func)
