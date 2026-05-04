@@ -4,13 +4,14 @@ from utils import logger, metrics, parse, image_hash, location
 from omegaconf import DictConfig
 import asyncio
 
+
 async def analyze_photo(
         cfg: DictConfig,
         path: str,
         lat:float=None,
         lon:float=None,
         city: str = None,
-        ollama_client: ollama.Client = None,
+        llm: ollama.Client = None,
         climate_context: str = ""
 )->str:
     """Анализирует фото с кэшем"""
