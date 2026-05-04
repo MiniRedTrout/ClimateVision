@@ -1,6 +1,7 @@
 from langgraph.graph import StateGraph, END
 print('seek_problem',flush=True)
 from .state import AgentState
+print('Да что такое', flush=True)
 from .nodes import AgentNodes
 print('build',flush=True)
 def build_agent_graph(cfg, ollama_client, analyze_photo_func):
