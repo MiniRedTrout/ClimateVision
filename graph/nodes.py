@@ -11,7 +11,7 @@ from utils.validators import validate_size, validate_type, validate_coords
 from langchain_core.messages import HumanMessage, AIMessage
 from core.mcp_client import OpenMeteoMCPClient
 from rag.retriever import ClimateRetriever
-
+print('Node',flush=True)
 class AgentNodes:
     def __init__(self,cfg, ollama_client,analyze_photo):
         self.ollama_client = ollama_client
@@ -190,4 +190,4 @@ class AgentNodes:
             state['answer'] += f"\nИсточники: {', '.join(sources)}"
         
         return state
-    
+print('Close',flush=True)
