@@ -11,7 +11,7 @@ async def analyze_photo(
         lat:float=None,
         lon:float=None,
         city: str = None,
-        llm: ollama.Client = None,
+        ollama_client: ollama.Client = None,
         climate_context: str = ""
 )->str:
     """Анализирует фото с кэшем"""
@@ -52,7 +52,7 @@ Example: {{"season": "winter", "month": "December", "confidence": "high"}}
 
 Your response:"""
     try:
-      response = await ollama_client.chat(
+      response = ollama_client.chat(
         model=cfg.model.name,
         messages=[{
             'role':'user',
