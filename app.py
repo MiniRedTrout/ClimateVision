@@ -1,3 +1,4 @@
+print(f'START', flush=True)
 from flask import Flask
 import os
 import threading
