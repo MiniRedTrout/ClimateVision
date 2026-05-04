@@ -1,15 +1,19 @@
-import json 
-import logging 
-import re 
 from datetime import datetime
 from typing import Dict, Any
 from .state import AgentState 
+print(1,flush=True)
 from langchain_ollama import ChatOllama
+print(2,flush=True)
 from utils.helpers import parse
+print(3,flush=True)
 from utils.logger import logger 
+print(4,flush=True)
 from utils.validators import validate_size, validate_type, validate_coords
+print(5,flush=True)
 from langchain_core.messages import HumanMessage, AIMessage
+print(6,flush=True)
 from core.mcp_client import OpenMeteoMCPClient
+print(7,flush=True)
 from rag.retriever import ClimateRetriever
 print('Node',flush=True)
 class AgentNodes:
