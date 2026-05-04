@@ -12,10 +12,12 @@ import ollama
 import hydra
 from omegaconf import DictConfig
 from utils import logger
+print('Дошли до logger', flush=True)
 from utils.helpers import extract_city, parse_coordinates
 from utils.geocoding import get_coordinates_by_city
 from utils.validators import validate_size
 from core.analyzer import analyze_photo
+print('Перед графом',flush=True)
 from graph.builder import build_agent_graph
 from graph.state import AgentState
 from middleware.rate_limiter import RateLimiter
