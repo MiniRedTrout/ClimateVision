@@ -8,22 +8,23 @@ from langchain_ollama import ChatOllama
 from utils.helpers import parse
 from utils.logger import logger 
 from utils.validators import validate_size, validate_type, validate_coords
-from .tools import ALL_TOOLS
 from langchain_core.messages import HumanMessage, AIMessage
 from core.mcp_client import OpenMeteoMCPClient
+from rag.retriever import ClimateRetriever
 
 class AgentNodes:
     def __init__(self,cfg, ollama_client,analyze_photo):
         self.ollama_client = ollama_client
         self.analyze_photo = analyze_photo
         self.cfg = cfg
+        self._climate_retriever = None
         self.llm = ChatOllama(
             model=cfg.model.name,
             base_url=cfg.ollama.host,
             temperature=cfg.model.get('temperature', 0.1)
         )
         self.openmeteo = OpenMeteoMCPClient()
-        self.llm_with_tools = self.llm.bind_tools(ALL_TOOLS)
+        self.llm_with_tools = self.llm
     async def router_node(self, state:AgentState)->AgentState:
         logger.info("Router:анализирует")
         if not state.get('messages'):
@@ -41,6 +42,11 @@ class AgentNodes:
         if state.get('user_message'):
             state['messages'].append(HumanMessage(content=state['user_message']))
         return state 
+    def get_retriever(self):
+        if self._climate_retriever is None:
+            self._climate_retriever = ClimateRetriever()
+        return self._climate_retriever
+    
     async def analysis_node(self,state:AgentState)->AgentState:
         logger.info('Photo Analysis')
         if not state.get('photo_path'):
@@ -91,17 +97,36 @@ class AgentNodes:
         logger.info('Climate node')
         if state.get('rag_context'):
             return state 
+        context_parts = []
+        retriever = self.get_retriever()
+        if state.get('city'):
+            rag_context = retriever.get_climate_context(city=state['city'])
+            if rag_context:
+                context_parts.append(f"LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
+                logger.info(f"RAG data found for city: {state['city']}")
+            else:
+                logger.info(f"No RAG data for city: {state['city']}")
+        elif state.get('lat') and state.get('lon'):
+            rag_context = retriever.get_climate_context(lat=state['lat'], lon=state['lon'])
+            if rag_context:
+                context_parts.append(f" LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
+                logger.info(f"RAG data found for coordinates")
         if state.get('lat') and state.get('lon'):
             try:
-                climate_mcp = await self.openmeteo.get_climate_history(
+                openmeteo_context = await self.openmeteo.get_climate_history(
                     state['lat'], 
                     state['lon']
                 )
-                state['rag_context'] = climate_mcp
-                logger.info(f"Climate context retrieved")
+                if openmeteo_context:
+                    context_parts.append(f"OPEN-METEO DATA:\n{openmeteo_context}")
+                    logger.info(f"OpenMeteo data retrieved")
             except Exception as e:
-                logger.error(f"Climate MCP error: {e}")
-    
+                logger.error(f"OpenMeteo error: {e}")
+                context_parts.append(f"OpenMeteo data temporarily unavailable")
+        if context_parts:
+            state['rag_context'] = "\n\n---\n\n".join(context_parts)
+        else:
+            state['rag_context'] = "No climate data available for this location."
         return state
     async def synthesis_node(self,state:AgentState)->AgentState:
         logger.info("Synthesis node")
