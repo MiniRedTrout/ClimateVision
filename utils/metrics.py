@@ -48,4 +48,4 @@ def track_time(func):
         metrics.track_response_time(dur)
         return result
     return wrapper
-metrics = Metrics
+metrics = Metrics()
