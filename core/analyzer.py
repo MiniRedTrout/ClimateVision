@@ -17,8 +17,8 @@ async def analyze_photo(
     """Анализирует фото с кэшем"""
     if ollama_client is None:
         ollama_client = ollama.Client(host=cfg.ollama.host)
-    hash = image_hash(path)
-    cache_key = f'ollama:{hash}:{lat}:{lon}:{city}:{hash(climate_context)}'
+    hash_val = image_hash(path)
+    cache_key = f'ollama:{hash_val}:{lat}:{lon}:{city}:{hash_val(climate_context)}'
     result = ollama_cache.get(cache_key)
     if result:
         logger.info("Ollama response from cache")
