@@ -68,6 +68,14 @@ class AgentNodes:
             return state
         try:
             climate_context = state.get('rag_context', '')
+            logger.info(f"=== DIAGNOSTIC ===")
+            logger.info(f"self.analyze_photo type: {type(self.analyze_photo)}")
+            logger.info(f"self.analyze_photo is callable: {callable(self.analyze_photo)}")
+            logger.info(f"self.analyze_photo value: {self.analyze_photo}")
+        
+            if not callable(self.analyze_photo):
+                raise TypeError(f"analyze_photo is {type(self.analyze_photo)}, not callable!")
+        
             result = await self.analyze_photo(
                 self.cfg,
                 state['photo_path'],
