@@ -29,7 +29,7 @@ async def analyze_photo(
         return result
     metrics.track_cache_miss()
     logger.info(f"Calling Ollama")
-    metrics.track_api_calls("ollama")
+    metrics.track_api_call("ollama")
     location_txt = location(lat,lon,city)
     if climate_context:
         climate_section = f"""
