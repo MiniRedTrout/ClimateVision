@@ -19,6 +19,7 @@ def extract_city(caption:str)->Optional[str]:
         return None 
 def image_hash(image_path: str)->str:
     """MD5 хэш для кэша"""
+    print(f"  image_hash called with path: {image_path}", flush=True)
     with open(image_path,'rb') as f:
         return hashlib.md5(f.read()).hexdigest()
 def parse(txt: str)->dict:
