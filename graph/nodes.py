@@ -101,16 +101,18 @@ class AgentNodes:
         if state.get('rag_context'):
             return state 
         context_parts = []
+        print('Retriever',flush=True)
         retriever = self.get_retriever()
         if state.get('city'):
-            rag_context = retriever.get_climate_context(city=state['city'])
+            print('Retriever city',flush=True)
+            rag_context = await retriever.get_climate_context(city=state['city'])
             if rag_context:
                 context_parts.append(f"LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
                 logger.info(f"RAG data found for city: {state['city']}")
             else:
                 logger.info(f"No RAG data for city: {state['city']}")
         elif state.get('lat') and state.get('lon'):
-            rag_context = retriever.get_climate_context(lat=state['lat'], lon=state['lon'])
+            rag_context = await retriever.get_climate_context(lat=state['lat'], lon=state['lon'])
             if rag_context:
                 context_parts.append(f" LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
                 logger.info(f"RAG data found for coordinates")
