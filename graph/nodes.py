@@ -100,6 +100,7 @@ class AgentNodes:
         return state
     async def climate_node(self,state:AgentState)->AgentState:
         logger.info('Climate node')
+        logger.info(f"  lat: {state.get('lat')}, lon: {state.get('lon')}, city: {state.get('city')}")
         if state.get('rag_context'):
             return state 
         context_parts = []
