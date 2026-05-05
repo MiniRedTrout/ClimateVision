@@ -101,10 +101,10 @@ class AgentNodes:
         if state.get('rag_context'):
             return state 
         context_parts = []
-        print('Retriever',flush=True)
+        logger.info('Retriever')
         retriever = self.get_retriever()
         if state.get('city'):
-            print('Retriever city',flush=True)
+            logger.info('Retriever city')
             rag_context = await retriever.get_climate_context(city=state['city'])
             if rag_context:
                 context_parts.append(f"LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
