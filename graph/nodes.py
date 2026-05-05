@@ -45,6 +45,7 @@ class AgentNodes:
             state['messages'].append(HumanMessage(content=state['user_message']))
         return state 
     def get_retriever(self):
+        logger.info("get_retriever: START")
         if self._climate_retriever is None:
             from rag.retriever import ClimateRetriever
             self._climate_retriever = ClimateRetriever()
@@ -105,14 +106,14 @@ class AgentNodes:
         retriever = self.get_retriever()
         if state.get('city'):
             logger.info('Retriever city')
-            rag_context = await retriever.get_climate_context(city=state['city'])
+            rag_context = retriever.get_climate_context(city=state['city'])
             if rag_context:
                 context_parts.append(f"LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
                 logger.info(f"RAG data found for city: {state['city']}")
             else:
                 logger.info(f"No RAG data for city: {state['city']}")
         elif state.get('lat') and state.get('lon'):
-            rag_context = await retriever.get_climate_context(lat=state['lat'], lon=state['lon'])
+            rag_context = retriever.get_climate_context(lat=state['lat'], lon=state['lon'])
             if rag_context:
                 context_parts.append(f" LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
                 logger.info(f"RAG data found for coordinates")
