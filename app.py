@@ -6,6 +6,7 @@ import asyncio
 import tempfile
 from pathlib import Path
 from dotenv import load_dotenv
+import time
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 import ollama
@@ -135,6 +136,9 @@ class SeasonBot:
         await update.message.reply_text(reply)
     
     async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        from utils import metrics
+        metrics.track_request()
+        start_time = time.time()
         user_id = update.effective_user.id
         
         allowed, wait_time = self.rate_limiter.is_allowed(user_id)
@@ -186,7 +190,8 @@ class SeasonBot:
                 await update.message.reply_text(final_state["answer"])
             else:
                 await update.message.reply_text(" Не удалось определить сезон")
-                
+            duration_ms = (time.time() - start_time) * 1000
+            metrics.track_response_time(duration_ms)
         except Exception as e:
             logger.error(f"Error in handle_photo: {e}")
             await update.message.reply_text(" Произошла ошибка при анализе фото")
