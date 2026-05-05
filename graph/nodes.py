@@ -13,8 +13,6 @@ print(5,flush=True)
 from langchain_core.messages import HumanMessage, AIMessage
 print(6,flush=True)
 from core.mcp_client import OpenMeteoMCPClient
-print(7,flush=True)
-from rag.retriever import ClimateRetriever
 print('Node',flush=True)
 class AgentNodes:
     def __init__(self,cfg, ollama_client,analyze_photo):
@@ -48,6 +46,7 @@ class AgentNodes:
         return state 
     def get_retriever(self):
         if self._climate_retriever is None:
+            from rag.retriever import ClimateRetriever
             self._climate_retriever = ClimateRetriever()
         return self._climate_retriever
     
