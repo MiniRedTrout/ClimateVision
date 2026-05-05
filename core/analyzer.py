@@ -20,7 +20,7 @@ async def analyze_photo(
         ollama_client = ollama.Client(host=cfg.ollama.host)
     print("  Computing image hash...", flush=True)
     hash_val = image_hash(path)
-    cache_key = f'ollama:{hash_val}:{lat}:{lon}:{city}:{hash_val(climate_context)}'
+    cache_key = f'ollama:{hash_val}:{lat}:{lon}:{city}:{hash(climate_context)}'
     print("  Cache key created", flush=True)
     result = ollama_cache.get(cache_key)
     if result:
