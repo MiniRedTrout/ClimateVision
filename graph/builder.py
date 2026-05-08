@@ -4,9 +4,9 @@ from .state import AgentState
 print('Да что такое', flush=True)
 from .nodes import AgentNodes
 print('build',flush=True)
-def build_agent_graph(cfg, ollama_client, analyze_photo_func):
+def build_agent_graph(cfg, analyze_photo_func):
     workflow = StateGraph(AgentState)
-    nodes = AgentNodes(cfg, ollama_client, analyze_photo_func)
+    nodes = AgentNodes(cfg, analyze_photo_func)
     workflow.add_node("router", nodes.router_node)  
     workflow.add_node("climate", nodes.climate_node)   
     workflow.add_node("analysis", nodes.analysis_node)

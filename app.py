@@ -72,15 +72,10 @@ class SeasonBot:
         print("=== 5. SEASONBOT INIT START ===", flush=True)
         self.cfg = cfg
         self.token = cfg.telegram.token
-        self.ollama_host = cfg.ollama.host
-        self.ollama_model = cfg.model.name
-
-        self.ollama_client = ollama.Client(host=self.ollama_host)
         self.rate_limiter = RateLimiter(cfg)
         
         self.agent = build_agent_graph(
             cfg,
-            self.ollama_client, 
             analyze_photo
         )
         

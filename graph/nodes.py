@@ -14,19 +14,22 @@ from langchain_core.messages import HumanMessage, AIMessage
 print(6,flush=True)
 from core.mcp_client import OpenMeteoMCPClient
 print('Node',flush=True)
+import os 
+import openai
+GROQ_API_KEY = os.getenv("API_KEY")
+GROQ_API_BASE = "https://api.groq.com/openai/v1"
+GROQ_TEXT_MODEL = "llama-3.2-90b-text-preview" 
+
+groq_client = openai.AsyncOpenAI(
+    api_key=GROQ_API_KEY,
+    base_url=GROQ_API_BASE,
+)
 class AgentNodes:
-    def __init__(self,cfg, ollama_client,analyze_photo):
-        self.ollama_client = ollama_client
+    def __init__(self,cfg, analyze_photo):
         self.analyze_photo = analyze_photo
         self.cfg = cfg
         self._climate_retriever = None
-        self.llm = ChatOllama(
-            model=cfg.model.name,
-            base_url=cfg.ollama.host,
-            temperature=cfg.model.get('temperature', 0.1)
-        )
         self.openmeteo = OpenMeteoMCPClient()
-        self.llm_with_tools = self.llm
     async def router_node(self, state:AgentState)->AgentState:
         logger.info("Router:анализирует")
         if not state.get('messages'):
@@ -42,7 +45,10 @@ class AgentNodes:
                 state['errors'].append(error)
                 state['has_location'] = False
         if state.get('user_message'):
-            state['messages'].append(HumanMessage(content=state['user_message']))
+            state['messages'].append({
+                "role": "user",
+                "content": state['user_message']
+            })
         return state 
     def get_retriever(self):
         logger.info("get_retriever: START")
@@ -75,7 +81,6 @@ class AgentNodes:
                 state.get('lat'),
                 state.get('lon'),
                 state.get('city'),
-                self.ollama_client,
                 climate_context
             )
             state["photo_raw_response"] = result
@@ -164,10 +169,14 @@ class AgentNodes:
 """
         messages = state.get('messages', [])
         messages.append(HumanMessage(content=prompt))
-        response = await self.llm_with_tools.ainvoke(messages)
-        messages.append(response)
-        state['messages'] = messages
-        state['last_llm_response'] = response
+        response = await groq_client.chat.completions.create(
+                model=GROQ_TEXT_MODEL,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=512,
+                temperature=0.7
+            )
+        result = response.choices[0].message.content
+        state['answer'] = result
         logger.info(f"LLM response has tool_calls: {hasattr(response, 'tool_calls') and bool(response.tool_calls)}")
         
         return state
