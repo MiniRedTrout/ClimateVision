@@ -16,14 +16,14 @@ def extract_city(caption:str)->Optional[str]:
         correct = re.search(p,caption)
         if correct:
             return correct.group(1)
-        return None 
+    return None 
 def image_hash(image_path: str)->str:
     """MD5 хэш для кэша"""
     print(f"  image_hash called with path: {image_path}", flush=True)
     with open(image_path,'rb') as f:
         data = f.read()
         print(f"  Read {len(data)} bytes", flush=True)
-        result = hashlib.md5(f.read()).hexdigest()
+        result = hashlib.md5(data).hexdigest()
         print(f"  Hash result: {result}", flush=True)
         return result
     
@@ -51,6 +51,7 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
         r'lat(?:itude)?\s*[:=]\s*([+-]?\d+\.?\d*)\s*[,;]\s*lon(?:gitude)?\s*[:=]\s*([+-]?\d+\.?\d*)',
         r'([+-]?\d+\.?\d*)\s*[,;]\s*([+-]?\d+\.?\d*)',
         r'([+-]?\d+\.?\d*)\s+([+-]?\d+\.?\d*)',
+        r'lat(?:itude)?\s*-\s*([+-]?\d+\.?\d*)\s*[,;]\s*lon(?:gitude)?\s*-\s*([+-]?\d+\.?\d*)',
     ]
     for pattern in patterns:
         match = re.search(pattern, text, re.IGNORECASE)
