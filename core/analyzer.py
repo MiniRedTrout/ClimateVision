@@ -7,7 +7,7 @@ import os
 import base64
 
 GROQ_API_KEY = os.getenv("API_KEY")
-GROQ_MODEL_NAME = "llama-4-scout" 
+GROQ_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct" 
 GROQ_API_BASE = "https://api.groq.com/openai/v1"
 client = openai.AsyncOpenAI(
     api_key=GROQ_API_KEY,
