@@ -18,7 +18,7 @@ import os
 import openai
 GROQ_API_KEY = os.getenv("API_KEY")
 GROQ_API_BASE = "https://api.groq.com/openai/v1"
-GROQ_TEXT_MODEL = "llama-3.2-90b-text-preview" 
+GROQ_TEXT_MODEL = "llama-3.3-70b-versatile" 
 
 groq_client = openai.AsyncOpenAI(
     api_key=GROQ_API_KEY,
