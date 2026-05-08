@@ -83,7 +83,7 @@ Your response:"""
             max_tokens=512,
       )
 
-      result = response['message']['content']
+      result = response.choices[0].message.content
       ollama_cache.set(cache_key,result,ttl=cfg.model.get('cache_ttl', 3600))
       return result
     except Exception as e:

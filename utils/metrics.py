@@ -14,6 +14,10 @@ class Metrics:
         self.request_count += 1
     def track_cache_hit(self):
         self.cache_hits += 1
+    def track_error(self, error_type: str):
+        if not hasattr(self, '_errors'):
+            self._errors = {}
+        self._errors[error_type] = self._errors.get(error_type, 0) + 1
     def track_cache_miss(self):
         self.cache_misses += 1
     def track_api_call(self, api_name:str):
