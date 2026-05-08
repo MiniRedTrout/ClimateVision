@@ -14,7 +14,7 @@ import hydra
 from omegaconf import DictConfig
 from utils import logger
 print('Дошли до logger', flush=True)
-from utils.helpers import extract_city, parse_coordinates
+from utils.helpers import extract_city, parse_coordinates, location
 from utils.geocoding import get_coordinates_by_city
 from utils.validators import validate_size
 from core.analyzer import analyze_photo
@@ -49,7 +49,7 @@ from omegaconf import DictConfig
 
 
 from utils import logger
-from utils.helpers import extract_city, parse_coordinates
+from utils.helpers import extract_city, parse_coordinates,location
 from utils.geocoding import get_coordinates_by_city
 from utils.validators import validate_size
 from core.analyzer import analyze_photo
@@ -141,7 +141,7 @@ class SeasonBot:
         
         await update.message.reply_text(" Анализирую фотографию...")
 
-        lat, lon, city = await self._extract_location(update)
+        lat, lon, city = await self.location(update)
         
         photo_file = await update.message.photo[-1].get_file()
         
