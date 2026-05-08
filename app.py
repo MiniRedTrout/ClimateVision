@@ -83,8 +83,6 @@ class SeasonBot:
         self._register_handlers()
         
         logger.info(" SeasonBot initialized")
-        logger.info(f"   Ollama: {self.ollama_host}")
-        logger.info(f"   Model: {self.ollama_model}")
         print("=== 6. SEASONBOT INIT DONE ===", flush=True)
     def _register_handlers(self):
         self.application.add_handler(CommandHandler("start", self.start_command))
