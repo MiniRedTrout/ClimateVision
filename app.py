@@ -14,7 +14,7 @@ import hydra
 from omegaconf import DictConfig
 from utils import logger
 print('Дошли до logger', flush=True)
-from utils.helpers import extract_city, parse_coordinates
+from utils.helpers import extract_city, parse_coordinates,extract_temperature
 from utils.geocoding import get_coordinates_by_city
 from utils.validators import validate_size
 from core.analyzer import analyze_photo
@@ -49,7 +49,7 @@ from omegaconf import DictConfig
 
 
 from utils import logger
-from utils.helpers import extract_city, parse_coordinates
+from utils.helpers import extract_city, parse_coordinates,extract_temperature
 from utils.geocoding import get_coordinates_by_city
 from utils.validators import validate_size
 from core.analyzer import analyze_photo
@@ -141,7 +141,7 @@ class SeasonBot:
         
         await update.message.reply_text(" Анализирую фотографию...")
 
-        lat, lon, city = await self._extract_location(update)
+        lat, lon, city, temperature = await self._extract_location(update)
         
         photo_file = await update.message.photo[-1].get_file()
         
@@ -161,6 +161,7 @@ class SeasonBot:
                 lat=lat,
                 lon=lon,
                 city=city,
+                temperature=temperature,
                 has_photo=True,
                 has_location=bool(lat or city),
                 route=None,
@@ -196,6 +197,7 @@ class SeasonBot:
         lat = None
         lon = None
         city = None
+        temperature = None
         if update.message.location:
             lat = update.message.location.latitude
             lon = update.message.location.longitude
@@ -203,6 +205,7 @@ class SeasonBot:
             return lat, lon, city
         caption = update.message.caption or ""
         if caption:
+            print(caption, flush=True)
             coords = parse_coordinates(caption)
             if coords:
                 lat, lon = coords
@@ -215,8 +218,10 @@ class SeasonBot:
                 lat, lon = await get_coordinates_by_city(city)
                 if lat and lon:
                     logger.info(f" Geocoded: {city} -> {lat}, {lon}")
-        
-        return lat, lon, city
+            temperature = extract_temperature(caption)
+            if temperature:
+                logger.info(f"Temperature from caption: {temperature}")
+        return lat, lon, city, temperature
     
     async def run(self):
         logger.info("Starting bot in polling mode...")

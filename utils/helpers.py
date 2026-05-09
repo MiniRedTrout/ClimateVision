@@ -37,13 +37,16 @@ def parse(txt: str)->dict:
     if txt.endswith('```'):
         txt = txt[:-3]
     return json.loads(txt.strip())
-def location(lat: Optional[float], lon: Optional[float], city: Optional[str])->str:
+def location(lat: Optional[float], lon: Optional[float], city: Optional[str], temperature: Optional[str])->str:
     """По красоте в промпт"""
+    prompt = ''
     if city:
-        return f'Locatio: {city}'
-    elif lat and lon:
-        return f'Location: {lat:.4f}, {lon:.4f}'
-    return ""
+        prompt += f'Location: {city}'
+    if lat and lon:
+        prompt += f'Location: {lat:.4f}, {lon:.4f}'
+    if temperature:
+        prompt += f'Temperature: {temperature}'
+    return prompt
 def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
     if not text:
         return None
@@ -60,4 +63,18 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
             lon = float(match.group(2))
             if -90 <= lat <= 90 and -180 <= lon <= 180:
                 return lat, lon
+    return None
+def extract_temperature(caption: str) -> Optional[float]:
+    if not caption:
+        return None
+    patterns = [
+        r'(?:температура|темп|temp|t)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)\s*°?\s*[cC]',
+        r'([+-]?\d+(?:\.\d+)?)\s*°\s*[cC]',
+        r'([+-]?\d+(?:\.\d+)?)\s*(?:градусов|градуса|град)',
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, caption, re.IGNORECASE)
+        if match:
+            temp = float(match.group(1))
+            return temp
     return None

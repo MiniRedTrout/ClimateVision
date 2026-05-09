@@ -31,7 +31,7 @@ class OpenMeteoMCPClient:
                 stderr = await self.process.stderr.read()
                 logger.error(f"MCP server failed to start: {stderr.decode()}")
                 return False
-          
+          logger.info("Open-Meteo MCP Server started")
           self.server_ready = True
           return True 
         except Exception as e:

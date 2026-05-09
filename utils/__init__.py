@@ -3,7 +3,8 @@ from .helpers import (
     extract_city,
     image_hash,
     parse,
-    location
+    location,
+    extract_temperature
 )
 from .validators import (
     validate_size,

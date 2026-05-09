@@ -81,6 +81,7 @@ class AgentNodes:
                 state.get('lat'),
                 state.get('lon'),
                 state.get('city'),
+                state.get('temperature'),
                 climate_context
             )
             state["photo_raw_response"] = result
@@ -105,7 +106,7 @@ class AgentNodes:
         return state
     async def climate_node(self,state:AgentState)->AgentState:
         logger.info('Climate node')
-        logger.info(f"  lat: {state.get('lat')}, lon: {state.get('lon')}, city: {state.get('city')}")
+        logger.info(f"  lat: {state.get('lat')}, lon: {state.get('lon')}, city: {state.get('city')}, temperature: {state.get('temperature')}")
         if state.get('rag_context'):
             return state 
         context_parts = []

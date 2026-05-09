@@ -19,12 +19,13 @@ async def analyze_photo(
         lat:float=None,
         lon:float=None,
         city: str = None,
+        temperature: str = None,
         climate_context: str = ""
 )->str:
     """Анализирует фото с кэшем"""
     print("  Computing image hash...", flush=True)
     hash_val = image_hash(path)
-    cache_key = f'ollama:{hash_val}:{lat}:{lon}:{city}:{hash(climate_context)}'
+    cache_key = f'ollama:{hash_val}:{lat}:{lon}:{city}:{temperature}{hash(climate_context)}'
     print("  Cache key created", flush=True)
     result = ollama_cache.get(cache_key)
     if result:
@@ -34,13 +35,14 @@ async def analyze_photo(
     metrics.track_cache_miss()
     logger.info(f"Calling Ollama")
     metrics.track_api_call("ollama")
-    location_txt = location(lat,lon,city)
+    location_txt = location(lat,lon,city,temperature)
     if climate_context:
         climate_section = f"""
-CLIMATE CONTEXT:
+CLIMATE REFERENCE (use as additional info, not as strict rule):
 {climate_context}
 
-Use this climate information to improve your analysis.
+Compare what you see in the image with this climate reference.
+If there's a contradiction, trust the VISUAL evidence from the image more.
 """
     else:
         climate_section = ''

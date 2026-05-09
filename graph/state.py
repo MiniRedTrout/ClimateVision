@@ -9,6 +9,7 @@ class AgentState(TypedDict):
     lat: Optional[float]
     lon: Optional[float]
     city: Optional[str]
+    temperature: Optional[str]
     route: Optional[str]
     has_photo: bool
     has_location: bool
