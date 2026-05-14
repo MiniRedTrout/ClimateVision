@@ -15,6 +15,7 @@ client = openai.AsyncOpenAI(
     api_key=GROQ_API_KEY,
     base_url=GROQ_API_BASE,
 )
+
 vision_tools = [
     {
         "type": "function",
@@ -24,19 +25,9 @@ vision_tools = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "lat": {
-                        "type": "number", 
-                        "description": "Latitude coordinate"
-                    },
-                    "lon": {
-                        "type": "number", 
-                        "description": "Longitude coordinate"
-                    },
-                    "year": {
-                        "type": "integer", 
-                        "description": "Year for climate data (default: 2023)",
-                        "default": 2023
-                    }
+                    "lat": {"type": "number"},
+                    "lon": {"type": "number"},
+                    "year": {"type": "integer", "default": 2023}
                 },
                 "required": ["lat", "lon"]
             }
@@ -50,14 +41,8 @@ vision_tools = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "lat": {
-                        "type": "number", 
-                        "description": "Latitude coordinate"
-                    },
-                    "lon": {
-                        "type": "number", 
-                        "description": "Longitude coordinate"
-                    }
+                    "lat": {"type": "number"},
+                    "lon": {"type": "number"}
                 },
                 "required": ["lat", "lon"]
             }
@@ -71,14 +56,8 @@ vision_tools = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "lat": {
-                        "type": "number", 
-                        "description": "Latitude coordinate"
-                    },
-                    "lon": {
-                        "type": "number", 
-                        "description": "Longitude coordinate"
-                    }
+                    "lat": {"type": "number"},
+                    "lon": {"type": "number"}
                 },
                 "required": ["lat", "lon"]
             }
@@ -86,53 +65,62 @@ vision_tools = [
     }
 ]
 
+async def call_tool(tool_func, **kwargs):
+    try:
+        if hasattr(tool_func, 'ainvoke'):
+            result = await tool_func.ainvoke(kwargs)
+        else:
+            result = await tool_func(**kwargs)
+        return result
+    except Exception as e:
+        logger.error(f"Error calling tool: {e}")
+        return json.dumps({"status": "error", "message": str(e)})
+
 async def analyze_photo(
         cfg: DictConfig,
         path: str,
-        lat:float=None,
-        lon:float=None,
+        lat: float = None,
+        lon: float = None,
         city: str = None,
         temperature: str = None,
         climate_context: str = ""
-)->str:
-    """Анализирует фото с кэшем"""
+) -> str:
+    has_coordinates = lat is not None and lon is not None
+    
     print("  Computing image hash...", flush=True)
     hash_val = image_hash(path)
-    cache_key = f'ollama:{hash_val}:{lat}:{lon}:{city}:{temperature}{hash(climate_context)}'
+    cache_key = f'vision_with_tools:{hash_val}:{lat}:{lon}:{city}:{temperature}:{hash(climate_context)}'
     print("  Cache key created", flush=True)
+    
     result = ollama_cache.get(cache_key)
     if result:
-        logger.info("Ollama response from cache")
+        logger.info("Vision response from cache")
         metrics.track_cache_hit()
         return result
+    
     metrics.track_cache_miss()
-    logger.info(f"Calling Ollama")
-    metrics.track_api_call("ollama")
-    location_txt = location(lat,lon,city,temperature)
-    if climate_context:
+    logger.info(f"Calling Vision model with tools")
+    metrics.track_api_call("vision_model")
+    
+    location_txt = location(lat, lon, city, temperature) if has_coordinates else ""
+    if climate_context and climate_context != "No climate data available for this location.":
         climate_section = f"""
-CLIMATE REFERENCE (use as additional info, not as strict rule):
+CLIMATE REFERENCE (use as additional context):
 {climate_context}
 
 Compare what you see in the image with this climate reference.
 If there's a contradiction, trust the VISUAL evidence from the image more.
 """
     else:
-        climate_section = ''
-    prompt = f"""
+        climate_section = ""
+    if has_coordinates:
+        prompt = f"""
 {location_txt}
+{climate_section}
 
 Analyze this image and determine the season and month.
 
-**IMPORTANT**: You have access to climate tools to help you make better determination:
-- `get_climate_normals` - Use this FIRST to understand typical climate for this location
-- `get_seasonal_forecast` - Use this to see expected conditions for upcoming months
-- `get_climate_history` - Use this if you need data from a specific year
-
-Strategy for best results:
-1. First call `get_climate_normals` to understand baseline temperatures and precipitation by month
-2. If the image shows unusual conditions (e.g., flowers in winter), you might want to check seasonal forecast
-3. Use the climate data to confirm or adjust your visual assessment
+You have access to climate tools. Coordinates are available: lat={lat}, lon={lon}
 
 Possible seasons: winter, spring, summer, autumn
 Possible months: January, February, March, April, May, June, July, August, September, October, November, December
@@ -140,16 +128,30 @@ Possible months: January, February, March, April, May, June, July, August, Septe
 Respond ONLY with valid JSON. No other text.
 Example: {{"season": "winter", "month": "December", "confidence": "high"}}
 
-If you cannot determine, use "unknown" for season and "unknown" for month.
+Your response:"""
+    else:
+        prompt = f"""
+{climate_section}
+
+Analyze this image and determine the season and month.
+
+NO COORDINATES AVAILABLE - You CANNOT use climate tools.
+
+Possible seasons: winter, spring, summer, autumn
+Possible months: January, February, March, April, May, June, July, August, September, October, November, December
+
+Respond ONLY with valid JSON. No other text.
+Example: {{"season": "winter", "month": "December", "confidence": "high"}}
 
 Your response:"""
     
     with open(path, "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode('utf-8')
+    
     try:
-        response = await client.chat.completions.create(
-            model=GROQ_MODEL_NAME,
-            messages=[
+        kwargs = {
+            "model": GROQ_MODEL_NAME,
+            "messages": [
                 {
                     "role": "user",
                     "content": [
@@ -166,13 +168,17 @@ Your response:"""
                     ]
                 }
             ],
-            tools=vision_tools,
-            tool_choice="auto",
-            max_tokens=512,
-        )
+            "max_tokens": 512,
+        }
+        if has_coordinates:
+            kwargs["tools"] = vision_tools
+            kwargs["tool_choice"] = "auto"
+        
+        response = await client.chat.completions.create(**kwargs)
         response_message = response.choices[0].message
-        if response_message.tool_calls:
+        if has_coordinates and response_message.tool_calls:
             logger.info(f"Vision model requested {len(response_message.tool_calls)} tool calls")
+            
             messages = [
                 {
                     "role": "user",
@@ -204,16 +210,20 @@ Your response:"""
                     } for tc in response_message.tool_calls
                 ]
             })
+            
             for tool_call in response_message.tool_calls:
                 logger.info(f"Executing tool: {tool_call.function.name}")
                 args = json.loads(tool_call.function.arguments)
-                
+                if 'lat' not in args and lat is not None:
+                    args['lat'] = lat
+                if 'lon' not in args and lon is not None:
+                    args['lon'] = lon
                 if tool_call.function.name == "get_climate_history":
-                    tool_result = await get_climate_history(**args)
+                    tool_result = await call_tool(get_climate_history, **args)
                 elif tool_call.function.name == "get_seasonal_forecast":
-                    tool_result = await get_seasonal_forecast(**args)
+                    tool_result = await call_tool(get_seasonal_forecast, **args)
                 elif tool_call.function.name == "get_climate_normals":
-                    tool_result = await get_climate_normals(**args)
+                    tool_result = await call_tool(get_climate_normals, **args)
                 else:
                     tool_result = json.dumps({"error": f"Unknown tool: {tool_call.function.name}"})
                 
@@ -227,25 +237,34 @@ Your response:"""
                 messages=messages,
                 max_tokens=512,
             )
-            
             result = second_response.choices[0].message.content
-            
         else:
             result = response_message.content
         try:
+            result = result.strip()
+            if result.startswith('```json'):
+                result = result[7:]
+            if result.startswith('```'):
+                result = result[3:]
+            if result.endswith('```'):
+                result = result[:-3]
+            result = result.strip()
+            
             parsed = json.loads(result)
             if "season" in parsed and "month" in parsed:
+                if "confidence" not in parsed:
+                    parsed["confidence"] = "medium"
+                result = json.dumps(parsed)
                 ollama_cache.set(cache_key, result, ttl=cfg.model.get('cache_ttl', 3600))
                 return result
             else:
                 logger.warning(f"Invalid response format: {result}")
                 return json.dumps({"season": "unknown", "month": "unknown", "confidence": "low"})
-        except:
-            logger.warning(f"Failed to parse response: {result}")
+        except json.JSONDecodeError as e:
+            logger.warning(f"Failed to parse response: {result}, error: {e}")
             return json.dumps({"season": "unknown", "month": "unknown", "confidence": "low"})
             
     except Exception as e:
         logger.error(f"Vision model error: {e}")
         metrics.track_error("vision_model_error")
         return json.dumps({"season": "unknown", "month": "unknown", "confidence": "low"})
-    
