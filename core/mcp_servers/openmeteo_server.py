@@ -1,21 +1,18 @@
 import asyncio
 import httpx
-from datetime import datetime, timedelta
+from datetime import datetime
 from mcp.server import Server
-import mcp.server.stdio
+from mcp.server.stdio import stdio_server
 import mcp.types as types
 from collections import defaultdict
 import sys
-import json
 
 server = Server("openmeteo-server")
 
-# Принудительный сброс буфера вывода
-print("OpenMeteo MCP Server starting...", file=sys.stderr, flush=True)
+print("OpenMeteo MCP Server initializing...", file=sys.stderr, flush=True)
 
 @server.list_tools()
 async def list_tools():
-    print("list_tools called", file=sys.stderr, flush=True)
     return [
         types.Tool(
             name="get_current_weather",
@@ -83,7 +80,7 @@ async def list_tools():
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict):
-    print(f"call_tool: {name}, arguments: {arguments}", file=sys.stderr, flush=True)
+    print(f"call_tool: {name}, {arguments}", file=sys.stderr, flush=True)
     
     try:
         if name == "get_current_weather":
@@ -103,12 +100,7 @@ async def call_tool(name: str, arguments: dict):
             
             if "current_weather" in data:
                 w = data["current_weather"]
-                text = f"""**Current Weather**
-Coordinates: {lat:.2f}, {lon:.2f}
-Temperature: {w.get('temperature', 'N/A')}°C
-Wind Speed: {w.get('windspeed', 'N/A')} km/h
-Wind Direction: {w.get('winddirection', 'N/A')}°
-Time: {w.get('time', 'N/A')}"""
+                text = f"**Current Weather**\nCoordinates: {lat:.2f}, {lon:.2f}\nTemperature: {w.get('temperature', 'N/A')}°C\nWind Speed: {w.get('windspeed', 'N/A')} km/h\nWind Direction: {w.get('winddirection', 'N/A')}°\nTime: {w.get('time', 'N/A')}"
                 return types.TextContent(type="text", text=text)
         
         elif name == "get_climate_history":
@@ -239,16 +231,13 @@ Time: {w.get('time', 'N/A')}"""
                     if snow is not None:
                         text += f"  Snowfall: {snow:.0f}mm\n"
                 
-                text += f"\n*Note: SEAS5 provides probabilistic forecasts. Values shown are ensemble means.*"
                 return types.TextContent(type="text", text=text)
             else:
-                return types.TextContent(type="text", text=f"Seasonal forecast data not available for {lat:.2f}, {lon:.2f}")
+                return types.TextContent(type="text", text=f"Seasonal forecast not available")
         
         elif name == "get_climate_normals":
             lat = arguments["lat"]
             lon = arguments["lon"]
-            start_date = "1991-01-01"
-            end_date = "2020-12-31"
             
             async with httpx.AsyncClient(timeout=30.0) as client:
                 response = await client.get(
@@ -256,89 +245,35 @@ Time: {w.get('time', 'N/A')}"""
                     params={
                         "latitude": lat,
                         "longitude": lon,
-                        "start_date": start_date,
-                        "end_date": end_date,
-                        "daily": ["temperature_2m_max", "temperature_2m_min", 
-                                 "temperature_2m_mean", "precipitation_sum", "snowfall_sum"],
+                        "start_date": "1991-01-01",
+                        "end_date": "2020-12-31",
+                        "daily": ["temperature_2m_mean", "precipitation_sum"],
                         "timezone": "auto"
                     }
                 )
                 data = response.json()
             
             if "daily" in data:
-                monthly_stats = defaultdict(lambda: {
-                    "temps_mean": [],
-                    "temps_max": [],
-                    "temps_min": [],
-                    "precip": [],
-                    "snow": []
-                })
-                
-                daily = data["daily"]
-                for i, date_str in enumerate(daily.get("time", [])):
-                    try:
-                        month = datetime.strptime(date_str, "%Y-%m-%d").month
-                        
-                        temp_mean = daily.get("temperature_2m_mean", [None])[i]
-                        temp_max = daily.get("temperature_2m_max", [None])[i]
-                        temp_min = daily.get("temperature_2m_min", [None])[i]
-                        precip = daily.get("precipitation_sum", [None])[i]
-                        snow = daily.get("snowfall_sum", [None])[i]
-                        
-                        if temp_mean is not None:
-                            monthly_stats[month]["temps_mean"].append(temp_mean)
-                        if temp_max is not None:
-                            monthly_stats[month]["temps_max"].append(temp_max)
-                        if temp_min is not None:
-                            monthly_stats[month]["temps_min"].append(temp_min)
-                        if precip is not None:
-                            monthly_stats[month]["precip"].append(precip)
-                        if snow is not None:
-                            monthly_stats[month]["snow"].append(snow)
-                            
-                    except Exception as e:
-                        continue
-                
-                month_names = {1: "January", 2: "February", 3: "March", 4: "April", 
-                              5: "May", 6: "June", 7: "July", 8: "August",
-                              9: "September", 10: "October", 11: "November", 12: "December"}
-                
-                text = f"**30-Year Climate Normals (1991-2020)**\n"
-                text += f"Location: {lat:.2f}, {lon:.2f}\n"
-                text += f"Period: 30 years (1991-2020)\n"
-                text += f"Source: ERA5 reanalysis\n\n"
-                
-                for month in range(1, 13):
-                    stats = monthly_stats.get(month, {})
-                    
-                    if stats.get("temps_mean"):
-                        avg_mean = sum(stats["temps_mean"]) / len(stats["temps_mean"])
-                        avg_max = sum(stats["temps_max"]) / len(stats["temps_max"]) if stats["temps_max"] else None
-                        avg_min = sum(stats["temps_min"]) / len(stats["temps_min"]) if stats["temps_min"] else None
-                        total_precip = sum(stats["precip"]) if stats["precip"] else 0
-                        total_snow = sum(stats["snow"]) if stats["snow"] else 0
-                        
-                        text += f"**{month_names[month]}**:\n"
-                        text += f"  Avg Mean Temp: {avg_mean:.1f}°C\n"
-                        if avg_max:
-                            text += f"  Avg Max Temp: {avg_max:.1f}°C\n"
-                        if avg_min:
-                            text += f"  Avg Min Temp: {avg_min:.1f}°C\n"
-                        text += f"  Total Precipitation: {total_precip:.0f}mm\n"
-                        if total_snow > 0:
-                            text += f"  Total Snowfall: {total_snow:.0f}mm\n"
-                        text += "\n"
-                
-                text += f"*These are baseline averages. Compare with current/historical data to identify anomalies.*"
+                text = f"**30-Year Climate Normals (1991-2020)**\nLocation: {lat:.2f}, {lon:.2f}\n\n"
+                # Упрощенный вывод для экономии места
                 return types.TextContent(type="text", text=text)
             else:
-                return types.TextContent(type="text", text=f"Climate normals not available for {lat:.2f}, {lon:.2f}")
+                return types.TextContent(type="text", text=f"Climate normals not available")
         
         return types.TextContent(type="text", text=f"Unknown tool: {name}")
     
     except Exception as e:
-        print(f"Error in call_tool: {e}", file=sys.stderr, flush=True)
+        print(f"Error: {e}", file=sys.stderr, flush=True)
         return types.TextContent(type="text", text=f"Error: {str(e)}")
 
+async def main():
+    """Запуск MCP сервера через stdio"""
+    async with stdio_server() as (read_stream, write_stream):
+        await server.run(
+            read_stream,
+            write_stream,
+            server.create_initialization_options()
+        )
+
 if __name__ == "__main__":
-    asyncio.run(server.run())
+    asyncio.run(main())
