@@ -3,7 +3,7 @@ from utils.logger import logger
 from langchain_core.tools import tool
 import json
 from core.mcp_client import OpenMeteoMCPClient
-
+_openmeteo_client = None
 def get_openmeteo_client():
     global _openmeteo_client 
     if _openmeteo_client is None:

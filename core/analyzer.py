@@ -219,10 +219,13 @@ Your response:"""
                 if 'lon' not in args and lon is not None:
                     args['lon'] = lon
                 if tool_call.function.name == "get_climate_history":
+                    logger.info(f'Вызываем get_climate_history')
                     tool_result = await call_tool(get_climate_history, **args)
                 elif tool_call.function.name == "get_seasonal_forecast":
+                    logger.info(f'Вызываем get_seasonal_forecast')
                     tool_result = await call_tool(get_seasonal_forecast, **args)
                 elif tool_call.function.name == "get_climate_normals":
+                    logger.info(f'Вызываем get_climate_normals')
                     tool_result = await call_tool(get_climate_normals, **args)
                 else:
                     tool_result = json.dumps({"error": f"Unknown tool: {tool_call.function.name}"})
