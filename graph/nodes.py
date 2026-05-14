@@ -12,7 +12,6 @@ from utils.validators import validate_size, validate_type, validate_coords
 print(5,flush=True)
 from langchain_core.messages import HumanMessage, AIMessage
 print(6,flush=True)
-from core.mcp_client import OpenMeteoMCPClient
 print('Node',flush=True)
 import os 
 import openai
@@ -29,7 +28,7 @@ class AgentNodes:
         self.analyze_photo = analyze_photo
         self.cfg = cfg
         self._climate_retriever = None
-        self.openmeteo = OpenMeteoMCPClient()
+
     async def router_node(self, state:AgentState)->AgentState:
         logger.info("Router:анализирует")
         if not state.get('messages'):
@@ -125,18 +124,6 @@ class AgentNodes:
             if rag_context:
                 context_parts.append(f" LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
                 logger.info(f"RAG data found for coordinates")
-        if state.get('lat') and state.get('lon'):
-            try:
-                openmeteo_context = await self.openmeteo.get_climate_history(
-                    state['lat'], 
-                    state['lon']
-                )
-                if openmeteo_context:
-                    context_parts.append(f"OPEN-METEO DATA:\n{openmeteo_context}")
-                    logger.info(f"OpenMeteo data retrieved")
-            except Exception as e:
-                logger.error(f"OpenMeteo error: {e}")
-                context_parts.append(f"OpenMeteo data temporarily unavailable")
         if context_parts:
             state['rag_context'] = "\n\n---\n\n".join(context_parts)
         else:

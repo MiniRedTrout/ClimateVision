@@ -103,7 +103,10 @@ class OpenMeteoMCPClient:
         result = await self.call_tool("get_climate_history", lat=lat, lon=lon, year=year)
         climate_cache.set(cache_key,result,ttl=86400)
         return result 
-    
+    async def get_seasonal_forecast(self,lat:float,lon:float)->str:
+        return await self.call_tool("get_seasonal_forecast",lat=lat,lon=lon)
+    async def get_climate_normals(self,lat: float, lon:float)->str:
+        return await self.call_tool("get_climate_normals",lat=lat,lon=lon)
     async def get_forecast(self, lat: float, lon: float, days: int = 3) -> str:
         return await self.call_tool("get_forecast", lat=lat, lon=lon, days=days)
     
