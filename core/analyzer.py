@@ -6,7 +6,7 @@ import asyncio
 import os 
 import base64
 import json 
-from tools import get_climate_history, get_seasonal_forecast, get_climate_normals
+from graph.tools import get_climate_history, get_seasonal_forecast, get_climate_normals
 
 GROQ_API_KEY = os.getenv("API_KEY")
 GROQ_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct" 
