@@ -1,4 +1,3 @@
-
 import asyncio
 import httpx
 from datetime import datetime, timedelta
@@ -6,10 +5,16 @@ from mcp.server import Server
 import mcp.server.stdio
 import mcp.types as types
 from collections import defaultdict
+import sys
+
 server = Server("openmeteo-server")
+
+# Добавляем вывод в stderr для отладки
+print("OpenMeteo MCP Server starting...", file=sys.stderr)
 
 @server.list_tools()
 async def list_tools():
+    print("list_tools called", file=sys.stderr)
     return [
         types.Tool(
             name="get_current_weather",
@@ -77,6 +82,7 @@ async def list_tools():
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict):
+    print(f"call_tool: {name}, arguments: {arguments}", file=sys.stderr)
     
     if name == "get_current_weather":
         lat = arguments["lat"]
@@ -95,12 +101,12 @@ async def call_tool(name: str, arguments: dict):
         
         if "current_weather" in data:
             w = data["current_weather"]
-            text = f""" **Current Weather**
- Coordinates: {lat:.2f}, {lon:.2f}
- Temperature: {w.get('temperature', 'N/A')}°C
- Wind Speed: {w.get('windspeed', 'N/A')} km/h
- Wind Direction: {w.get('winddirection', 'N/A')}°
- Time: {w.get('time', 'N/A')}"""
+            text = f"""**Current Weather**
+Coordinates: {lat:.2f}, {lon:.2f}
+Temperature: {w.get('temperature', 'N/A')}°C
+Wind Speed: {w.get('windspeed', 'N/A')} km/h
+Wind Direction: {w.get('winddirection', 'N/A')}°
+Time: {w.get('time', 'N/A')}"""
             return {"content": [{"type": "text", "text": text}]}
     
     elif name == "get_climate_history":
@@ -139,7 +145,7 @@ async def call_tool(name: str, arguments: dict):
                 months_data[month]["snow"] += snow or 0
                 months_data[month]["rain"] += rain or 0
             
-            text = f" **Climate Data for {year}**\n\n"
+            text = f"**Climate Data for {year}**\n\n"
             month_names = {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
                           7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec"}
             
@@ -169,7 +175,7 @@ async def call_tool(name: str, arguments: dict):
             data = response.json()
         
         if "daily" in data:
-            text = f" **{days}-Day Forecast**\n\n"
+            text = f"**{days}-Day Forecast**\n\n"
             for i in range(len(data["daily"]["time"])):
                 date = data["daily"]["time"][i]
                 temp_max = data["daily"]["temperature_2m_max"][i]
@@ -178,9 +184,11 @@ async def call_tool(name: str, arguments: dict):
                 text += f"**{date}**: {temp_min:.0f}°C / {temp_max:.0f}°C, Precipitation: {precip}mm\n"
             
             return {"content": [{"type": "text", "text": text}]}
+    
     elif name == "get_seasonal_forecast":
         lat = arguments["lat"]
         lon = arguments["lon"]
+        
         async with httpx.AsyncClient() as client:
             response = await client.get(
                 "https://seasonal-api.open-meteo.com/v1/seasonal",
@@ -194,25 +202,33 @@ async def call_tool(name: str, arguments: dict):
                 }
             )
             data = response.json()
+        
         if "monthly" in data:
             monthly = data["monthly"]
-            text = f" **Seasonal Forecast (SEAS5)** - Next 7 Months\n"
-            text += f" Location: {lat:.2f}, {lon:.2f}\n"
-            text += f" Model: ECMWF SEAS5 (51 ensemble members)\n\n"
-            month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            for i in range(len(monthly.get("time",[]))):
+            text = f"**Seasonal Forecast (SEAS5)** - Next 7 Months\n"
+            text += f"Location: {lat:.2f}, {lon:.2f}\n"
+            text += f"Model: ECMWF SEAS5 (51 ensemble members)\n\n"
+            
+            month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            
+            # ФIX: исправлен парсинг даты и убран return внутри цикла
+            for i in range(len(monthly.get("time", []))):
                 date_str = monthly["time"][i]
                 try:
-                    date_obj = datetime.strptime(date_str, "%X-%m-%d")
+                    date_obj = datetime.strptime(date_str, "%Y-%m-%d")  # FIXED: %Y вместо %X
                     month_name = month_names[date_obj.month - 1]
                     year = date_obj.year 
-                except:
+                except Exception as e:
+                    print(f"Error parsing date {date_str}: {e}", file=sys.stderr)
                     month_name = date_str
                     year = ""
+                
                 temp_max = monthly.get("temperature_2m_max", [None])[i]
                 temp_min = monthly.get("temperature_2m_min", [None])[i]
                 precip = monthly.get("precipitation_sum", [None])[i]
                 snow = monthly.get("snowfall_sum", [None])[i]
+                
                 text += f"\n**{month_name} {year}**:\n"
                 if temp_max is not None:
                     text += f"  Max Temp: {temp_max:.1f}°C\n"
@@ -222,15 +238,18 @@ async def call_tool(name: str, arguments: dict):
                     text += f"  Precipitation: {precip:.0f}mm\n"
                 if snow is not None:
                     text += f"  Snowfall: {snow:.0f}mm\n"
-                text += f"\n*Note: SEAS5 provides probabilistic forecasts. Values shown are ensemble means.*"
-                return {"content": [{"type": "text", "text": text}]}
+            
+            text += f"\n*Note: SEAS5 provides probabilistic forecasts. Values shown are ensemble means.*"
+            return {"content": [{"type": "text", "text": text}]}
         else:
             return {"content": [{"type": "text", "text": f"Seasonal forecast data not available for {lat:.2f}, {lon:.2f}"}]}
+    
     elif name == "get_climate_normals":
         lat = arguments["lat"]
         lon = arguments["lon"]
         start_date = "1991-01-01"
         end_date = "2020-12-31"
+        
         async with httpx.AsyncClient() as client:
             response = await client.get(
                 "https://archive-api.open-meteo.com/v1/archive",
@@ -245,6 +264,7 @@ async def call_tool(name: str, arguments: dict):
                 }
             )
             data = response.json()
+        
         if "daily" in data:
             monthly_stats = defaultdict(lambda: {
                 "temps_mean": [],
@@ -253,6 +273,7 @@ async def call_tool(name: str, arguments: dict):
                 "precip": [],
                 "snow": []
             })
+            
             daily = data["daily"]
             for i, date_str in enumerate(daily.get("time", [])):
                 try:
@@ -277,13 +298,15 @@ async def call_tool(name: str, arguments: dict):
                         
                 except Exception as e:
                     continue
+            
             month_names = {1: "January", 2: "February", 3: "March", 4: "April", 
                           5: "May", 6: "June", 7: "July", 8: "August",
                           9: "September", 10: "October", 11: "November", 12: "December"}
-            text = f" **30-Year Climate Normals (1991-2020)**\n"
-            text += f" Location: {lat:.2f}, {lon:.2f}\n"
-            text += f" Period: 30 years (1991-2020)\n"
-            text += f" Source: ERA5 reanalysis\n\n"
+            
+            text = f"**30-Year Climate Normals (1991-2020)**\n"
+            text += f"Location: {lat:.2f}, {lon:.2f}\n"
+            text += f"Period: 30 years (1991-2020)\n"
+            text += f"Source: ERA5 reanalysis\n\n"
             
             for month in range(1, 13):
                 stats = monthly_stats.get(month, {})
@@ -307,7 +330,6 @@ async def call_tool(name: str, arguments: dict):
                     text += "\n"
             
             text += f"*These are baseline averages. Compare with current/historical data to identify anomalies.*"
-            
             return {"content": [{"type": "text", "text": text}]}
         else:
             return {"content": [{"type": "text", "text": f"Climate normals not available for {lat:.2f}, {lon:.2f}"}]}
