@@ -1,0 +1,102 @@
+{
+  "accuracy": 0.23,
+  "classification_report": {
+    "winter": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 21.0
+    },
+    "spring": {
+      "precision": 0.5,
+      "recall": 0.07692307692307693,
+      "f1-score": 0.13333333333333333,
+      "support": 26.0
+    },
+    "summer": {
+      "precision": 0.45,
+      "recall": 0.42857142857142855,
+      "f1-score": 0.43902439024390244,
+      "support": 21.0
+    },
+    "autumn": {
+      "precision": 0.32432432432432434,
+      "recall": 0.375,
+      "f1-score": 0.34782608695652173,
+      "support": 32.0
+    },
+    "micro avg": {
+      "precision": 0.3484848484848485,
+      "recall": 0.23,
+      "f1-score": 0.27710843373493976,
+      "support": 100.0
+    },
+    "macro avg": {
+      "precision": 0.3185810810810811,
+      "recall": 0.22012362637362637,
+      "f1-score": 0.23004595263343938,
+      "support": 100.0
+    },
+    "weighted avg": {
+      "precision": 0.3282837837837838,
+      "recall": 0.23,
+      "f1-score": 0.23816613644397314,
+      "support": 100.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      2,
+      13
+    ],
+    [
+      4,
+      2,
+      3,
+      7
+    ],
+    [
+      1,
+      0,
+      9,
+      5
+    ],
+    [
+      0,
+      2,
+      6,
+      12
+    ]
+  ],
+  "class_metrics": {
+    "winter": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 15
+    },
+    "spring": {
+      "precision": 0.5,
+      "recall": 0.125,
+      "f1": 0.2,
+      "support": 16
+    },
+    "summer": {
+      "precision": 0.45,
+      "recall": 0.6,
+      "f1": 0.5142857142857142,
+      "support": 15
+    },
+    "autumn": {
+      "precision": 0.32432432432432434,
+      "recall": 0.6,
+      "f1": 0.42105263157894735,
+      "support": 20
+    }
+  },
+  "total_samples": 100,
+  "valid_samples": 100,
+  "errors": 0
+}

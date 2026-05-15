@@ -1,0 +1,702 @@
+[
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\17KNUim2c2K4zNm4lixBbA.jpg",
+    "true_season": "spring",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\5FCaV4eXg5qbUw6AdkT1SS.jpg",
+    "true_season": "spring",
+    "predicted_season": "winter",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\VoMeu35kO8bD9XZvH4r96g.jpg",
+    "true_season": "winter",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\8M39HpEUJzg3kU2NDwzBAg.jpg",
+    "true_season": "autumn",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\dCv5GPoDvqfINzheKQabNw.jpg",
+    "true_season": "autumn",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\qmUThjGhlKxQSyoRSpVrGE.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\LiTUZmVReclCvAEfQ01cDg.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\gEMv1ki8KO7TJ3OlAzMD1Q.jpg",
+    "true_season": "spring",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\07-_2SWX7cg0GNkSEeMeFA.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\2LqwpKbx_Znp_8Jwa4Yaqw.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\0YqWIRNZbPyTmppf5ZjyMw.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\B25kSYOWHIz0EOmY2M9yfw.jpg",
+    "true_season": "spring",
+    "predicted_season": "winter",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\6xvLUHNjX7BLWWINOxW29Q.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\7z-nWqSxMip4dChWFsL0nA.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\-tyusBih5pkL3WZmYG_gkA.jpg",
+    "true_season": "summer",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\BNTv1cS789Q3HjupSVMHhq.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\1t7sis2OsVUtMV9DNwrTqg.jpg",
+    "true_season": "spring",
+    "predicted_season": "winter",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\gy5yAkLffi64-55IPC9mDl.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\91IlzNJ4XcFCLhzKmat3SQ.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\7W7IZDTpeDqbibFale914g.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\9_-975DKBgC2MrXvI1pRJg.jpg",
+    "true_season": "spring",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\21y8y-ABk9F_ENprT5gFgg.jpg",
+    "true_season": "autumn",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\07orv5TafoDw-bNLBVuu1w.jpg",
+    "true_season": "spring",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\y0eYWWn-E_tQd3-0Y8By2Q.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\HOYbyj1PMgXEewVfPJldDN.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\-z-pPK_-k27ggq4s1C74SA.jpg",
+    "true_season": "spring",
+    "predicted_season": "spring",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\2JYB0mAtvZQReSqyKZkwNQ.jpg",
+    "true_season": "spring",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\lvbg4DRDNp4S9tXohxHA9A.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\tmvfTSaHrODL6IZHrXQ_PA.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\1YSteHBpo4uRHkVQsPKCRw.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\-f4ZfjU5DBpNc0uLzWCVxC.jpg",
+    "true_season": "autumn",
+    "predicted_season": "spring",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\-afaeq_kc0zdO4eRdS-izA.jpg",
+    "true_season": "spring",
+    "predicted_season": "winter",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\4Up08_vq19bVloJe9RL1iH.jpg",
+    "true_season": "summer",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\7a7GPmBj6YRVSOYn0YgJnA.jpg",
+    "true_season": "summer",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\bsctY--1jRkq5ccQOuOuZQ.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\2gcHDHdbe08-72D4GxiYmw.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\fDLxa0KlnkO-KsUrT8rVuA.jpg",
+    "true_season": "autumn",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\5fzGoQSPSy8DWYsTpYNirg.jpg",
+    "true_season": "spring",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\-FLifancxUmSv71Esg8rzw.jpg",
+    "true_season": "spring",
+    "predicted_season": "spring",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\HFvb11_SBSvrh9vAdV2c9w.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\-nFfrLLQ0XOrWkHCvhQYUw.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\mzUCUerrv2P7NjhoFEJY_Q.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\uEXwhgzrq1HRzOkO3S_7yQ.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\EAFdsmBODrXzZC2Mju0Irg.jpg",
+    "true_season": "spring",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\3DDQxtb15zgKHlJEW0xzjw.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\-ZuNUfAaWMVcJZjQsaO_IQ.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\2_wZm9iFjeRrGt-X51Wqr1.jpg",
+    "true_season": "summer",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\4EWHkPvqELrYDMVsLeHzGg.jpg",
+    "true_season": "summer",
+    "predicted_season": "winter",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\Cj9qzwJWdoGcnfcrAGdYDw.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\0vY7IkvV9d1NsYyrgHedxQ.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\-5yG6yia7jIUA6BobgfSzw.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\3yzEfbId6qEq0hYIhcBAGN.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\5Gfu4er4U-gbrCDPYVtijQ.jpg",
+    "true_season": "winter",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\GmKqKHkv7__e6EXzSzW_XQ.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\BpAm2OudfucA96wMtr3WKQ.jpg",
+    "true_season": "autumn",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\0kiaDFffT49baDuTAMk_zQ.jpg",
+    "true_season": "spring",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\bDjPNYO2qwinCmknsp9euw.jpg",
+    "true_season": "spring",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\-ZDeH4Rafs0iZu4_g4fErw.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\bY_IheMoa9U-uvkMfhopxw.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\-9c9pMhmM5NuPDjTChfqQA.jpg",
+    "true_season": "autumn",
+    "predicted_season": "spring",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\A8NYyC8zI7lVQuFQTIb9JQ.jpg",
+    "true_season": "autumn",
+    "predicted_season": "autumn",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\gVvf6n1xMz5paCOe7NJFCg.jpg",
+    "true_season": "winter",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\0vgKhqL6Md8vtpkdtFs_QE.jpg",
+    "true_season": "summer",
+    "predicted_season": "summer",
+    "correct": true,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\9n3sfRl6KrKSlAtDo4v6zQ.jpg",
+    "true_season": "summer",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\Fvdf5owl3_YukO7jBMRLDQ.jpg",
+    "true_season": "autumn",
+    "predicted_season": "summer",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\Ce_L2u_pk0QjnUleS1wzFA.jpg",
+    "true_season": "spring",
+    "predicted_season": "autumn",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\B2EHVYHiRuMCXKDOG4-6OA.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\4g6pCctAtJyBvXw_aT4_JQ.jpg",
+    "true_season": "winter",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\00CtF2gr_VRrmdhEt2db0w.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\FQ9lmpO2aJtUTLkWxmb-WG.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\487wdhS3BJ1zKyJQjHdeHA.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\C6F7Ig1eTGp445hr-V7swA.jpg",
+    "true_season": "winter",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\0ouPFZhK6t5pMXNFBWniHg.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\046U_rtFmS-pAuZF-Zba0Q.jpg",
+    "true_season": "summer",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\cbs_GWf1joi46F-hlVMSll.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\8oWgZpCGdzS9_KQziKnoad.jpg",
+    "true_season": "summer",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\6VLDgYhB2kytyGGdZkcT2A.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\bo3eUb25-RldXyonN6BV7g.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\57JC6l5Twh7IbqKNLctflA.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\a67264xuI3YBAqb0YaQ_0Q.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\3uZNXFeKZ1ZhhUmoE10yQg.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\5wfKi9C5KNwejeFTSqu04A.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\EqpaArCGasYHNrZqcUb1BQ.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\1UGEk4Vn-v4j4_f-1k-NmQ.jpg",
+    "true_season": "winter",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\CC2eEJxvqJEELuho_u8XjA.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\4L1WEzCZp8gm2N9SpONLy7.jpg",
+    "true_season": "summer",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\tYa_7lX78pdLjdq0_rfM3g.jpg",
+    "true_season": "winter",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\d0AVhR2QM2hf1HewZmom5Q.jpg",
+    "true_season": "winter",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\-5Urtivgfw_3qmqI9lR8u0.jpg",
+    "true_season": "summer",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\8LKfaoRWJ3-ee47uVVlP1z.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\cex3RftE-6wgMr8Ws8amxQ.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\winter\\sJ6LVs0bIbherXKlluVlww.jpg",
+    "true_season": "winter",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\2fdHcAfAz_He20tOTj32fg.jpg",
+    "true_season": "summer",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\autumn\\-1k06LzhjMQ3pjPdZNgtnw.jpg",
+    "true_season": "autumn",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\-IHiC8pZ7HhBPU0pDCgZYA.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\1PBU5lEsiHvfAjFrbc28eQ.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\-A90G9WmA677acjKY14xtY.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\bXZ3dgrdBOrxCBg1N7Bn-l.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\summer\\-lVnbdZVvIy7TZRodYeLjw.jpg",
+    "true_season": "summer",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  },
+  {
+    "image_path": "D:\\Climate\\climate_dataset\\processed\\reference_images\\spring\\B1Iv_f9Vo6IMHW_7zS-doQ.jpg",
+    "true_season": "spring",
+    "predicted_season": "unknown",
+    "correct": false,
+    "error": null
+  }
+]

@@ -6,7 +6,6 @@ import asyncio
 import os 
 import base64
 import json 
-from graph.tools import get_climate_history, get_seasonal_forecast, get_climate_normals
 
 GROQ_API_KEY = os.getenv("API_KEY")
 GROQ_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct" 
@@ -16,80 +15,23 @@ client = openai.AsyncOpenAI(
     base_url=GROQ_API_BASE,
 )
 
-vision_tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "get_climate_history",
-            "description": "Get historical climate data for specific coordinates for a specific year. Use when you need to know actual weather patterns from a particular year.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "lat": {"type": "number"},
-                    "lon": {"type": "number"},
-                    "year": {"type": "integer", "default": 2023}
-                },
-                "required": ["lat", "lon"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "get_seasonal_forecast",
-            "description": "Get seasonal forecast for next 7 months (SEAS5 model). Use when you need to understand expected seasonal conditions or anomalies for the upcoming months.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "lat": {"type": "number"},
-                    "lon": {"type": "number"}
-                },
-                "required": ["lat", "lon"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "get_climate_normals",
-            "description": "Get 30-year climate normals (1991-2020). Use as baseline to understand what is typical for this location - average temperatures and precipitation by month.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "lat": {"type": "number"},
-                    "lon": {"type": "number"}
-                },
-                "required": ["lat", "lon"]
-            }
-        }
-    }
-]
-
-async def call_tool(tool_func, **kwargs):
-    try:
-        if hasattr(tool_func, 'ainvoke'):
-            result = await tool_func.ainvoke(kwargs)
-        else:
-            result = await tool_func(**kwargs)
-        return result
-    except Exception as e:
-        logger.error(f"Error calling tool: {e}")
-        return json.dumps({"status": "error", "message": str(e)})
-
 async def analyze_photo(
         cfg: DictConfig,
         path: str,
         lat: float = None,
         lon: float = None,
         city: str = None,
-        temperature: str = None,
-        climate_context: str = ""
+        temperature: float = None,
+        climate_context: str = "",
+        siglip_prediction: dict = None  # НОВЫЙ ПАРАМЕТР
 ) -> str:
     has_coordinates = lat is not None and lon is not None
     
     print("  Computing image hash...", flush=True)
     hash_val = image_hash(path)
-    cache_key = f'vision_with_tools:{hash_val}:{lat}:{lon}:{city}:{temperature}:{hash(climate_context)}'
+    cache_key = f'vision_with_siglip:{hash_val}:{lat}:{lon}:{city}:{temperature}:{hash(climate_context)}'
+    if siglip_prediction:
+        cache_key += f':{siglip_prediction.get("season", "none")}'
     print("  Cache key created", flush=True)
     
     result = ollama_cache.get(cache_key)
@@ -99,7 +41,7 @@ async def analyze_photo(
         return result
     
     metrics.track_cache_miss()
-    logger.info(f"Calling Vision model with tools")
+    logger.info(f"Calling Vision model with SigLIP guidance")
     metrics.track_api_call("vision_model")
     
     location_txt = location(lat, lon, city, temperature) if has_coordinates else ""
@@ -109,18 +51,55 @@ CLIMATE REFERENCE (use as additional context):
 {climate_context}
 
 Compare what you see in the image with this climate reference.
-If there's a contradiction, trust the VISUAL evidence from the image more.
 """
     else:
         climate_section = ""
+    siglip_section = ""
+    if siglip_prediction and siglip_prediction.get('season'):
+        siglip_season = siglip_prediction['season']
+        siglip_confidence = siglip_prediction.get('confidence', 0.7)
+        probs = siglip_prediction.get('probabilities', {})
+        season_ru = {'winter': 'зима', 'spring': 'весна', 'summer': 'лето', 'autumn': 'осень'}.get(siglip_season, siglip_season)
+        
+        siglip_section = f"""
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  🔬 **ВАЖНО: SigLIP АНАЛИЗ**                                                  ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║                                                                               ║
+║  SigLIP - это модель, дообученная на РЕАЛЬНЫХ КЛИМАТИЧЕСКИХ ДАННЫХ:           ║
+║  • Учитывает координаты (широту/долготу)                                      ║
+║  • Учитывает температуру воздуха                                              ║
+║  • Обучена на многолетних метеоданных                                         ║
+║                                                                               ║
+║  **ПРЕДСКАЗАНИЕ SigLIP: {siglip_season.upper()} ({season_ru})**               ║
+║  **Уверенность SigLIP: {siglip_confidence:.1%}**                              ║
+║                                                                               ║
+║  Детальные вероятности SigLIP:                                                ║
+║  • Зима (winter):   {probs.get('winter', 0):.0%}                              ║
+║  • Весна (spring):  {probs.get('spring', 0):.0%}                              ║
+║  • Лето (summer):   {probs.get('summer', 0):.0%}                              ║
+║  • Осень (autumn):  {probs.get('autumn', 0):.0%}                              ║
+║                                                                               ║
+║                                                                               ║
+║                                                                               ║
+║                                                                               ║
+║                                                                               ║
+║                                                                               ║
+║  ═══════════════════════════════════════════════════════════════════════════  ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+"""
+        logger.info(f"📊 В Vision модель передано SigLIP предсказание: {siglip_season} (уверенность: {siglip_confidence:.1%})")
     if has_coordinates:
         prompt = f"""
 {location_txt}
 {climate_section}
+{siglip_section}
 
 Analyze this image and determine the season and month.
 
-You have access to climate tools. Coordinates are available: lat={lat}, lon={lon}
+**KEY INSTRUCTION:**
+The SigLIP analysis above has PRIORITY  because it's fine-tuned on real climate data.
 
 Possible seasons: winter, spring, summer, autumn
 Possible months: January, February, March, April, May, June, July, August, September, October, November, December
@@ -132,10 +111,14 @@ Your response:"""
     else:
         prompt = f"""
 {climate_section}
+{siglip_section}
 
 Analyze this image and determine the season and month.
 
-NO COORDINATES AVAILABLE - You CANNOT use climate tools.
+**KEY INSTRUCTION:**
+The SigLIP analysis above has PRIORITY because it's fine-tuned on real climate data.
+
+NO COORDINATES AVAILABLE.
 
 Possible seasons: winter, spring, summer, autumn
 Possible months: January, February, March, April, May, June, July, August, September, October, November, December
@@ -149,9 +132,9 @@ Your response:"""
         base64_image = base64.b64encode(image_file.read()).decode('utf-8')
     
     try:
-        kwargs = {
-            "model": GROQ_MODEL_NAME,
-            "messages": [
+        response = await client.chat.completions.create(
+            model=GROQ_MODEL_NAME,
+            messages=[
                 {
                     "role": "user",
                     "content": [
@@ -168,81 +151,10 @@ Your response:"""
                     ]
                 }
             ],
-            "max_tokens": 512,
-        }
-        if has_coordinates:
-            kwargs["tools"] = vision_tools
-            kwargs["tool_choice"] = "auto"
+            max_tokens=512,
+        )
         
-        response = await client.chat.completions.create(**kwargs)
-        response_message = response.choices[0].message
-        if has_coordinates and response_message.tool_calls:
-            logger.info(f"Vision model requested {len(response_message.tool_calls)} tool calls")
-            
-            messages = [
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": prompt
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_image}"
-                            }
-                        }
-                    ]
-                }
-            ]
-            messages.append({
-                "role": "assistant",
-                "content": response_message.content or "",
-                "tool_calls": [
-                    {
-                        "id": tc.id,
-                        "type": "function",
-                        "function": {
-                            "name": tc.function.name,
-                            "arguments": tc.function.arguments
-                        }
-                    } for tc in response_message.tool_calls
-                ]
-            })
-            
-            for tool_call in response_message.tool_calls:
-                logger.info(f"Executing tool: {tool_call.function.name}")
-                args = json.loads(tool_call.function.arguments)
-                if 'lat' not in args and lat is not None:
-                    args['lat'] = lat
-                if 'lon' not in args and lon is not None:
-                    args['lon'] = lon
-                if tool_call.function.name == "get_climate_history":
-                    logger.info(f'Вызываем get_climate_history')
-                    tool_result = await call_tool(get_climate_history, **args)
-                elif tool_call.function.name == "get_seasonal_forecast":
-                    logger.info(f'Вызываем get_seasonal_forecast')
-                    tool_result = await call_tool(get_seasonal_forecast, **args)
-                elif tool_call.function.name == "get_climate_normals":
-                    logger.info(f'Вызываем get_climate_normals')
-                    tool_result = await call_tool(get_climate_normals, **args)
-                else:
-                    tool_result = json.dumps({"error": f"Unknown tool: {tool_call.function.name}"})
-                
-                messages.append({
-                    "role": "tool",
-                    "tool_call_id": tool_call.id,
-                    "content": tool_result
-                })
-            second_response = await client.chat.completions.create(
-                model=GROQ_MODEL_NAME,
-                messages=messages,
-                max_tokens=512,
-            )
-            result = second_response.choices[0].message.content
-        else:
-            result = response_message.content
+        result = response.choices[0].message.content
         try:
             result = result.strip()
             if result.startswith('```json'):
@@ -257,6 +169,12 @@ Your response:"""
             if "season" in parsed and "month" in parsed:
                 if "confidence" not in parsed:
                     parsed["confidence"] = "medium"
+                if siglip_prediction and siglip_prediction.get('season'):
+                    if parsed['season'] == siglip_prediction['season']:
+                        logger.info(f"Vision СОГЛАСЕН с SigLIP: {parsed['season']}")
+                    else:
+                        logger.warning(f"Vision НЕ СОГЛАСЕН с SigLIP! Vision={parsed['season']}, SigLIP={siglip_prediction['season']}")
+                
                 result = json.dumps(parsed)
                 ollama_cache.set(cache_key, result, ttl=cfg.model.get('cache_ttl', 3600))
                 return result
