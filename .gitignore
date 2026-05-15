@@ -1,4 +1,14 @@
+# Model files (большие файлы)
+models/siglip-season-model/
+*.pth
+*.pt
+*.bin
+*.onnx
+*.zip
+*.tar.gz
+*.ckpt
 
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -7,65 +17,21 @@ __pycache__/
 env/
 venv/
 ENV/
-env.bak/
-venv.bak/
-pythonenv*
-venv/
-.venv/
-.env/
-.envrc
 .env
-.env.local
-.env.production
-.env.*.local
-*.log
-logs/
-*.log.*
+
+# IDE
 .vscode/
 .idea/
+
+
 *.swp
 *.swo
 *~
-.DS_Store
-*.pyc
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-*.tmp
-*.temp
-temp/
-tmp/
-*.jpg.tmp
-*.png.tmp
-*.db
-*.sqlite
-*.sqlite3
-*.coverage
-htmlcov/
-.tox/
-.coverage.*
-coverage.xml
-*.bak
-dist/
-build/
-*.egg-info/
-*.egg
-.ipynb_checkpoints/
-*.ipynb
-ollama_models/
-.ollama/
-ngrok.yml
-.ngrok2/
-deployments/
-*.pid
-.docker/
-docker-compose.override.yml
 
-# GitHub
-.github/workflows/*.local
+# Logs
+*.log
+logs/
 
-# Файлы с sensitive данными
-*.pem
-*.key
-*.crt
-secrets/
+# Cache
+.cache/
+*.cache
