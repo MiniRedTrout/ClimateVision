@@ -28,9 +28,14 @@ print("Дошли до logger", flush=True)
 from core.analyzer import analyze_photo
 from utils.geocoding import get_coordinates_by_city
 from utils.helpers import extract_city, extract_temperature, parse_coordinates
+from utils.validators import validate_coords
 
 print("Перед графом", flush=True)
-from graph.builder import build_agent_graph
+try:
+    from graph.builder import build_agent_graph
+except Exception as e:
+    print(f"!!! ERROR importing graph.builder: {e}", flush=True)
+    raise
 from graph.state import AgentState
 from middleware.rate_limiter import RateLimiter
 
@@ -54,16 +59,8 @@ def run_http():
 
 http_thread = threading.Thread(target=run_http, daemon=True)
 http_thread.start()
-from dotenv import load_dotenv
-
-try:
-    from graph.builder import build_agent_graph
-except Exception as e:
-    print(f"!!! ERROR importing graph.builder: {e}", flush=True)
-    raise
 
 print("=== 2. IMPORTS DONE ===", flush=True)
-load_dotenv()
 print("=== 3. ENV LOADED ===", flush=True)
 print("=== 4. FLASK APP CREATED ===", flush=True)
 print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
@@ -81,7 +78,7 @@ class SeasonBot:
         self.application = Application.builder().token(self.token).build()
         self._register_handlers()
 
-        logger.info(" SeasonBot initialized")
+        logger.info("SeasonBot initialized")
         print("=== 6. SEASONBOT INIT DONE ===", flush=True)
 
     def _register_handlers(self):
@@ -92,16 +89,16 @@ class SeasonBot:
 
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
-            " Привет! Я определяю сезон и месяц по фотографии!\n\n"
-            " Отправьте фото с геолокацией или укажите город в подписи.\n\n"
-            " Команды:\n"
+            "Привет! Я определяю сезон и месяц по фотографии!\n\n"
+            "Отправьте фото с геолокацией или укажите город в подписи.\n\n"
+            "Команды:\n"
             "/help - помощь\n"
             "/stats - статистика использования"
         )
 
     async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
-            " **Справка**\n\n"
+            "**Справка**\n\n"
             "**Как пользоваться:**\n"
             "1. Отправьте фотографию\n"
             "2. Опционально: добавьте геолокацию или напишите город\n"
@@ -120,12 +117,12 @@ class SeasonBot:
         rate_stats = self.rate_limiter.get_stats(update.effective_user.id)
 
         reply = (
-            f" **Статистика бота**\n\n"
-            f" Всего запросов: {stats.get('total_requests', 0)}\n"
-            f" Кэш: хиты={stats.get('cache_hits', 0)}, промахи={stats.get('cache_misses', 0)}\n"
-            f" Hit rate: {stats.get('cache_hit_rate', 0) * 100:.1f}%\n"
-            f" Среднее время ответа: {stats.get('avg_response_time_ms', 0):.0f} мс\n"
-            f" Ваши запросов: {rate_stats.get('requests_in_window', 0)}/{rate_stats.get('limit', 10)}"
+            f"**Статистика бота**\n\n"
+            f"Всего запросов: {stats.get('total_requests', 0)}\n"
+            f"Кэш: хиты={stats.get('cache_hits', 0)}, промахи={stats.get('cache_misses', 0)}\n"
+            f"Hit rate: {stats.get('cache_hit_rate', 0) * 100:.1f}%\n"
+            f"Среднее время ответа: {stats.get('avg_response_time_ms', 0):.0f} мс\n"
+            f"Ваших запросов: {rate_stats.get('requests_in_window', 0)}/{rate_stats.get('limit', 10)}"
         )
         await update.message.reply_text(reply)
 
@@ -139,18 +136,50 @@ class SeasonBot:
         allowed, wait_time = self.rate_limiter.is_allowed(user_id)
         if not allowed:
             await update.message.reply_text(
-                f" Слишком много запросов. Подождите {wait_time} секунд."
+                f"⏳ Слишком много запросов. Подождите {wait_time} секунд."
             )
             return
 
-        await update.message.reply_text(" Анализирую фотографию...")
+        await update.message.reply_text("🔍 Анализирую фотографию...")
 
         lat, lon, city, temperature = await self._extract_location(update)
+
+        feedback_parts = ["📋 Принял данные:"]
+        warnings = []
+
+        if city:
+            feedback_parts.append(f"🏙️ Город: {city}")
+        if lat and lon:
+            valid, coord_error = validate_coords(lat, lon)
+            if valid:
+                feedback_parts.append(f"📍 Координаты: {lat:.4f}, {lon:.4f}")
+            else:
+                warnings.append(f"⚠️ {coord_error} - исправьте и отправьте заново")
+        if temperature is not None:
+            if -60 <= temperature <= 60:
+                feedback_parts.append(f"🌡️ Температура: {temperature}°C")
+            else:
+                warnings.append(
+                    f"⚠️ Странная температура: {temperature}°C. Проверьте формат (например: +5°C, -10°C)"
+                )
+
+        if warnings:
+            feedback_parts.append("")
+            feedback_parts.extend(warnings)
+
+        if not city and not (lat and lon):
+            feedback_parts.append("")
+            feedback_parts.append(
+                "💡 Подсказка: укажите город или координаты для лучшего результата."
+            )
+            feedback_parts.append('Примеры: "город Москва", "55.75, 37.62", "+5°C"')
+
+        await update.message.reply_text("\n".join(feedback_parts))
 
         photo_file = await update.message.photo[-1].get_file()
 
         if photo_file.file_size > 10 * 1024 * 1024:
-            await update.message.reply_text(" Фото слишком большое (максимум 10 МБ)")
+            await update.message.reply_text("❌ Фото слишком большое (максимум 10 МБ)")
             return
 
         with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmp:
@@ -182,17 +211,17 @@ class SeasonBot:
             final_state = await self.agent.ainvoke(initial_state)
 
             if final_state.get("errors"):
-                await update.message.reply_text(f" {final_state['errors'][0][:100]}")
+                await update.message.reply_text(f"❌ {final_state['errors'][0][:100]}")
 
             if final_state.get("answer"):
                 await update.message.reply_text(final_state["answer"])
             else:
-                await update.message.reply_text(" Не удалось определить сезон")
+                await update.message.reply_text("❌ Не удалось определить сезон")
             duration_ms = (time.time() - start_time) * 1000
             metrics.track_response_time(duration_ms)
         except Exception as e:
             logger.error(f"Error in handle_photo: {e}")
-            await update.message.reply_text(" Произошла ошибка при анализе фото")
+            await update.message.reply_text("❌ Произошла ошибка при анализе фото")
         finally:
             if os.path.exists(tmp_path):
                 os.unlink(tmp_path)
@@ -205,23 +234,21 @@ class SeasonBot:
         if update.message.location:
             lat = update.message.location.latitude
             lon = update.message.location.longitude
-            logger.info(f" Location from Telegram: {lat}, {lon}")
-            return lat, lon, city
+            logger.info(f"Location from Telegram: {lat}, {lon}")
         caption = update.message.caption or ""
         if caption:
             print(caption, flush=True)
             coords = parse_coordinates(caption)
             if coords:
                 lat, lon = coords
-                logger.info(f" Coordinates from caption: {lat}, {lon}")
-                return lat, lon, city
+                logger.info(f"Coordinates from caption: {lat}, {lon}")
 
             city = extract_city(caption)
             if city:
-                logger.info(f" City from caption: {city}")
+                logger.info(f"City from caption: {city}")
                 lat, lon = await get_coordinates_by_city(city)
                 if lat and lon:
-                    logger.info(f" Geocoded: {city} -> {lat}, {lon}")
+                    logger.info(f"Geocoded: {city} -> {lat}, {lon}")
             temperature = extract_temperature(caption)
             if temperature:
                 logger.info(f"Temperature from caption: {temperature}")
