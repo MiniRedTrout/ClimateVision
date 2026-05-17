@@ -1,65 +1,66 @@
-print(f'START', flush=True)
-from flask import Flask
-import os
-import threading
-import asyncio
-import tempfile
-from pathlib import Path
+print("START", flush=True)
+
 from dotenv import load_dotenv
+
+load_dotenv()
+
+import asyncio
+import os
+import tempfile
+import threading
 import time
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-import ollama
+
 import hydra
+from flask import Flask
 from omegaconf import DictConfig
+from telegram import Update
+from telegram.ext import (
+    Application,
+    CommandHandler,
+    ContextTypes,
+    MessageHandler,
+    filters,
+)
+
 from utils import logger
-print('Дошли до logger', flush=True)
-from utils.helpers import extract_city, parse_coordinates,extract_temperature
-from utils.geocoding import get_coordinates_by_city
-from utils.validators import validate_size
+
+print("Дошли до logger", flush=True)
 from core.analyzer import analyze_photo
-print('Перед графом',flush=True)
+from utils.geocoding import get_coordinates_by_city
+from utils.helpers import extract_city, extract_temperature, parse_coordinates
+
+print("Перед графом", flush=True)
 from graph.builder import build_agent_graph
 from graph.state import AgentState
 from middleware.rate_limiter import RateLimiter
+
 http_app = Flask(__name__)
-@http_app.route('/')
+
+
+@http_app.route("/")
 def health():
     return "Season bot is running", 200
 
-@http_app.route('/health')
+
+@http_app.route("/health")
 def health_check():
     return {"status": "ok"}, 200
+
 
 def run_http():
     port = int(os.environ.get("PORT", 10000))
     http_app.run(host="0.0.0.0", port=port, debug=False)
 
+
 http_thread = threading.Thread(target=run_http, daemon=True)
 http_thread.start()
-import asyncio
-import tempfile
-from pathlib import Path
 from dotenv import load_dotenv
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-import ollama
-import hydra
-from omegaconf import DictConfig
 
-
-from utils import logger
-from utils.helpers import extract_city, parse_coordinates,extract_temperature
-from utils.geocoding import get_coordinates_by_city
-from utils.validators import validate_size
-from core.analyzer import analyze_photo
 try:
-  from graph.builder import build_agent_graph
+    from graph.builder import build_agent_graph
 except Exception as e:
     print(f"!!! ERROR importing graph.builder: {e}", flush=True)
     raise
-from graph.state import AgentState
-from middleware.rate_limiter import RateLimiter
 
 print("=== 2. IMPORTS DONE ===", flush=True)
 load_dotenv()
@@ -67,29 +68,28 @@ print("=== 3. ENV LOADED ===", flush=True)
 print("=== 4. FLASK APP CREATED ===", flush=True)
 print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
 
+
 class SeasonBot:
     def __init__(self, cfg: DictConfig):
         print("=== 5. SEASONBOT INIT START ===", flush=True)
         self.cfg = cfg
         self.token = cfg.telegram.token
         self.rate_limiter = RateLimiter(cfg)
-        
-        self.agent = build_agent_graph(
-            cfg,
-            analyze_photo
-        )
-        
+
+        self.agent = build_agent_graph(cfg, analyze_photo)
+
         self.application = Application.builder().token(self.token).build()
         self._register_handlers()
-        
+
         logger.info(" SeasonBot initialized")
         print("=== 6. SEASONBOT INIT DONE ===", flush=True)
+
     def _register_handlers(self):
         self.application.add_handler(CommandHandler("start", self.start_command))
         self.application.add_handler(CommandHandler("help", self.help_command))
         self.application.add_handler(CommandHandler("stats", self.stats_command))
         self.application.add_handler(MessageHandler(filters.PHOTO, self.handle_photo))
-    
+
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             " Привет! Я определяю сезон и месяц по фотографии!\n\n"
@@ -98,7 +98,7 @@ class SeasonBot:
             "/help - помощь\n"
             "/stats - статистика использования"
         )
-    
+
     async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             " **Справка**\n\n"
@@ -112,47 +112,51 @@ class SeasonBot:
             "• '55.75, 37.62'\n"
             "• '#санктпетербург'"
         )
-    
+
     async def stats_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         from utils import metrics
+
         stats = metrics.get_stats()
         rate_stats = self.rate_limiter.get_stats(update.effective_user.id)
-        
+
         reply = (
             f" **Статистика бота**\n\n"
             f" Всего запросов: {stats.get('total_requests', 0)}\n"
             f" Кэш: хиты={stats.get('cache_hits', 0)}, промахи={stats.get('cache_misses', 0)}\n"
-            f" Hit rate: {stats.get('cache_hit_rate', 0)*100:.1f}%\n"
+            f" Hit rate: {stats.get('cache_hit_rate', 0) * 100:.1f}%\n"
             f" Среднее время ответа: {stats.get('avg_response_time_ms', 0):.0f} мс\n"
             f" Ваши запросов: {rate_stats.get('requests_in_window', 0)}/{rate_stats.get('limit', 10)}"
         )
         await update.message.reply_text(reply)
-    
+
     async def handle_photo(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         from utils import metrics
+
         metrics.track_request()
         start_time = time.time()
         user_id = update.effective_user.id
-        
+
         allowed, wait_time = self.rate_limiter.is_allowed(user_id)
         if not allowed:
-            await update.message.reply_text(f" Слишком много запросов. Подождите {wait_time} секунд.")
+            await update.message.reply_text(
+                f" Слишком много запросов. Подождите {wait_time} секунд."
+            )
             return
-        
+
         await update.message.reply_text(" Анализирую фотографию...")
 
         lat, lon, city, temperature = await self._extract_location(update)
-        
+
         photo_file = await update.message.photo[-1].get_file()
-        
+
         if photo_file.file_size > 10 * 1024 * 1024:
             await update.message.reply_text(" Фото слишком большое (максимум 10 МБ)")
             return
-        
-        with tempfile.NamedTemporaryFile(suffix='.jpg', delete=False) as tmp:
+
+        with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmp:
             await photo_file.download_to_drive(tmp.name)
             tmp_path = tmp.name
-        
+
         try:
             initial_state = AgentState(
                 user_id=user_id,
@@ -172,14 +176,14 @@ class SeasonBot:
                 synthesized=None,
                 answer=None,
                 errors=[],
-                messages=[]
+                messages=[],
             )
-            
+
             final_state = await self.agent.ainvoke(initial_state)
-            
+
             if final_state.get("errors"):
                 await update.message.reply_text(f" {final_state['errors'][0][:100]}")
-            
+
             if final_state.get("answer"):
                 await update.message.reply_text(final_state["answer"])
             else:
@@ -192,7 +196,7 @@ class SeasonBot:
         finally:
             if os.path.exists(tmp_path):
                 os.unlink(tmp_path)
-    
+
     async def _extract_location(self, update: Update):
         lat = None
         lon = None
@@ -211,7 +215,7 @@ class SeasonBot:
                 lat, lon = coords
                 logger.info(f" Coordinates from caption: {lat}, {lon}")
                 return lat, lon, city
-            
+
             city = extract_city(caption)
             if city:
                 logger.info(f" City from caption: {city}")
@@ -222,7 +226,7 @@ class SeasonBot:
             if temperature:
                 logger.info(f"Temperature from caption: {temperature}")
         return lat, lon, city, temperature
-    
+
     async def run(self):
         logger.info("Starting bot in polling mode...")
         await self.application.initialize()
@@ -241,7 +245,7 @@ class SeasonBot:
 def main(cfg: DictConfig):
     print("=== 7. MAIN START ===", flush=True)
     logger.info("Starting Season Bot Worker...")
-    
+
     bot = SeasonBot(cfg)
     print("=== 8. BOT CREATED ===", flush=True)
     asyncio.run(bot.run())

@@ -1,60 +1,67 @@
-import re 
 import hashlib
-from typing import Optional, Tuple
-from pathlib import Path 
 import json
-def extract_city(caption:str)->Optional[str]:
+import re
+from typing import Optional, Tuple
+
+
+def extract_city(caption: str) -> Optional[str]:
     """Извлечет город из подписи к картинке"""
     if not caption:
-        return None 
+        return None
     patterns = [
-        r'(?:город|в|из)\s+([А-Яа-яA-Za-z\-]+)',
-        r'([А-Яа-яA-Za-z\-]+)\s+(?:город|city)',
-        r'#(\w+)'
+        r"(?:город|в|из)\s+([А-Яа-яA-Za-z\-]+)",
+        r"([А-Яа-яA-Za-z\-]+)\s+(?:город|city)",
+        r"#(\w+)",
     ]
     for p in patterns:
-        correct = re.search(p,caption)
+        correct = re.search(p, caption)
         if correct:
             return correct.group(1)
-    return None 
-def image_hash(image_path: str)->str:
+    return None
+
+
+def image_hash(image_path: str) -> str:
     """MD5 хэш для кэша"""
     print(f"  image_hash called with path: {image_path}", flush=True)
-    with open(image_path,'rb') as f:
+    with open(image_path, "rb") as f:
         data = f.read()
         print(f"  Read {len(data)} bytes", flush=True)
         result = hashlib.md5(data).hexdigest()
         print(f"  Hash result: {result}", flush=True)
         return result
-    
-def parse(txt: str)->dict:
+
+
+def parse(txt: str) -> dict:
     """Парсим ответ от клиента"""
     txt = txt.strip()
-    if txt.startswith('```json'):
+    if txt.startswith("```json"):
         txt = txt[7:]
-    if txt.startswith('```'):
+    if txt.startswith("```"):
         txt = txt[3:]
-    if txt.endswith('```'):
+    if txt.endswith("```"):
         txt = txt[:-3]
     return json.loads(txt.strip())
-def location(lat: Optional[float], lon: Optional[float], city: Optional[str], temperature: Optional[str])->str:
-    """По красоте в промпт"""
-    prompt = ''
+
+
+def location(lat, lon, city, temperature) -> str:
+    parts = []
     if city:
-        prompt += f'Location: {city}'
+        parts.append(f"City: {city}")
     if lat and lon:
-        prompt += f'Location: {lat:.4f}, {lon:.4f}'
+        parts.append(f"Coordinates: {lat:.4f}, {lon:.4f}")
     if temperature:
-        prompt += f'Temperature: {temperature}'
-    return prompt
+        parts.append(f"Current temperature: {temperature}°C")
+    return "\n".join(parts)
+
+
 def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
     if not text:
         return None
     patterns = [
-        r'lat(?:itude)?\s*[:=]\s*([+-]?\d+\.?\d*)\s*[,;]\s*lon(?:gitude)?\s*[:=]\s*([+-]?\d+\.?\d*)',
-        r'([+-]?\d+\.?\d*)\s*[,;]\s*([+-]?\d+\.?\d*)',
-        r'([+-]?\d+\.?\d*)\s+([+-]?\d+\.?\d*)',
-        r'lat(?:itude)?\s*-\s*([+-]?\d+\.?\d*)\s*[,;]\s*lon(?:gitude)?\s*-\s*([+-]?\d+\.?\d*)',
+        r"lat(?:itude)?\s*[:=]\s*([+-]?\d+\.?\d*)\s*[,;]\s*lon(?:gitude)?\s*[:=]\s*([+-]?\d+\.?\d*)",
+        r"([+-]?\d+\.?\d*)\s*[,;]\s*([+-]?\d+\.?\d*)",
+        r"([+-]?\d+\.?\d*)\s+([+-]?\d+\.?\d*)",
+        r"lat(?:itude)?\s*-\s*([+-]?\d+\.?\d*)\s*[,;]\s*lon(?:gitude)?\s*-\s*([+-]?\d+\.?\d*)",
     ]
     for pattern in patterns:
         match = re.search(pattern, text, re.IGNORECASE)
@@ -64,13 +71,15 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
             if -90 <= lat <= 90 and -180 <= lon <= 180:
                 return lat, lon
     return None
+
+
 def extract_temperature(caption: str) -> Optional[float]:
     if not caption:
         return None
     patterns = [
-        r'(?:температура|темп|temp|t)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)\s*°?\s*[cC]',
-        r'([+-]?\d+(?:\.\d+)?)\s*°\s*[cC]',
-        r'([+-]?\d+(?:\.\d+)?)\s*(?:градусов|градуса|град)',
+        r"(?:температура|темп|temp|t)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)\s*°?\s*[cC]",
+        r"([+-]?\d+(?:\.\d+)?)\s*°\s*[cC]",
+        r"([+-]?\d+(?:\.\d+)?)\s*(?:градусов|градуса|град)",
     ]
     for pattern in patterns:
         match = re.search(pattern, caption, re.IGNORECASE)

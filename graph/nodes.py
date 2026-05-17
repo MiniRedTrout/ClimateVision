@@ -1,274 +1,309 @@
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from datetime import datetime
-from typing import Dict, Any
-from .state import AgentState 
-print(1,flush=True)
-from langchain_ollama import ChatOllama
-print(2,flush=True)
+
+from .state import AgentState
+
+print(1, flush=True)
+print(2, flush=True)
 from utils.helpers import parse
-print(3,flush=True)
-from utils.logger import logger 
-print(4,flush=True)
-from utils.validators import validate_size, validate_type, validate_coords
-print(5,flush=True)
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-print(6,flush=True)
-print('Node',flush=True)
-import os 
-import openai
-import asyncio
+
+print(3, flush=True)
+from utils.logger import logger
+
+print(4, flush=True)
+from utils.validators import validate_coords, validate_size, validate_type
+
+print(5, flush=True)
+from langchain_core.messages import HumanMessage
+
+print(6, flush=True)
+print("Node", flush=True)
 import json
-from core.siglip import SigLIPClassifier
+import os
+
+import openai
 
 GROQ_API_KEY = os.getenv("API_KEY")
-GROQ_API_BASE = "https://api.groq.com/openai/v1"
-GROQ_TEXT_MODEL = "llama-3.3-70b-versatile" 
+GROQ_API_BASE = "https://open.bigmodel.cn/api/paas/v4"
+GROQ_TEXT_MODEL = "glm-4-plus"
 
 groq_client = openai.AsyncOpenAI(
     api_key=GROQ_API_KEY,
     base_url=GROQ_API_BASE,
 )
 
+
 class AgentNodes:
     def __init__(self, cfg, analyze_photo):
         self.analyze_photo = analyze_photo
         self.cfg = cfg
         self._climate_retriever = None
-        self._siglip = None  
-    
-    def get_siglip(self):
-        if self._siglip is None:
-            try:
-                self._siglip = SigLIPClassifier.get_instance()
-                logger.info(" SigLIP модель загружена")
-            except Exception as e:
-                logger.error(f" Не удалось загрузить SigLIP: {e}")
-                self._siglip = None
-        return self._siglip
-    
+
     async def router_node(self, state: AgentState) -> AgentState:
         logger.info("Router: анализирует")
-        if not state.get('messages'):
-            state['messages'] = []
-        state['has_photo'] = bool(state.get('photo_path'))
-        state['has_location'] = bool(
-            (state.get('lat') and state.get('lon')) or state.get('city')
+        if not state.get("messages"):
+            state["messages"] = []
+        state["has_photo"] = bool(state.get("photo_path"))
+        state["has_location"] = bool(
+            (state.get("lat") and state.get("lon")) or state.get("city")
         )
-        if state.get('lat') and state.get('lon'):
-            is_valid, error = validate_coords(state['lat'], state['lon'])
+        if state.get("lat") and state.get("lon"):
+            is_valid, error = validate_coords(state["lat"], state["lon"])
             if not is_valid:
                 logger.warning(f"Invalid coordinates: {error}")
-                state['errors'].append(error)
-                state['has_location'] = False
-        if state.get('user_message'):
-            state['messages'].append({
-                "role": "user",
-                "content": state['user_message']
-            })
-        return state 
-    
+                state["errors"].append(error)
+                state["has_location"] = False
+        if state.get("user_message"):
+            state["messages"].append({"role": "user", "content": state["user_message"]})
+        return state
+
     def get_retriever(self):
         logger.info("get_retriever: START")
         if self._climate_retriever is None:
             from rag.retriever import ClimateRetriever
+
             self._climate_retriever = ClimateRetriever()
         return self._climate_retriever
-    
+
     async def analysis_node(self, state: AgentState) -> AgentState:
-        logger.info('Photo Analysis with SigLIP Guidance')
-        if not state.get('photo_path'):
-            logger.warning('Нет фото')
-            return state 
-        
-        valid_size, size_error = validate_size(state['photo_path'], self.cfg)
+        logger.info("Photo Analysis")
+        if not state.get("photo_path"):
+            logger.warning("Нет фото")
+            return state
+        valid_size, size_error = validate_size(state["photo_path"], self.cfg)
         if not valid_size:
             logger.error(size_error)
-            state['errors'].append(size_error)
+            state["errors"].append(size_error)
             return state
-        
-        valid_type, type_error = validate_type(state['photo_path'], self.cfg)
+        valid_type, type_error = validate_type(state["photo_path"], self.cfg)
         if not valid_type:
             logger.error(type_error)
-            state['errors'].append(type_error)
+            state["errors"].append(type_error)
             return state
-        
-        siglip = self.get_siglip()
-        
         try:
-            climate_context = state.get('rag_context', '')
+            climate_context = state.get("rag_context", "")
 
-            siglip_prediction = None
-            if siglip:
-                siglip_prediction = await siglip.predict(
-                    state['photo_path'],
-                    state.get('lat'),
-                    state.get('lon'),
-                    state.get('temperature')
-                )
-                logger.info(f" SigLIP предсказание: {siglip_prediction['season']} (уверенность: {siglip_prediction['confidence']:.2%})")
-                logger.info(f"   SigLIP вероятности: {json.dumps(siglip_prediction.get('probabilities', {}))}")
-            
-            vision_result = await self.analyze_photo(
+            result = await self.analyze_photo(
                 self.cfg,
-                state['photo_path'],
-                state.get('lat'),
-                state.get('lon'),
-                state.get('city'),
-                state.get('temperature'),
+                state["photo_path"],
+                state.get("lat"),
+                state.get("lon"),
+                state.get("city"),
+                state.get("temperature"),
                 climate_context,
-                siglip_prediction=siglip_prediction  # ← КЛЮЧЕВОЕ: передаем SigLIP внутрь
             )
-            
-            vision_analysis = parse(vision_result)
-            logger.info("ПРЕДСКАЗАНИЯ МОДЕЛЕЙ:")
-            logger.info(f"   SigLIP: {siglip_prediction['season'] if siglip_prediction else 'N/A'} (вес 70%)")
-            logger.info(f"   Vision: {vision_analysis.get('season', 'unknown')} (вес 30%)")
-            logger.info(f"   Финальный сезон: {vision_analysis.get('season', 'unknown')}")
-            
-            state["photo_raw_response"] = vision_result
-            state["photo_analysis"] = {
-                'season': vision_analysis.get('season', 'unknown'),
-                'month': vision_analysis.get('month', 'unknown'),
-                'confidence': vision_analysis.get('confidence', 'medium'),
-                'vision_season': vision_analysis.get('season', 'unknown'),
-                'vision_confidence': vision_analysis.get('confidence', 'medium'),
-                'siglip_season': siglip_prediction['season'] if siglip_prediction else None,
-                'siglip_confidence': siglip_prediction['confidence'] if siglip_prediction else None,
-                'siglip_probabilities': siglip_prediction.get('probabilities', {}) if siglip_prediction else {},
-                'method': 'Vision + SigLIP (SigLIP priority 70%)'
-            }
-            
-            state['messages'].append({
-                "role": "assistant",
-                "content": f" Анализ: сезон={vision_analysis.get('season', 'unknown')}, месяц={vision_analysis.get('month', 'unknown')}",
-                "timestamp": datetime.now().isoformat(),
-                "type": "photo_analysis"
-            })
-            
+            state["photo_raw_response"] = result
+            state["photo_analysis"] = parse(result)
+            state["messages"].append(
+                {
+                    "role": "assistant",
+                    "content": f"Photo analysis complete: season={state['photo_analysis'].get('season')}, month={state['photo_analysis'].get('month')}",
+                    "timestamp": datetime.now().isoformat(),
+                    "type": "photo_analysis",
+                }
+            )
+
+            logger.info(f"Результат: {state['photo_analysis']}")
         except Exception as e:
-            logger.error(f"Ошибка в analysis_node: {e}")
+            logger.error(f"Ошибка: {e}")
             state["errors"].append(str(e))
             state["photo_analysis"] = {
                 "season": "unknown",
                 "month": "unknown",
-                "confidence": "low"
+                "confidence": "low",
             }
-        
+
         return state
-    
+
     async def climate_node(self, state: AgentState) -> AgentState:
-        logger.info('Climate node')
-        logger.info(f"   lat: {state.get('lat')}, lon: {state.get('lon')}, city: {state.get('city')}, temperature: {state.get('temperature')}")
-        
-        if state.get('rag_context'):
-            return state 
-        
+        logger.info("Climate node")
+        logger.info(
+            f"  lat: {state.get('lat')}, lon: {state.get('lon')}, city: {state.get('city')}, temperature: {state.get('temperature')}"
+        )
+        if state.get("rag_context"):
+            return state
         context_parts = []
-        logger.info('Retriever')
+        logger.info("Retriever")
         retriever = self.get_retriever()
-        
-        if state.get('city'):
-            logger.info('Retriever city')
-            rag_context = retriever.get_climate_context(city=state['city'])
+        if state.get("city"):
+            logger.info("Retriever city")
+            rag_context = retriever.get_climate_context(city=state["city"])
             if rag_context:
                 context_parts.append(f"LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
                 logger.info(f"RAG data found for city: {state['city']}")
             else:
                 logger.info(f"No RAG data for city: {state['city']}")
-        elif state.get('lat') and state.get('lon'):
-            rag_context = retriever.get_climate_context(lat=state['lat'], lon=state['lon'])
+        elif state.get("lat") and state.get("lon"):
+            rag_context = retriever.get_climate_context(
+                lat=state["lat"], lon=state["lon"]
+            )
             if rag_context:
                 context_parts.append(f"LOCAL CLIMATE KNOWLEDGE:\n{rag_context}")
-                logger.info(f"RAG data found for coordinates")
-        
+                logger.info("RAG data found for coordinates")
         if context_parts:
-            state['rag_context'] = "\n\n---\n\n".join(context_parts)
+            state["rag_context"] = "\n\n---\n\n".join(context_parts)
         else:
-            state['rag_context'] = "No climate data available for this location."
-        
+            state["rag_context"] = "No climate data available for this location."
         return state
-    
+
     async def synthesis_node(self, state: AgentState) -> AgentState:
-        logger.info(" Synthesis node")
-        
-        photo = state.get('photo_analysis', {})
-        climate = state.get('rag_context', '')
-        user_message = state.get('user_message', '')
-        
-        state['synthesized'] = {
-            'season': photo.get('season', 'unknown'),
-            'month': photo.get('month', 'unknown'),
-            'confidence': photo.get('confidence', 'medium')
+        logger.info("Synthesis node")
+        photo = state.get("photo_analysis", {})
+        climate = state.get("rag_context", "")
+        temperature = state.get("temperature")
+        user_message = state.get("user_message", "")
+
+        season = photo.get("season", "unknown")
+        month = photo.get("month", "unknown")
+        confidence = photo.get("confidence", "medium")
+
+        # --- ПОСТ-ВАЛИДАЦИЯ: корректировка весна/осень ---
+        if (
+            season in ("spring", "autumn")
+            and temperature
+            and climate
+            and "No climate data" not in climate
+        ):
+            try:
+                temp_value = float(
+                    str(temperature)
+                    .replace("°", "")
+                    .replace("C", "")
+                    .replace("c", "")
+                    .strip()
+                )
+
+                validation_prompt = f"""You are a season validation assistant.
+
+The vision model classified a photo as: season={season}, month={month}, confidence={confidence}
+
+The user reported temperature: {temp_value}°C
+
+Climate context for this location:
+{climate[:2000]}
+
+Based on the temperature and climate norms:
+1. Does the reported season ({season}) make sense given the temperature?
+2. Could this actually be the OTHER transitional season instead?
+   (spring <-> autumn confusion is very common)
+
+IMPORTANT RULES:
+- If temperature is CLOSE to March/April/May averages → likely SPRING
+- If temperature is CLOSE to September/October/November averages → likely AUTUMN
+- If temperature is between these ranges, check which is closer
+
+Reply ONLY with JSON:
+{{"validated_season": "spring" or "autumn", "validated_month": "...", "reason": "brief explanation", "changed": true or false}}"""
+
+                response = await groq_client.chat.completions.create(
+                    model=GROQ_TEXT_MODEL,
+                    messages=[{"role": "user", "content": validation_prompt}],
+                    max_tokens=256,
+                    temperature=0.1,
+                )
+
+                validation_raw = response.choices[0].message.content.strip()
+                if validation_raw.startswith("```json"):
+                    validation_raw = validation_raw[7:]
+                if validation_raw.startswith("```"):
+                    validation_raw = validation_raw[3:]
+                if validation_raw.endswith("```"):
+                    validation_raw = validation_raw[:-3]
+                validation_raw = validation_raw.strip()
+
+                validation = json.loads(validation_raw)
+
+                if validation.get("changed"):
+                    logger.info(
+                        f"Season corrected: {season} -> {validation['validated_season']} ({validation.get('reason', '')})"
+                    )
+                    season = validation["validated_season"]
+                    month = validation.get("validated_month", month)
+                    confidence = "medium"
+                else:
+                    logger.info(
+                        f"Season validated: {season} is correct ({validation.get('reason', '')})"
+                    )
+
+            except Exception as e:
+                logger.warning(f"Validation failed, using original: {e}")
+
+        state["synthesized"] = {
+            "season": season,
+            "month": month,
+            "confidence": confidence,
         }
-        siglip_info = ""
-        if photo.get('siglip_season'):
-            siglip_info = f"""
-**🔬 SigLIP анализ:**
-- Предсказанный сезон: {photo['siglip_season']}
-- Уверенность: {photo['siglip_confidence']:.2%}
-- Вероятности: {json.dumps(photo.get('siglip_probabilities', {}), ensure_ascii=False)}
-"""
-        
+
         prompt = f"""
 Ты помощник, который определяет сезон по фотографии.
 
-**Данные с фотографии (ансамбль Vision + SigLIP):**
-- Сезон: {photo.get('season', 'unknown')}
-- Месяц: {photo.get('month', 'unknown')}
-- Уверенность: {photo.get('confidence', 'medium')}
+Данные с фото:
+- Сезон: {season}
+- Месяц: {month}
+- Уверенность: {confidence}
 
-{siglip_info}
-
-**Климатический контекст:**
+Климатический контекст:
 {climate}
 
-**Вопрос пользователя:** {user_message}
+Температура пользователя: {temperature if temperature else "не указана"}
 
-SigLIP модель обучена на реальных климатических данных (температура + координаты) и имеет приоритет.
-Ответь полезно и дружелюбно.
+Вопрос пользователя: {user_message}
+
+Ответь дружелюбно. Объясни почему ты определил именно этот сезон.
+Если уверенность medium или low — честно скажи, что весна и осень похожи и возможна ошибка.
 """
-        
+        messages = state.get("messages", [])
+        messages.append(HumanMessage(content=prompt))
         response = await groq_client.chat.completions.create(
             model=GROQ_TEXT_MODEL,
             messages=[{"role": "user", "content": prompt}],
             max_tokens=512,
-            temperature=0.7
+            temperature=0.7,
         )
-        
-        state['answer'] = response.choices[0].message.content
-        logger.info(f"Ответ сгенерирован")
-        
+        result = response.choices[0].message.content
+        state["answer"] = result
+
         return state
-    
+
     def formatter_node(self, state: AgentState) -> AgentState:
-        logger.info("📝 Formatter Node")
-        synthesized = state.get('synthesized', {})
-        season_ru = self.cfg.graph.SEASON_NAMES_RU.get(synthesized.get('season', 'unknown'), 'Неизвестно')
-        month_ru = self.cfg.graph.MONTH_NAMES_RU.get(synthesized.get('month', ''), 'Неизвестно')
-        
-        confidence = synthesized.get('confidence', 'medium')
-        if isinstance(confidence, float):
-            if confidence > 0.8:
-                icon = "ВЫСОКАЯ"
-            elif confidence > 0.6:
-                icon = "СРЕДНЯЯ"
-            else:
-                icon = "НИЗКАЯ"
-        else:
-            icon = {'high': 'ВЫСОКАЯ', 'medium': 'СРЕДНЯЯ', 'low': 'НИЗКАЯ'}.get(confidence, '⚠️ СРЕДНЯЯ')
-        
-        state['answer'] = f"""
+        logger.info("Formatter Node")
+        synthesized = state.get("synthesized", {})
+        season_ru = self.cfg.graph.SEASON_NAMES_RU.get(
+            synthesized.get("season", "unknown"), "Неизвестно"
+        )
+        month_ru = self.cfg.graph.MONTH_NAMES_RU.get(
+            synthesized.get("month", ""), "Неизвестно"
+        )
+
+        confidence_icon = {"high": "🟢", "medium": "🟡", "low": "🔴"}.get(
+            synthesized.get("confidence", "medium"), "🟡"
+        )
+
+        state["answer"] = f"""
 **Результат анализа**
 
-Сезон: {season_ru}
-Месяц: {month_ru}
+🌅 Сезон: {season_ru}
+📅 Месяц: {month_ru}
 
-{icon} Уверенность: {confidence if isinstance(confidence, float) else synthesized.get('confidence', 'medium')}
+{confidence_icon} Уверенность: {synthesized.get("confidence", "medium")}
 """
-        
-        if state.get('photo_analysis', {}).get('siglip_season'):
-            state['answer'] += f"\n*Анализ выполнен с учетом SigLIP модели (обучена на реальных климатических данных)*"
-        
+        sources = []
+        if (
+            state.get("photo_analysis")
+            and state["photo_analysis"].get("season") != "unknown"
+        ):
+            sources.append("анализ фото")
+        if state.get("rag_context") and "No climate data" not in state.get(
+            "rag_context", ""
+        ):
+            sources.append("климатические данные")
+        if sources:
+            state["answer"] += f"\n📊 Источники: {', '.join(sources)}"
+
         return state
 
-print('Close', flush=True)
+
+print("Close", flush=True)

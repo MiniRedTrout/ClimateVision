@@ -1,0 +1,66 @@
+telegram:
+  token: ${oc.env:TELEGRAM_BOT_TOKEN, null}
+  webhook_host: ${oc.env:RENDER_EXTERNAL_HOSTNAME, localhost}
+  port: ${oc.env:PORT, 10000}
+  timeout: 30
+ollama:
+  host: ${oc.env:OLLAMA_HOST, http://localhost:11434}
+  request_timeout: 60
+  max_retries: 3
+model:
+  name: llama3.2-vision:11b
+  temperature: 0.1
+  max_tokens: 512
+  cache_ttl: 3600
+rate_limit:
+  enabled: true
+  requests_per_minute: 10
+  burst_size: 3
+  seconds: 60
+rag:
+  knowledge_path: rag/knowledge_base.json
+  use_hybrid: true
+  api_fallback: true
+  cache_ttl: 86400
+  open_meteo_url: https://archive-api.open-meteo.com/v1/archive
+photo:
+  max_size: 10
+  types:
+  - jpg
+  - jpeg
+  - png
+  - webp
+graph:
+  SEASON_NAMES_RU:
+    winter: ❄️ Зима
+    spring: 🌸 Весна
+    summer: ☀️ Лето
+    autumn: 🍂 Осень
+    unknown: ❓ Неизвестно
+  MONTH_NAMES_RU:
+    January: Январь
+    February: Февраль
+    March: Март
+    April: Апрель
+    May: Май
+    June: Июнь
+    July: Июль
+    August: Август
+    September: Сентябрь
+    October: Октябрь
+    November: Ноябрь
+    December: Декабрь
+cache:
+  type: memory
+  ttl:
+    ollama: 3600
+    climate: 86400
+    api: 3600
+  redis_url: ${oc.env:REDIS_URL, null}
+  file_cache_dir: cache_files
+middleware:
+  enabled: true
+  requests_per_minute: 10
+  burst_size: 3
+  seconds: 60
+debug: false
