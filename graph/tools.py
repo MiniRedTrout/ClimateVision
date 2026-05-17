@@ -3,7 +3,7 @@ from utils.logger import logger
 from langchain_core.tools import tool
 import json
 from core.mcp_client import OpenMeteoMCPClient
-from utils.vector_store import VectorStore
+from rag.vector_store import VectorStore
 _openmeteo_client = None
 def get_openmeteo_client():
     global _openmeteo_client 
