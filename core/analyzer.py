@@ -7,7 +7,13 @@ import asyncio
 import os 
 import base64
 import json 
-from graph.tools import get_climate_history, get_seasonal_forecast, get_climate_normals, find_similar_cities
+
+from graph.tools import (
+    get_climate_history, 
+    get_seasonal_forecast, 
+    get_climate_normals, 
+    find_similar_cities
+)
 
 GROQ_API_KEY = os.getenv("API_KEY")
 GROQ_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct" 
@@ -81,29 +87,30 @@ vision_tools = [
         }
     }
 ]
-
-from graph.tools import (
-    get_climate_history, 
-    get_seasonal_forecast, 
-    get_climate_normals, 
-    find_similar_cities
-)
+TOOLS_MAP = {
+    "get_climate_history": get_climate_history,
+    "get_seasonal_forecast": get_seasonal_forecast,
+    "get_climate_normals": get_climate_normals,
+    "find_similar_cities": find_similar_cities,
+}
 
 async def call_tool(tool_name: str, **kwargs):
     logger.info(f" Calling tool: {tool_name} with args: {kwargs}")
     
-    tools_map = {
-        "get_climate_history": get_climate_history,
-        "get_seasonal_forecast": get_seasonal_forecast,
-        "get_climate_normals": get_climate_normals,
-        "find_similar_cities": find_similar_cities,
-    }
-    
-    tool_func = tools_map.get(tool_name)
-    if tool_func:
-        return await tool_func(**kwargs)  
-    else:
+    tool = TOOLS_MAP.get(tool_name)
+    if tool is None:
         return json.dumps({"error": f"Unknown tool: {tool_name}"})
+    
+    try:
+        if hasattr(tool, 'ainvoke'):
+            result = await tool.ainvoke(kwargs)
+        else:
+            result = await tool(**kwargs)
+        return result
+    except Exception as e:
+        logger.error(f"Tool execution error: {e}")
+        return json.dumps({"error": str(e)})
+
 async def analyze_photo(
         cfg: DictConfig,
         path: str,
@@ -114,12 +121,18 @@ async def analyze_photo(
         climate_context: str = "",
         siglip_prediction: dict = None
 ) -> str:
+    """
+    Анализирует фото с возможностью вызова инструментов
+    """
     
     has_coordinates = lat is not None and lon is not None
+    
+    print("  Computing image hash...", flush=True)
     hash_val = image_hash(path)
     cache_key = f'vision_tools:{hash_val}:{lat}:{lon}:{city}:{temperature}'
     if siglip_prediction:
         cache_key += f':{siglip_prediction.get("season", "none")}'
+    print("  Cache key created", flush=True)
     
     result = ollama_cache.get(cache_key)
     if result:
@@ -131,6 +144,17 @@ async def analyze_photo(
     logger.info(f"Calling Vision model with tools")
     
     location_txt = location(lat, lon, city, temperature) if has_coordinates else ""
+    siglip_info = ""
+    if siglip_prediction:
+        siglip_season = siglip_prediction.get('season', 'unknown')
+        siglip_conf = siglip_prediction.get('confidence', 0)
+        siglip_info = f"""
+**🔬 SigLIP PREDICTION (PRIORITY):**
+- Season: {siglip_season}
+- Confidence: {siglip_conf:.1%}
+- Use this as primary reference!
+"""
+    
     system_prompt = """You are a vision AI that analyzes images to determine the season.
 
 **IMPORTANT RULES:**
@@ -149,8 +173,7 @@ Available tools:
     
     user_prompt = f"""
 {location_txt}
-
-{siglip_prediction}
+{siglip_info}
 
 Analyze this image and determine the season and month.
 
