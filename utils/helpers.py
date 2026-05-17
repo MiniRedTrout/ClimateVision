@@ -64,13 +64,23 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
             if -90 <= lat <= 90 and -180 <= lon <= 180:
                 return lat, lon
     return None
+
 def extract_temperature(caption: str) -> Optional[float]:
     if not caption:
         return None
     patterns = [
-        r'(?:температура|темп|temp|t)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)\s*°?\s*[cC]',
-        r'([+-]?\d+(?:\.\d+)?)\s*°\s*[cC]',
+        # Формат: temp: 9.5
+        r'(?:temp|temperature|t)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)',
+        # Формат: температура 9.5
+        r'(?:температура|темп)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)',
+        # Формат: 9.5°C
+        r'([+-]?\d+(?:\.\d+)?)\s*°?\s*[cC]',
+        # Формат: 9.5 градусов
         r'([+-]?\d+(?:\.\d+)?)\s*(?:градусов|градуса|град)',
+        # Формат: t=9.5
+        r't\s*=\s*([+-]?\d+(?:\.\d+)?)',
+        # Формат: temp=9.5
+        r'temp\s*=\s*([+-]?\d+(?:\.\d+)?)',
     ]
     for pattern in patterns:
         match = re.search(pattern, caption, re.IGNORECASE)
