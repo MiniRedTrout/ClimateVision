@@ -3,6 +3,7 @@ from utils.logger import logger
 from langchain_core.tools import tool
 import json
 from core.mcp_client import OpenMeteoMCPClient
+from utils.vector_store import VectorStore
 _openmeteo_client = None
 def get_openmeteo_client():
     global _openmeteo_client 
@@ -10,6 +11,63 @@ def get_openmeteo_client():
         _openmeteo_client = OpenMeteoMCPClient()
     return _openmeteo_client
 
+
+@tool
+async def find_similar_cities(
+    lat: float = None, 
+    lon: float = None,
+    top_k: int = 3
+) -> str:
+    """
+    Находит города с похожим климатом.
+    Используй когда хочешь узнать похожие по климату города
+    Args:
+        lat: Широта (если нет города)
+        lon: Долгота (если нет города)
+        top_k: Количество результатов (по умолчанию 3)
+    
+    Returns:
+        JSON строка со списком похожих городов
+    """
+    try:
+        vector_store = VectorStore()
+        if lat is not None and lon is not None:
+            similar = vector_store.find_similar_by_climate(lat, lon, top_k=top_k)
+            search_type = f"координатам ({lat}, {lon})"
+        else:
+            return json.dumps({
+                "status": "error",
+                "message": "Укажите city или (lat, lon)"
+            }, ensure_ascii=False)
+        
+        if not similar:
+            return json.dumps({
+                "status": "success",
+                "message": f"Не найдено городов с климатом, похожим на {search_type}",
+                "cities": []
+            }, ensure_ascii=False)
+        
+        result = {
+            "status": "success",
+            "search_type": search_type,
+            "cities": []
+        }
+        
+        for city_key, city_data, score in similar:
+            result["cities"].append({
+                "name": city_data.get("city", city_key),
+                "country": city_data.get("country", ""),
+                "similarity": round(score * 100, 1)
+            })
+        
+        return json.dumps(result, ensure_ascii=False)
+        
+    except Exception as e:
+        return json.dumps({
+            "status": "error",
+            "message": str(e)
+        }, ensure_ascii=False)
+    
 @tool 
 async def get_climate_history(lat: float, lon: float, year: int = 2023)->str:
     """
@@ -54,5 +112,6 @@ async def get_climate_normals(lat: float, lon: float) -> str:
 VISION_TOOLS = [
     get_climate_history,
     get_seasonal_forecast,
-    get_climate_normals
+    get_climate_normals,
+    find_similar_cities
 ]

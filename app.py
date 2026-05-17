@@ -202,7 +202,7 @@ class SeasonBot:
             lat = update.message.location.latitude
             lon = update.message.location.longitude
             logger.info(f" Location from Telegram: {lat}, {lon}")
-            return lat, lon, city
+            return lat, lon, city, temperature
         caption = update.message.caption or ""
         if caption:
             print(caption, flush=True)
@@ -210,7 +210,7 @@ class SeasonBot:
             if coords:
                 lat, lon = coords
                 logger.info(f" Coordinates from caption: {lat}, {lon}")
-                return lat, lon, city
+                return lat, lon, city, temperature
             
             city = extract_city(caption)
             if city:

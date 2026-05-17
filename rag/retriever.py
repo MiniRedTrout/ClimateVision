@@ -5,8 +5,6 @@ from typing import Dict, Optional, Tuple
 from utils import logger
 
 class ClimateRetriever:
-    """Поиск климатических данных по локальной базе (упрощённая версия)"""
-    
     def __init__(self, path: str = None):
         if path is None:
             curr_dir = os.path.dirname(os.path.abspath(__file__))
@@ -21,7 +19,6 @@ class ClimateRetriever:
             logger.info(f'Loaded {len(self.data)} cities (simplified mode)')
     
     def find_city_by_coords(self, lat: float, lon: float) -> Tuple[Optional[str], Optional[dict]]:
-        """Находит ближайший город по координатам"""
         nearest_city = None 
         nearest_data = None 
         min_dist = float('inf')
@@ -42,7 +39,6 @@ class ClimateRetriever:
         return None, None
     
     def find_city_by_name(self, city_name: str) -> Optional[Dict]:
-        """Находит данные города по названию"""
         city_lower = city_name.lower()
         for city_data in self.data.values():
             if city_lower in city_data.get('city', '').lower():
@@ -50,7 +46,6 @@ class ClimateRetriever:
         return None 
     
     def get_climate_context(self, lat: float = None, lon: float = None, city: str = None) -> str:
-        """Получает климатический контекст (синхронный метод)"""
         city_data = None
         
         if city:
@@ -65,7 +60,6 @@ class ClimateRetriever:
         return self._format_context(city_data)
     
     def _format_context(self, city_data: Dict) -> str:
-        """Форматирует данные для промпта"""
         city_name = city_data.get("city", "Unknown")
         monthly = city_data.get("monthly", {})
         
