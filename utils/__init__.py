@@ -4,7 +4,8 @@ from .helpers import (
     image_hash,
     parse,
     location,
-    extract_temperature
+    extract_temperature,
+    extract_json_from_response
 )
 from .validators import (
     validate_size,

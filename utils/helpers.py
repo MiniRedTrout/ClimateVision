@@ -91,3 +91,32 @@ def extract_temperature(caption: str) -> Optional[float]:
             except ValueError:
                 continue
     return None
+
+def extract_json_from_response(text: str) -> dict:
+    text = text.strip()
+    if text.startswith('```json'):
+        text = text[7:]
+    if text.startswith('```'):
+        text = text[3:]
+    if text.endswith('```'):
+        text = text[:-3]
+    text = text.strip()
+    try:
+        return json.loads(text)
+    except:
+        pass
+    patterns = [
+        r'\{[^{}]*"season"[^{}]*"month"[^{}]*"confidence"[^{}]*\}',
+        r'\{[^{}]*"season"[^{}]*"month"[^{}]*\}',
+        r'\{[^{}]*"season"[^{}]*\}',
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
+        if match:
+            try:
+                return json.loads(match.group())
+            except:
+                continue
+    
+    return None

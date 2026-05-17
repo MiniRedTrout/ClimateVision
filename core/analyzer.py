@@ -7,7 +7,8 @@ import asyncio
 import os 
 import base64
 import json 
-
+import re
+from utils.helpers import extract_json_from_response
 from graph.tools import (
     get_climate_history, 
     get_seasonal_forecast, 
@@ -87,6 +88,7 @@ vision_tools = [
         }
     }
 ]
+
 TOOLS_MAP = {
     "get_climate_history": get_climate_history,
     "get_seasonal_forecast": get_seasonal_forecast,
@@ -111,6 +113,7 @@ async def call_tool(tool_name: str, **kwargs):
         logger.error(f"Tool execution error: {e}")
         return json.dumps({"error": str(e)})
 
+
 async def analyze_photo(
         cfg: DictConfig,
         path: str,
@@ -121,10 +124,6 @@ async def analyze_photo(
         climate_context: str = "",
         siglip_prediction: dict = None
 ) -> str:
-    """
-    Анализирует фото с возможностью вызова инструментов
-    """
-    
     has_coordinates = lat is not None and lon is not None
     
     print("  Computing image hash...", flush=True)
@@ -144,12 +143,13 @@ async def analyze_photo(
     logger.info(f"Calling Vision model with tools")
     
     location_txt = location(lat, lon, city, temperature) if has_coordinates else ""
+    
     siglip_info = ""
     if siglip_prediction:
         siglip_season = siglip_prediction.get('season', 'unknown')
         siglip_conf = siglip_prediction.get('confidence', 0)
         siglip_info = f"""
-**🔬 SigLIP PREDICTION (PRIORITY):**
+** SigLIP PREDICTION (PRIORITY):**
 - Season: {siglip_season}
 - Confidence: {siglip_conf:.1%}
 - Use this as primary reference!
@@ -157,19 +157,18 @@ async def analyze_photo(
     
     system_prompt = """You are a vision AI that analyzes images to determine the season.
 
-**IMPORTANT RULES:**
-1. If you need additional climate data to make an accurate decision, use the available tools.
-2. You can call multiple tools before giving your final answer.
-3. After receiving tool results, analyze them and respond with JSON.
-4. Do NOT include any text outside the JSON in your final response.
-5. Final response format: {"season": "winter/spring/summer/autumn", "month": "month name", "confidence": "high/medium/low"}
+**CRITICAL INSTRUCTION:**
+- You MUST respond ONLY with valid JSON.
+- NO explanatory text before or after the JSON.
+- NO markdown formatting.
+- JUST the raw JSON object.
 
-Available tools:
-- get_climate_history: Get historical climate data for coordinates
-- get_seasonal_forecast: Get expected seasonal conditions
-- get_climate_normals: Get 30-year baseline averages
-- find_similar_cities: Find cities with similar climate
-"""
+Example response: {"season": "summer", "month": "July", "confidence": "high"}
+
+Available tools (use if needed):
+- get_climate_history, get_seasonal_forecast, get_climate_normals, find_similar_cities
+
+Now analyze and respond ONLY with JSON."""
     
     user_prompt = f"""
 {location_txt}
@@ -177,15 +176,12 @@ Available tools:
 
 Analyze this image and determine the season and month.
 
-If you need climate data for this location, call the appropriate tool first.
-Then provide your final answer as JSON.
+Respond ONLY with JSON. No other text.
 
 Possible seasons: winter, spring, summer, autumn
 Possible months: January, February, March, April, May, June, July, August, September, October, November, December
 
-Final answer format: {{"season": "season", "month": "month", "confidence": "high"}}
-
-What season is shown in this image?"""
+Your response:"""
     
     with open(path, "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode('utf-8')
@@ -201,6 +197,7 @@ What season is shown in this image?"""
                 ]
             }
         ]
+        
         response = await client.chat.completions.create(
             model=GROQ_MODEL_NAME,
             messages=messages,
@@ -213,6 +210,7 @@ What season is shown in this image?"""
         while response_message.tool_calls:
             logger.info(f" Model requested {len(response_message.tool_calls)} tool calls")
             messages.append(response_message)
+            
             for tool_call in response_message.tool_calls:
                 args = json.loads(tool_call.function.arguments)
                 tool_result = await call_tool(tool_call.function.name, **args)
@@ -222,6 +220,7 @@ What season is shown in this image?"""
                     "tool_call_id": tool_call.id,
                     "content": tool_result
                 })
+            
             response = await client.chat.completions.create(
                 model=GROQ_MODEL_NAME,
                 messages=messages,
@@ -230,31 +229,22 @@ What season is shown in this image?"""
                 max_tokens=512,
             )
             response_message = response.choices[0].message
-        result = response_message.content
-        try:
-            result = result.strip()
-            if result.startswith('```json'):
-                result = result[7:]
-            if result.startswith('```'):
-                result = result[3:]
-            if result.endswith('```'):
-                result = result[:-3]
-            result = result.strip()
+        raw_response = response_message.content
+        logger.info(f"Raw response: {raw_response[:200]}...")
+        parsed = extract_json_from_response(raw_response)
+        
+        if parsed and "season" in parsed:
+            if "month" not in parsed:
+                parsed["month"] = "unknown"
+            if "confidence" not in parsed:
+                parsed["confidence"] = "medium"
             
-            parsed = json.loads(result)
-            if "season" in parsed and "month" in parsed:
-                if "confidence" not in parsed:
-                    parsed["confidence"] = "medium"
-                
-                result = json.dumps(parsed)
-                ollama_cache.set(cache_key, result, ttl=cfg.model.get('cache_ttl', 3600))
-                return result
-            else:
-                logger.warning(f"Invalid response format: {result}")
-                return json.dumps({"season": "unknown", "month": "unknown", "confidence": "low"})
-                
-        except json.JSONDecodeError as e:
-            logger.warning(f"Failed to parse response: {result}, error: {e}")
+            result = json.dumps(parsed)
+            logger.info(f"✅ Parsed: {parsed}")
+            ollama_cache.set(cache_key, result, ttl=cfg.model.get('cache_ttl', 3600))
+            return result
+        else:
+            logger.warning(f"Failed to parse response: {raw_response[:200]}")
             return json.dumps({"season": "unknown", "month": "unknown", "confidence": "low"})
             
     except Exception as e:
