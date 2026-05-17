@@ -82,20 +82,28 @@ vision_tools = [
     }
 ]
 
+from graph.tools import (
+    get_climate_history, 
+    get_seasonal_forecast, 
+    get_climate_normals, 
+    find_similar_cities
+)
+
 async def call_tool(tool_name: str, **kwargs):
-    logger.info(f"🔧 Calling tool: {tool_name} with args: {kwargs}")
+    logger.info(f" Calling tool: {tool_name} with args: {kwargs}")
     
-    if tool_name == "get_climate_history":
-        return await get_climate_history(**kwargs)
-    elif tool_name == "get_seasonal_forecast":
-        return await get_seasonal_forecast(**kwargs)
-    elif tool_name == "get_climate_normals":
-        return await get_climate_normals(**kwargs)
-    elif tool_name == "find_similar_cities":
-        return await find_similar_cities(**kwargs)
+    tools_map = {
+        "get_climate_history": get_climate_history,
+        "get_seasonal_forecast": get_seasonal_forecast,
+        "get_climate_normals": get_climate_normals,
+        "find_similar_cities": find_similar_cities,
+    }
+    
+    tool_func = tools_map.get(tool_name)
+    if tool_func:
+        return await tool_func(**kwargs)  
     else:
         return json.dumps({"error": f"Unknown tool: {tool_name}"})
-
 async def analyze_photo(
         cfg: DictConfig,
         path: str,
