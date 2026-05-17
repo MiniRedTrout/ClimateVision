@@ -209,8 +209,6 @@ class SeasonBot:
             coords = parse_coordinates(caption)
             if coords:
                 lat, lon = coords
-                logger.info(f" Coordinates from caption: {lat}, {lon}")
-                return lat, lon, city, temperature
             
             city = extract_city(caption)
             if city:
@@ -221,6 +219,8 @@ class SeasonBot:
             temperature = extract_temperature(caption)
             if temperature:
                 logger.info(f"Temperature from caption: {temperature}")
+            else:
+                logger.info(f"⚠️ Temperature NOT found in caption: '{caption}'")
         return lat, lon, city, temperature
     
     async def run(self):
