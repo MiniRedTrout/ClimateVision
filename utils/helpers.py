@@ -69,22 +69,25 @@ def extract_temperature(caption: str) -> Optional[float]:
     if not caption:
         return None
     patterns = [
-        # Формат: temp: 9.5
         r'(?:temp|temperature|t)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)',
-        # Формат: температура 9.5
+        r'(?:temp|temperature|t)\s+([+-]?\d+(?:\.\d+)?)',
         r'(?:температура|темп)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)',
-        # Формат: 9.5°C
-        r'([+-]?\d+(?:\.\d+)?)\s*°?\s*[cC]',
-        # Формат: 9.5 градусов
+        
+        r'([+-]?\d+(?:\.\d+)?)\s*°\s*[cC]',
+        r'([+-]?\d+(?:\.\d+)?)\s*[cC](?!\w)',
+        
         r'([+-]?\d+(?:\.\d+)?)\s*(?:градусов|градуса|град)',
-        # Формат: t=9.5
-        r't\s*=\s*([+-]?\d+(?:\.\d+)?)',
-        # Формат: temp=9.5
-        r'temp\s*=\s*([+-]?\d+(?:\.\d+)?)',
+
+        r'\b([+-]?\d+(?:\.\d+)?)\s*$',
     ]
+    
     for pattern in patterns:
         match = re.search(pattern, caption, re.IGNORECASE)
         if match:
-            temp = float(match.group(1))
-            return temp
+            try:
+                temp = float(match.group(1))
+                if -50 <= temp <= 60:
+                    return temp
+            except ValueError:
+                continue
     return None
