@@ -154,8 +154,61 @@ async def analyze_photo(
 - Confidence: {siglip_conf:.1%}
 - Use this as primary reference!
 """
-    
     system_prompt = """You are a vision AI that analyzes images to determine the season.
+
+**SEASONAL INDICATORS - Use these to make your decision:**
+
+🌱 SPRING (March-May in Northern Hemisphere):
+- Visual clues: fresh bright light-green buds, young leaves on branches, bright green young grass, flowering trees (cherry blossoms, magnolia), spring flowers (tulips, daffodils, crocuses), moist dark soil, sparse canopy
+- Temperature: typically 5-18°C
+- Light: increasing daylight, softer sun
+- People: light jackets, long sleeves
+
+☀️ SUMMER (June-August):
+- Visual clues: full dense dark green canopy, lush green grass, colorful summer flowers, bright blue sky, intense sun
+- Temperature: typically 18-35°C
+- Light: long days, strong sunlight
+- People: t-shirts, shorts, summer dresses, hats
+
+🍂 AUTUMN (September-November):
+- Visual clues: leaves turning yellow/orange/red/brown, fallen leaves covering ground, dried yellowish grass, fruits/mushrooms, bare branches starting (late autumn)
+- Temperature: typically 5-18°C (cooling)
+- Light: shorter days, golden hour light
+- People: jackets, sweaters
+
+❄️ WINTER (December-February):
+- Visual clues: bare branches, snow on ground/trees, frost/ice, evergreen trees only, grey sky, short shadows
+- Temperature: typically below 0°C
+- Light: short days, low sun angle
+- People: heavy coats, hats, scarves
+
+**CRITICAL: SPRING vs AUTUMN DISAMBIGUATION** (visually similar, commonly confused)
+
+| Clue | SPRING | AUTUMN |
+|------|--------|--------|
+| Leaves | Young, bright green, budding | Mature, yellow/red/brown, falling |
+| Ground | Moist dark soil, fresh green grass | Dry soil, brown grass, fallen leaves |
+| Flowers | Tulips, daffodils, blossoms | None or berries/mushrooms |
+| Light | Increasing, cool | Decreasing, warm golden |
+| Temperature trend | WARMING UP from winter | COOLING DOWN from summer |
+
+**USE TEMPERATURE DATA:**
+- If temperature is provided, COMPARE it with climate normals
+- Temperatures TRENDING UP from winter norms → SPRING
+- Temperatures TRENDING DOWN from summer norms → AUTUMN
+- Example: +5°C in March (spring) vs +5°C in November (autumn) → same temp, different trend!
+
+**USE CLIMATE NORMALS:**
+- If temp matches March/April/May averages → likely SPRING
+- If temp matches September/October/November averages → likely AUTUMN
+
+**MONTH NARROWING:**
+- Early spring (March): cold, possible snow, very few buds
+- Mid spring (April): buds opening, first green appearing
+- Late spring (May): full green, warm, flowers blooming
+- Early autumn (September): still mostly green, slight yellowing
+- Mid autumn (October): strong colors, leaves falling
+- Late autumn (November): mostly bare trees, cold, brown
 
 **CRITICAL INSTRUCTION:**
 - You MUST respond ONLY with valid JSON.
@@ -163,26 +216,22 @@ async def analyze_photo(
 - NO markdown formatting.
 - JUST the raw JSON object.
 
-Example response: {"season": "summer", "month": "July", "confidence": "high"}
+Example response: {"season": "spring", "month": "April", "confidence": "high"}
 
 Available tools (use if needed):
 - get_climate_history, get_seasonal_forecast, get_climate_normals, find_similar_cities
 
-Now analyze and respond ONLY with JSON."""
+Now analyze the image and respond ONLY with JSON."""
     
     user_prompt = f"""
 {location_txt}
 {siglip_info}
 
-Analyze this image and determine the season and month.
+Use the seasonal indicators above to analyze this image.
 
 Respond ONLY with JSON. No other text.
 
-Possible seasons: winter, spring, summer, autumn
-Possible months: January, February, March, April, May, June, July, August, September, October, November, December
-
 Your response:"""
-    
     with open(path, "rb") as image_file:
         base64_image = base64.b64encode(image_file.read()).decode('utf-8')
     
