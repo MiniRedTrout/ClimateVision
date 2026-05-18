@@ -72,13 +72,10 @@ def extract_temperature(caption: str) -> Optional[float]:
         r'(?:temp|temperature|t)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)',
         r'(?:temp|temperature|t)\s+([+-]?\d+(?:\.\d+)?)',
         r'(?:температура|темп)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)',
-        
         r'([+-]?\d+(?:\.\d+)?)\s*°\s*[cC]',
         r'([+-]?\d+(?:\.\d+)?)\s*[cC](?!\w)',
-        
         r'([+-]?\d+(?:\.\d+)?)\s*(?:градусов|градуса|град)',
-
-        r'\b([+-]?\d+(?:\.\d+)?)\s*$',
+        r'temp(\d+(?:\.\d+)?)',
     ]
     
     for pattern in patterns:
