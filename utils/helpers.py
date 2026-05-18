@@ -68,16 +68,43 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
 def extract_temperature(caption: str) -> Optional[float]:
     if not caption:
         return None
-    pattern = r'(?:temp|temperature|t)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)'
-    match = re.search(pattern, caption, re.IGNORECASE)
     
-    if match:
-        print(f"Найдено по паттерну: '{pattern}'")
-        print(f"Совпадение: '{match.group(0)}'")
-        print(f"Температура: {match.group(1)}")
-        return float(match.group(1))
+    import re
+    normalized = re.sub(r'\s+', ' ', caption)
+    patterns = [
+        # temperature: 18
+        r'\b(?:temperature)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)',
+        # temperature 18
+        r'\b(?:temperature)\s+([+-]?\d+(?:\.\d+)?)',
+        # temp: 18
+        r'\b(?:temp)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)',
+        # temp 18
+        r'\b(?:temp)\s+([+-]?\d+(?:\.\d+)?)',
+        # температура: 18
+        r'\b(?:температура)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)',
+        # темп: 18
+        r'\b(?:темп)\s*[:=]?\s*([+-]?\d+(?:\.\d+)?)',
+    ]
     
-    print("Паттерн с ключевым словом НЕ сработал")
+    for pattern in patterns:
+        match = re.search(pattern, normalized, re.IGNORECASE)
+        if match:
+            temp = float(match.group(1))
+            if -50 <= temp <= 60:
+                return temp
+    patterns2 = [
+        r'([+-]?\d+(?:\.\d+)?)\s*°\s*[cC]',
+        r'([+-]?\d+(?:\.\d+)?)\s*(?:градусов|градуса|град)',
+        r'([+-]?\d+(?:\.\d+)?)\s*[cC](?!\w)',
+    ]
+    
+    for pattern in patterns2:
+        match = re.search(pattern, normalized, re.IGNORECASE)
+        if match:
+            temp = float(match.group(1))
+            if -50 <= temp <= 60:
+                return temp
+    
     return None
 
 def extract_json_from_response(text: str) -> dict:
