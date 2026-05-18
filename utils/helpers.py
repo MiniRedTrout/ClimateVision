@@ -68,17 +68,16 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
 def extract_temperature(caption: str) -> Optional[float]:
     if not caption:
         return None
-    patterns = r'(?:temp|temperature|t)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)'
+    pattern = r'(?:temp|temperature|t)\s*[:=]\s*([+-]?\d+(?:\.\d+)?)'
+    match = re.search(pattern, caption, re.IGNORECASE)
     
-    for pattern in patterns:
-        match = re.search(pattern, caption, re.IGNORECASE)
-        if match:
-            try:
-                temp = float(match.group(1))
-                if -50 <= temp <= 60:
-                    return temp
-            except ValueError:
-                continue
+    if match:
+        print(f"Найдено по паттерну: '{pattern}'")
+        print(f"Совпадение: '{match.group(0)}'")
+        print(f"Температура: {match.group(1)}")
+        return float(match.group(1))
+    
+    print("Паттерн с ключевым словом НЕ сработал")
     return None
 
 def extract_json_from_response(text: str) -> dict:
