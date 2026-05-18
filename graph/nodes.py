@@ -116,7 +116,7 @@ class AgentNodes:
                 state.get('city'),
                 state.get('temperature'),
                 climate_context,
-                siglip_prediction=siglip_prediction  # ← КЛЮЧЕВОЕ: передаем SigLIP внутрь
+                siglip_prediction=siglip_prediction  
             )
             
             vision_analysis = parse(vision_result)
@@ -272,3 +272,4 @@ SigLIP модель обучена на реальных климатическ�
         return state
 
 print('Close', flush=True)
+print('EE')
