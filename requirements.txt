@@ -2,8 +2,8 @@ python-telegram-bot==21.3
 flask==3.0.0
 requests==2.32.0
 langchain-ollama==0.1.0
-langchain==0.2.0
-langchain-core==0.2.0
+langchain==0.2.20          
+langchain-core==0.2.20
 langgraph==0.0.30
 aiohttp==3.9.0
 python-dotenv==1.0.1
