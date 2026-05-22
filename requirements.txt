@@ -4,7 +4,7 @@ requests==2.32.0
 langchain-ollama==0.1.0
 langchain>=0.2.0,<0.3.0
 langchain-core>=0.2.20,<0.3.0
-langgraph==0.0.30
+langgraph>=0.1.0,<0.3.0
 aiohttp==3.9.0
 python-dotenv==1.0.1
 openai==1.30.0
