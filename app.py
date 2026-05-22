@@ -224,24 +224,26 @@ class SeasonBot:
                 messages=[],
             )
 
+            print("=== INITIAL STATE CREATED ===", flush=True)
             final_state = await self.agent.ainvoke(initial_state)
+            print("=== GRAPH EXECUTED OK ===", flush=True)
 
             if final_state.get("errors"):
-                await update.message.reply_text(f"❌ {final_state['errors'][0][:100]}")
+                await update.message.reply_text(f"{final_state['errors'][0][:100]}")
 
             if final_state.get("answer"):
                 await update.message.reply_text(final_state["answer"])
             else:
-                await update.message.reply_text("❌ Не удалось определить сезон")
+                await update.message.reply_text("Не удалось определить сезон")
             duration_ms = (time.time() - start_time) * 1000
             metrics.track_response_time(duration_ms)
         except Exception as e:
-            logger.error(f"Error in handle_photo: {e}", exc_info=True)
             import traceback
 
             error_detail = traceback.format_exc()
-            print(f"ПОЛНЫЙ ТРЕЙСБЭК:\n{error_detail}", flush=True)
-            await update.message.reply_text("❌ Произошла ошибка при анализе фото")
+            print(f"!!! ПОЛНЫЙ ТРЕЙСБЭК:\n{error_detail}", flush=True)
+            logger.error(f"Error in handle_photo: {e}", exc_info=True)
+            await update.message.reply_text("Произошла ошибка при анализе фото")
 
         finally:
             if os.path.exists(tmp_path):
