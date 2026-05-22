@@ -8,6 +8,7 @@ LangGraph pipeline для обработки запроса.
 
 print("START", flush=True)
 
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -149,31 +150,31 @@ class SeasonBot:
         allowed, wait_time = self.rate_limiter.is_allowed(user_id)
         if not allowed:
             await update.message.reply_text(
-                f"⏳ Слишком много запросов. Подождите {wait_time} секунд."
+                f"Слишком много запросов. Подождите {wait_time} секунд."
             )
             return
 
-        await update.message.reply_text("🔍 Анализирую фотографию...")
+        await update.message.reply_text("Анализирую фотографию...")
 
         lat, lon, city, temperature = await self._extract_location(update)
 
-        feedback_parts = ["📋 Принял данные:"]
+        feedback_parts = ["Принял данные:"]
         warnings = []
 
         if city:
-            feedback_parts.append(f"🏙️ Город: {city}")
+            feedback_parts.append(f"Город: {city}")
         if lat and lon:
             valid, coord_error = validate_coords(lat, lon)
             if valid:
-                feedback_parts.append(f"📍 Координаты: {lat:.4f}, {lon:.4f}")
+                feedback_parts.append(f"Координаты: {lat:.4f}, {lon:.4f}")
             else:
-                warnings.append(f"⚠️ {coord_error} - исправьте и отправьте заново")
+                warnings.append(f"{coord_error} - исправьте и отправьте заново")
         if temperature is not None:
             if -60 <= temperature <= 60:
-                feedback_parts.append(f"🌡️ Температура: {temperature}°C")
+                feedback_parts.append(f"Температура: {temperature}°C")
             else:
                 warnings.append(
-                    f"⚠️ Странная температура: {temperature}°C. "
+                    f"Странная температура: {temperature}°C. "
                     f"Проверьте формат (например: +5°C, -10°C)"
                 )
 
@@ -184,7 +185,7 @@ class SeasonBot:
         if not city and not (lat and lon):
             feedback_parts.append("")
             feedback_parts.append(
-                "💡 Подсказка: укажите город или координаты для лучшего результата."
+                "Подсказка: укажите город или координаты для лучшего результата."
             )
             feedback_parts.append('Примеры: "город Москва", "55.75, 37.62", "+5°C"')
 
@@ -193,7 +194,7 @@ class SeasonBot:
         photo_file = await update.message.photo[-1].get_file()
 
         if photo_file.file_size > 10 * 1024 * 1024:
-            await update.message.reply_text("❌ Фото слишком большое (максимум 10 МБ)")
+            await update.message.reply_text("Фото слишком большое (максимум 10 МБ)")
             return
 
         with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as tmp:
@@ -215,8 +216,9 @@ class SeasonBot:
                 photo_analysis=None,
                 photo_raw_response=None,
                 rag_context=None,
-                calendar_context=None,
+                last_llm_response=None,
                 synthesized=None,
+                tool_result=[],
                 answer=None,
                 errors=[],
                 messages=[],
@@ -234,8 +236,13 @@ class SeasonBot:
             duration_ms = (time.time() - start_time) * 1000
             metrics.track_response_time(duration_ms)
         except Exception as e:
-            logger.error(f"Error in handle_photo: {e}")
+            logger.error(f"Error in handle_photo: {e}", exc_info=True)
+            import traceback
+
+            error_detail = traceback.format_exc()
+            print(f"ПОЛНЫЙ ТРЕЙСБЭК:\n{error_detail}", flush=True)
             await update.message.reply_text("❌ Произошла ошибка при анализе фото")
+
         finally:
             if os.path.exists(tmp_path):
                 os.unlink(tmp_path)
