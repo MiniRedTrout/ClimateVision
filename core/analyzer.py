@@ -10,8 +10,8 @@ from utils import image_hash, location, logger, metrics
 from utils.helpers import extract_json_from_response
 
 GROQ_API_KEY = os.getenv("API_KEY")
-GROQ_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
-GROQ_API_BASE = "https://api.groq.com/openai/v1"
+GROQ_MODEL_NAME = "glm-4v-plus"
+GROQ_API_BASE = "https://open.bigmodel.cn/api/paas/v4"
 client = openai.AsyncOpenAI(
     api_key=GROQ_API_KEY,
     base_url=GROQ_API_BASE,
