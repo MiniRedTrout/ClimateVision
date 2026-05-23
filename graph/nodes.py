@@ -227,7 +227,7 @@ class AgentNodes:
         siglip_info = ""
         if photo.get("siglip_season"):
             siglip_info = f"""
-**🔬 SigLIP анализ:**
+**SigLIP анализ:**
 - Предсказанный сезон: {photo["siglip_season"]}
 - Уверенность: {photo["siglip_confidence"]:.2%}
 - Вероятности: {json.dumps(photo.get("siglip_probabilities", {}), ensure_ascii=False)}
@@ -252,6 +252,8 @@ SigLIP модель обучена на реальных климатическ�
 Ответь полезно и дружелюбно.
 """
 
+        logger.info(f"DEBUG KEY: {str(GROQ_API_KEY)[:6]}...{str(GROQ_API_KEY)[-4:]}")
+
         response = await groq_client.chat.completions.create(
             model=GROQ_TEXT_MODEL,
             messages=[{"role": "user", "content": prompt}],
@@ -265,7 +267,7 @@ SigLIP модель обучена на реальных климатическ�
         return state
 
     def formatter_node(self, state: AgentState) -> AgentState:
-        logger.info("📝 Formatter Node")
+        logger.info("Formatter Node")
         synthesized = state.get("synthesized", {})
         season_ru = self.cfg.graph.SEASON_NAMES_RU.get(
             synthesized.get("season", "unknown"), "Неизвестно"
@@ -284,7 +286,7 @@ SigLIP модель обучена на реальных климатическ�
                 icon = "НИЗКАЯ"
         else:
             icon = {"high": "ВЫСОКАЯ", "medium": "СРЕДНЯЯ", "low": "НИЗКАЯ"}.get(
-                confidence, "⚠️ СРЕДНЯЯ"
+                confidence, "СРЕДНЯЯ"
             )
 
         state["answer"] = f"""
