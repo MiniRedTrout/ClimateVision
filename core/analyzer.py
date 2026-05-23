@@ -15,8 +15,8 @@ from graph.tools import get_climate_history, get_climate_normals, get_seasonal_f
 from utils import image_hash, location, logger, metrics
 
 GROQ_API_KEY = os.getenv("API_KEY")
-GROQ_MODEL_NAME = "glm-4v-plus"
-GROQ_API_BASE = "https://open.bigmodel.cn/api/paas/v4"
+GROQ_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
+GROQ_API_BASE = "https://api.groq.com/openai/v1"
 
 client = openai.AsyncOpenAI(
     api_key=GROQ_API_KEY,
