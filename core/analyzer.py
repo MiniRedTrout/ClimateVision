@@ -13,7 +13,7 @@ from cache import ollama_cache
 from utils import image_hash, location, logger, metrics
 
 GLM_API_KEY = os.getenv("GLM_API_KEY")
-GLM_MODEL_NAME = "glm-4v"
+GLM_MODEL_NAME = "glm-4v-flash"
 GLM_API_BASE = "https://open.bigmodel.cn/api/paas/v4"
 
 client = openai.AsyncOpenAI(
