@@ -363,6 +363,18 @@ SigLIP модель обучена на реальных климатическ�
 
         lines.append(f"Уверенность: {conf_label}")
 
+        top_season_ru = (
+            season_ru_map.get(sorted_seasons[0][0], sorted_seasons[0][0])
+            if sorted_seasons
+            else "Неизвестно"
+        )
+        top_month_ru = (
+            month_ru_map.get(sorted_months[0][0], sorted_months[0][0])
+            if sorted_months
+            else "Неизвестно"
+        )
+        lines.append(f"Вывод: {top_season_ru}, {top_month_ru}")
+
         state["answer"] = "\n".join(lines)
         return state
 
