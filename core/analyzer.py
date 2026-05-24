@@ -13,7 +13,7 @@ from cache import ollama_cache
 from utils import image_hash, location, logger, metrics
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL_NAME = "gemini-3-flash"
+GEMINI_MODEL_NAME = "gemini-2.0-flash"
 GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 client = openai.AsyncOpenAI(
