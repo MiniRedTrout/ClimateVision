@@ -12,14 +12,23 @@ from omegaconf import DictConfig
 from cache import ollama_cache
 from utils import image_hash, location, logger, metrics
 
-GEMINI_API_KEY = os.getenv("GROQ_API_KEY")
-GEMINI_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
-GEMINI_API_BASE = "https://api.groq.com/openai/v1"
+VISION_API_KEY = os.getenv("GROQ_API_KEY")
+VISION_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
+VISION_API_BASE = "https://api.groq.com/openai/v1"
 
-client = openai.AsyncOpenAI(
-    api_key=GEMINI_API_KEY,
-    base_url=GEMINI_API_BASE,
-)
+client = None
+
+if VISION_API_KEY:
+    client = openai.AsyncOpenAI(
+        api_key=VISION_API_KEY,
+        base_url=VISION_API_BASE,
+    )
+    print(
+        f"Vision client OK, key: {VISION_API_KEY[:6]}...{VISION_API_KEY[-4:]}",
+        flush=True,
+    )
+else:
+    print("!!! VISION_API_KEY is None !!!", flush=True)
 
 SEASON_SPRING_AUTUMN_GUIDE = """
 CRITICAL: SPRING vs AUTUMN DISAMBIGUATION
@@ -76,14 +85,18 @@ async def analyze_photo(
     climate_context: str = "",
     siglip_prediction: dict = None,
 ) -> str:
+    if client is None:
+        logger.error("Vision client not initialized")
+        return json.dumps(
+            {"season": "unknown", "month": "unknown", "confidence": "low"}
+        )
+
     has_coordinates = lat is not None and lon is not None
 
-    print("  Computing image hash...", flush=True)
     hash_val = image_hash(path)
     cache_key = (
         f"vision:{hash_val}:{lat}:{lon}:{city}:{temperature}:{hash(climate_context)}"
     )
-    print("  Cache key created", flush=True)
 
     result = ollama_cache.get(cache_key)
     if result:
@@ -92,10 +105,9 @@ async def analyze_photo(
         return result
 
     metrics.track_cache_miss()
-    logger.info("Calling Vision model (GLM-4V-plus)")
+    logger.info("Calling Vision model")
     metrics.track_api_call("vision_model")
 
-    # Build SigLIP hint for the prompt
     siglip_hint = ""
     if siglip_prediction:
         siglip_season = siglip_prediction.get("season", "unknown")
@@ -146,11 +158,11 @@ STEP 4: Narrow down to specific month using all available data.
 IMPORTANT: If unsure between spring and autumn, explicitly compare visual clues
 from the guide above AND check which months' temperature norms match the current temperature.
 
-Possible seasons: winter, spring, summer, autumn
-Possible months: January, February, March, April, May, June, July, August, September, October, November, December
-
 Respond ONLY with valid JSON. No other text.
-Example: {{"season": "winter", "month": "December", "confidence": "high"}}
+Format: {{"season": "...", "month": "...", "confidence": "...", "season_probabilities": {{"winter": 0.0, "spring": 0.0, "summer": 0.0, "autumn": 0.0}}, "month_probabilities": {{"January": 0, "February": 0, "March": 0, "April": 0, "May": 0, "June": 0, "July": 0, "August": 0, "September": 0, "October": 0, "November": 0, "December": 0}}}}
+
+season_probabilities must sum to 1.0
+month_probabilities must sum to 1.0
 
 Your response:"""
     else:
@@ -166,11 +178,11 @@ Analyze this image and determine the season and month.
 NO COORDINATES AVAILABLE.
 Rely ONLY on visual analysis. Pay EXTRA attention to spring vs autumn visual clues above.
 
-Possible seasons: winter, spring, summer, autumn
-Possible months: January, February, March, April, May, June, July, August, September, October, November, December
-
 Respond ONLY with valid JSON. No other text.
-Example: {{"season": "winter", "month": "December", "confidence": "high"}}
+Format: {{"season": "...", "month": "...", "confidence": "...", "season_probabilities": {{"winter": 0.0, "spring": 0.0, "summer": 0.0, "autumn": 0.0}}, "month_probabilities": {{"January": 0, "February": 0, "March": 0, "April": 0, "May": 0, "June": 0, "July": 0, "August": 0, "September": 0, "October": 0, "November": 0, "December": 0}}}}
+
+season_probabilities must sum to 1.0
+month_probabilities must sum to 1.0
 
 Your response:"""
 
@@ -179,7 +191,7 @@ Your response:"""
 
     try:
         response = await client.chat.completions.create(
-            model=GEMINI_MODEL_NAME,
+            model=VISION_MODEL_NAME,
             messages=[
                 {
                     "role": "user",
@@ -212,6 +224,10 @@ Your response:"""
             if "season" in parsed and "month" in parsed:
                 if "confidence" not in parsed:
                     parsed["confidence"] = "medium"
+                if "season_probabilities" not in parsed:
+                    parsed["season_probabilities"] = {parsed["season"]: 1.0}
+                if "month_probabilities" not in parsed:
+                    parsed["month_probabilities"] = {parsed["month"]: 1.0}
                 result = json.dumps(parsed)
                 ollama_cache.set(
                     cache_key, result, ttl=cfg.model.get("cache_ttl", 3600)

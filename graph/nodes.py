@@ -3,7 +3,6 @@ from datetime import datetime
 from .state import AgentState
 
 print(1, flush=True)
-# from langchain_ollama import ChatOllama
 print(2, flush=True)
 from utils.helpers import parse
 
@@ -44,7 +43,7 @@ class AgentNodes:
         if self._siglip is None:
             try:
                 self._siglip = SigLIPClassifier.get_instance()
-                logger.info(" SigLIP модель загружена")
+                logger.info("SigLIP модель загружена")
             except Exception as e:
                 logger.error(f"Не удалось загрузить SigLIP: {e}")
                 self._siglip = None
@@ -144,6 +143,12 @@ class AgentNodes:
                 "confidence": vision_analysis.get("confidence", "medium"),
                 "vision_season": vision_analysis.get("season", "unknown"),
                 "vision_confidence": vision_analysis.get("confidence", "medium"),
+                "vision_season_probabilities": vision_analysis.get(
+                    "season_probabilities", {}
+                ),
+                "vision_month_probabilities": vision_analysis.get(
+                    "month_probabilities", {}
+                ),
                 "siglip_season": siglip_prediction["season"]
                 if siglip_prediction
                 else None,
@@ -268,39 +273,86 @@ SigLIP модель обучена на реальных климатическ�
 
     def formatter_node(self, state: AgentState) -> AgentState:
         logger.info("Formatter Node")
-        synthesized = state.get("synthesized", {})
-        season_ru = self.cfg.graph.SEASON_NAMES_RU.get(
-            synthesized.get("season", "unknown"), "Неизвестно"
-        )
-        month_ru = self.cfg.graph.MONTH_NAMES_RU.get(
-            synthesized.get("month", ""), "Неизвестно"
+
+        photo = state.get("photo_analysis", {})
+
+        season_ru_map = self.cfg.graph.SEASON_NAMES_RU
+        month_ru_map = self.cfg.graph.MONTH_NAMES_RU
+
+        siglip_probs = photo.get("siglip_probabilities", {})
+        vision_probs = photo.get("vision_season_probabilities", {})
+
+        combined_season = {}
+        if siglip_probs and vision_probs:
+            for s in ["winter", "spring", "summer", "autumn"]:
+                combined_season[s] = (
+                    siglip_probs.get(s, 0) * 0.7 + vision_probs.get(s, 0) * 0.3
+                )
+        elif siglip_probs:
+            combined_season = siglip_probs
+        elif vision_probs:
+            combined_season = vision_probs
+        else:
+            final_season = photo.get("season", "unknown")
+            if final_season != "unknown":
+                combined_season = {final_season: 1.0}
+
+        total = sum(combined_season.values())
+        if total > 0:
+            combined_season = {k: v / total for k, v in combined_season.items()}
+
+        sorted_seasons = sorted(
+            combined_season.items(), key=lambda x: x[1], reverse=True
         )
 
-        confidence = synthesized.get("confidence", "medium")
+        month_probs = photo.get("vision_month_probabilities", {})
+        sorted_months = (
+            sorted(month_probs.items(), key=lambda x: x[1], reverse=True)
+            if month_probs
+            else []
+        )
+
+        confidence = photo.get("confidence", "medium")
         if isinstance(confidence, float):
             if confidence > 0.8:
-                icon = "ВЫСОКАЯ"
+                conf_label = "ВЫСОКАЯ"
             elif confidence > 0.6:
-                icon = "СРЕДНЯЯ"
+                conf_label = "СРЕДНЯЯ"
             else:
-                icon = "НИЗКАЯ"
+                conf_label = "НИЗКАЯ"
         else:
-            icon = {"high": "ВЫСОКАЯ", "medium": "СРЕДНЯЯ", "low": "НИЗКАЯ"}.get(
+            conf_label = {"high": "ВЫСОКАЯ", "medium": "СРЕДНЯЯ", "low": "НИЗКАЯ"}.get(
                 confidence, "СРЕДНЯЯ"
             )
 
-        state["answer"] = f"""
-Результат анализа
+        lines = []
 
-Сезон: {season_ru}
-Месяц: {month_ru}
+        if photo.get("siglip_season"):
+            siglip_ru = season_ru_map.get(
+                photo["siglip_season"], photo["siglip_season"]
+            )
+            siglip_pct = int(round(photo.get("siglip_confidence", 0) * 100))
+            lines.append(f"SigLIP Предсказание: {siglip_ru} ({siglip_pct}%)")
 
-{icon} Уверенность: {confidence if isinstance(confidence, float) else synthesized.get("confidence", "medium")}
-"""
+        lines.append("РЕЗУЛЬТАТЫ АНАЛИЗА")
+        lines.append("")
 
-        if state.get("photo_analysis", {}).get("siglip_season"):
-            state["answer"] += "\nАнализ выполнен с учетом SigLIP модели"
+        for season, prob in sorted_seasons:
+            ru_name = season_ru_map.get(season, season)
+            pct = round(prob * 100, 1)
+            lines.append(f"  {ru_name}: {pct}%")
 
+        if sorted_months:
+            lines.append("")
+            top_months = [(m, p) for m, p in sorted_months if p > 0][:5]
+            for month_en, prob in top_months:
+                ru_name = month_ru_map.get(month_en, month_en)
+                pct = round(prob * 100, 1)
+                lines.append(f"  {ru_name}: {pct}%")
+
+        lines.append(f"Уверенность: {conf_label}")
+
+        state["answer"] = "\n".join(lines)
         return state
 
 
