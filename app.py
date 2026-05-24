@@ -107,12 +107,12 @@ class SeasonBot:
 
     async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
-            "**Справка**\n\n"
-            "**Как пользоваться:**\n"
+            "Справка\n\n"
+            "Как пользоваться:\n"
             "1. Отправьте фотографию\n"
             "2. Опционально: добавьте геолокацию или напишите город\n"
             "3. Я определю сезон и месяц\n\n"
-            "**Примеры подписей:**\n"
+            "Примеры подписей:\n"
             "• 'город Москва'\n"
             "• 'Сочи, март'\n"
             "• '55.75, 37.62'\n"
@@ -127,7 +127,7 @@ class SeasonBot:
         rate_stats = self.rate_limiter.get_stats(update.effective_user.id)
 
         reply = (
-            f"**Статистика бота**\n\n"
+            f"Статистика бота\n\n"
             f"Всего запросов: {stats.get('total_requests', 0)}\n"
             f"Кэш: хиты={stats.get('cache_hits', 0)}, "
             f"промахи={stats.get('cache_misses', 0)}\n"
@@ -276,7 +276,7 @@ class SeasonBot:
             if temperature:
                 logger.info(f"Temperature from caption: {temperature}")
             else:
-                logger.info(f"⚠️ Temperature NOT found in caption: '{caption}'")
+                logger.info(f"Temperature NOT found in caption: '{caption}'")
         return lat, lon, city, temperature
 
     async def run(self):

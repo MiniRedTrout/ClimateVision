@@ -46,7 +46,7 @@ class AgentNodes:
                 self._siglip = SigLIPClassifier.get_instance()
                 logger.info(" SigLIP модель загружена")
             except Exception as e:
-                logger.error(f" Не удалось загрузить SigLIP: {e}")
+                logger.error(f"Не удалось загрузить SigLIP: {e}")
                 self._siglip = None
         return self._siglip
 
@@ -108,10 +108,10 @@ class AgentNodes:
                     state.get("temperature"),
                 )
                 logger.info(
-                    f" SigLIP предсказание: {siglip_prediction['season']} (уверенность: {siglip_prediction['confidence']:.2%})"
+                    f"SigLIP предсказание: {siglip_prediction['season']} (уверенность: {siglip_prediction['confidence']:.2%})"
                 )
                 logger.info(
-                    f"   SigLIP вероятности: {json.dumps(siglip_prediction.get('probabilities', {}))}"
+                    f"SigLIP вероятности: {json.dumps(siglip_prediction.get('probabilities', {}))}"
                 )
 
             vision_result = await self.analyze_photo(
@@ -227,7 +227,7 @@ class AgentNodes:
         siglip_info = ""
         if photo.get("siglip_season"):
             siglip_info = f"""
-**SigLIP анализ:**
+SigLIP анализ:
 - Предсказанный сезон: {photo["siglip_season"]}
 - Уверенность: {photo["siglip_confidence"]:.2%}
 - Вероятности: {json.dumps(photo.get("siglip_probabilities", {}), ensure_ascii=False)}
@@ -236,17 +236,17 @@ class AgentNodes:
         prompt = f"""
 Ты помощник, который определяет сезон по фотографии.
 
-**Данные с фотографии (ансамбль Vision + SigLIP):**
+Данные с фотографии (ансамбль Vision + SigLIP):
 - Сезон: {photo.get("season", "unknown")}
 - Месяц: {photo.get("month", "unknown")}
 - Уверенность: {photo.get("confidence", "medium")}
 
 {siglip_info}
 
-**Климатический контекст:**
+Климатический контекст:
 {climate}
 
-**Вопрос пользователя:** {user_message}
+Вопрос пользователя: {user_message}
 
 SigLIP модель обучена на реальных климатических данных (температура + координаты) и имеет приоритет.
 Ответь полезно и дружелюбно.
@@ -290,7 +290,7 @@ SigLIP модель обучена на реальных климатическ�
             )
 
         state["answer"] = f"""
-**Результат анализа**
+Результат анализа
 
 Сезон: {season_ru}
 Месяц: {month_ru}
@@ -299,9 +299,7 @@ SigLIP модель обучена на реальных климатическ�
 """
 
         if state.get("photo_analysis", {}).get("siglip_season"):
-            state["answer"] += (
-                "\n*Анализ выполнен с учетом SigLIP модели (обучена на реальных климатических данных)*"
-            )
+            state["answer"] += "\nАнализ выполнен с учетом SigLIP модели"
 
         return state
 
