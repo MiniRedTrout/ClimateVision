@@ -6,12 +6,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 import openai
 from omegaconf import DictConfig
 
 from cache import ollama_cache
-from graph.tools import get_climate_history, get_climate_normals, get_seasonal_forecast
 from utils import image_hash, location, logger, metrics
 
 GLM_API_KEY = os.getenv("GLM_API_KEY")
@@ -22,49 +20,6 @@ client = openai.AsyncOpenAI(
     api_key=GLM_API_KEY,
     base_url=GLM_API_BASE,
 )
-
-vision_tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "get_climate_history",
-            "description": "Get historical climate data for specific coordinates for a specific year. Use when you need to know actual weather patterns from a particular year.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "lat": {"type": "number"},
-                    "lon": {"type": "number"},
-                    "year": {"type": "integer", "default": 2023},
-                },
-                "required": ["lat", "lon"],
-            },
-        },
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "get_seasonal_forecast",
-            "description": "Get seasonal forecast for next 7 months (SEAS5 model). Use when you need to understand expected seasonal conditions or anomalies for the upcoming months.",
-            "parameters": {
-                "type": "object",
-                "properties": {"lat": {"type": "number"}, "lon": {"type": "number"}},
-                "required": ["lat", "lon"],
-            },
-        },
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "get_climate_normals",
-            "description": "Get 30-year climate normals (1991-2020). Use as baseline to understand what is typical for this location - average temperatures and precipitation by month. CRITICAL for distinguishing spring from autumn.",
-            "parameters": {
-                "type": "object",
-                "properties": {"lat": {"type": "number"}, "lon": {"type": "number"}},
-                "required": ["lat", "lon"],
-            },
-        },
-    },
-]
 
 SEASON_SPRING_AUTUMN_GUIDE = """
 CRITICAL: SPRING vs AUTUMN DISAMBIGUATION
@@ -111,18 +66,6 @@ MONTH NARROWING:
 """
 
 
-async def call_tool(tool_func, **kwargs):
-    try:
-        if hasattr(tool_func, "ainvoke"):
-            result = await tool_func.ainvoke(kwargs)
-        else:
-            result = await tool_func(**kwargs)
-        return result
-    except Exception as e:
-        logger.error(f"Error calling tool: {e}")
-        return json.dumps({"status": "error", "message": str(e)})
-
-
 async def analyze_photo(
     cfg: DictConfig,
     path: str,
@@ -137,7 +80,9 @@ async def analyze_photo(
 
     print("  Computing image hash...", flush=True)
     hash_val = image_hash(path)
-    cache_key = f"vision_with_tools:{hash_val}:{lat}:{lon}:{city}:{temperature}:{hash(climate_context)}"
+    cache_key = (
+        f"vision:{hash_val}:{lat}:{lon}:{city}:{temperature}:{hash(climate_context)}"
+    )
     print("  Cache key created", flush=True)
 
     result = ollama_cache.get(cache_key)
@@ -147,7 +92,7 @@ async def analyze_photo(
         return result
 
     metrics.track_cache_miss()
-    logger.info("Calling Vision model with tools")
+    logger.info("Calling Vision model (GLM-4V-plus)")
     metrics.track_api_call("vision_model")
 
     # Build SigLIP hint for the prompt
@@ -191,14 +136,12 @@ Otherwise, use climate normals as a strong signal for transitional seasons.
 
 Analyze this image and determine the season and month.
 
-You have access to climate tools. USE THEM to help disambiguate.
 Coordinates are available: lat={lat}, lon={lon}
 
 STEP 1: Look at the image carefully. Note ALL visual indicators.
-STEP 2: Call get_climate_normals to get average temperatures by month for this location.
-STEP 3: If temperature is provided ({temperature}), compare it with monthly normals.
-STEP 4: Combine visual evidence + temperature + climate data + SigLIP prediction to determine season.
-STEP 5: Narrow down to specific month using all available data.
+STEP 2: If temperature is provided ({temperature}), compare it with climate data above.
+STEP 3: Combine visual evidence + temperature + climate data + SigLIP prediction to determine season.
+STEP 4: Narrow down to specific month using all available data.
 
 IMPORTANT: If unsure between spring and autumn, explicitly compare visual clues
 from the guide above AND check which months' temperature norms match the current temperature.
@@ -220,7 +163,7 @@ Your response:"""
 
 Analyze this image and determine the season and month.
 
-NO COORDINATES AVAILABLE - You CANNOT use climate tools.
+NO COORDINATES AVAILABLE.
 Rely ONLY on visual analysis. Pay EXTRA attention to spring vs autumn visual clues above.
 
 Possible seasons: winter, spring, summer, autumn
@@ -235,9 +178,9 @@ Your response:"""
         base64_image = base64.b64encode(image_file.read()).decode("utf-8")
 
     try:
-        kwargs = {
-            "model": GLM_MODEL_NAME,
-            "messages": [
+        response = await client.chat.completions.create(
+            model=GLM_MODEL_NAME,
+            messages=[
                 {
                     "role": "user",
                     "content": [
@@ -251,87 +194,10 @@ Your response:"""
                     ],
                 }
             ],
-            "max_tokens": 512,
-        }
-        if has_coordinates:
-            kwargs["tools"] = vision_tools
-            kwargs["tool_choice"] = "auto"
+            max_tokens=512,
+        )
+        result = response.choices[0].message.content
 
-        response = await client.chat.completions.create(**kwargs)
-        response_message = response.choices[0].message
-        if has_coordinates and response_message.tool_calls:
-            logger.info(
-                f"Vision model requested {len(response_message.tool_calls)} tool calls"
-            )
-
-            messages = [
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": prompt},
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"data:image/jpeg;base64,{base64_image}"
-                            },
-                        },
-                    ],
-                }
-            ]
-            messages.append(
-                {
-                    "role": "assistant",
-                    "content": response_message.content or "",
-                    "tool_calls": [
-                        {
-                            "id": tc.id,
-                            "type": "function",
-                            "function": {
-                                "name": tc.function.name,
-                                "arguments": tc.function.arguments,
-                            },
-                        }
-                        for tc in response_message.tool_calls
-                    ],
-                }
-            )
-
-            for tool_call in response_message.tool_calls:
-                logger.info(f"Executing tool: {tool_call.function.name}")
-                args = json.loads(tool_call.function.arguments)
-                if "lat" not in args and lat is not None:
-                    args["lat"] = lat
-                if "lon" not in args and lon is not None:
-                    args["lon"] = lon
-                if tool_call.function.name == "get_climate_history":
-                    logger.info("Вызываем get_climate_history")
-                    tool_result = await call_tool(get_climate_history, **args)
-                elif tool_call.function.name == "get_seasonal_forecast":
-                    logger.info("Вызываем get_seasonal_forecast")
-                    tool_result = await call_tool(get_seasonal_forecast, **args)
-                elif tool_call.function.name == "get_climate_normals":
-                    logger.info("Вызываем get_climate_normals")
-                    tool_result = await call_tool(get_climate_normals, **args)
-                else:
-                    tool_result = json.dumps(
-                        {"error": f"Unknown tool: {tool_call.function.name}"}
-                    )
-
-                messages.append(
-                    {
-                        "role": "tool",
-                        "tool_call_id": tool_call.id,
-                        "content": tool_result,
-                    }
-                )
-            second_response = await client.chat.completions.create(
-                model=GLM_MODEL_NAME,
-                messages=messages,
-                max_tokens=512,
-            )
-            result = second_response.choices[0].message.content
-        else:
-            result = response_message.content
         try:
             result = result.strip()
             if result.startswith("```json"):
@@ -363,7 +229,7 @@ Your response:"""
             )
 
     except Exception as e:
-        logger.error(f"Vision model error: {e}")
+        logger.error(f"Vision model error: {e}", exc_info=True)
         metrics.track_error("vision_model_error")
         return json.dumps(
             {"season": "unknown", "month": "unknown", "confidence": "low"}
