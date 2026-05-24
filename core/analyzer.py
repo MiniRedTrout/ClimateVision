@@ -12,13 +12,13 @@ from omegaconf import DictConfig
 from cache import ollama_cache
 from utils import image_hash, location, logger, metrics
 
-GLM_API_KEY = os.getenv("GLM_API_KEY")
-GLM_MODEL_NAME = "glm-4v-flash"
-GLM_API_BASE = "https://open.bigmodel.cn/api/paas/v4"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL_NAME = "gemini-3-flash"
+GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 client = openai.AsyncOpenAI(
-    api_key=GLM_API_KEY,
-    base_url=GLM_API_BASE,
+    api_key=GEMINI_API_KEY,
+    base_url=GEMINI_API_BASE,
 )
 
 SEASON_SPRING_AUTUMN_GUIDE = """
@@ -179,7 +179,7 @@ Your response:"""
 
     try:
         response = await client.chat.completions.create(
-            model=GLM_MODEL_NAME,
+            model=GEMINI_MODEL_NAME,
             messages=[
                 {
                     "role": "user",
