@@ -14,13 +14,13 @@ from cache import ollama_cache
 from graph.tools import get_climate_history, get_climate_normals, get_seasonal_forecast
 from utils import image_hash, location, logger, metrics
 
-GROQ_API_KEY = os.getenv("API_KEY")
-GROQ_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
-GROQ_API_BASE = "https://api.groq.com/openai/v1"
+GLM_API_KEY = os.getenv("GLM_API_KEY")
+GLM_MODEL_NAME = "glm-4v-plus"
+GLM_API_BASE = "https://open.bigmodel.cn/api/paas/v4"
 
 client = openai.AsyncOpenAI(
-    api_key=GROQ_API_KEY,
-    base_url=GROQ_API_BASE,
+    api_key=GLM_API_KEY,
+    base_url=GLM_API_BASE,
 )
 
 vision_tools = [
@@ -236,7 +236,7 @@ Your response:"""
 
     try:
         kwargs = {
-            "model": GROQ_MODEL_NAME,
+            "model": GLM_MODEL_NAME,
             "messages": [
                 {
                     "role": "user",
@@ -325,7 +325,7 @@ Your response:"""
                     }
                 )
             second_response = await client.chat.completions.create(
-                model=GROQ_MODEL_NAME,
+                model=GLM_MODEL_NAME,
                 messages=messages,
                 max_tokens=512,
             )
