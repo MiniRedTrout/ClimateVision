@@ -12,9 +12,9 @@ from omegaconf import DictConfig
 from cache import ollama_cache
 from utils import image_hash, location, logger, metrics
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL_NAME = "gemini-2.0-flash"
-GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/openai/"
+GEMINI_API_KEY = os.getenv("GROQ_API_KEY")
+GEMINI_MODEL_NAME = "llama-3.2-90b-vision-preview"
+GEMINI_API_BASE = "https://api.groq.com/openai/v1"
 
 client = openai.AsyncOpenAI(
     api_key=GEMINI_API_KEY,
