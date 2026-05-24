@@ -1,7 +1,7 @@
 """
 ClimateVision — Telegram-бот для определения сезона и месяца по фотографии.
 Принимает фото + геолокацию/город/температуру.
-Использует GLM-4V (vision) для анализа изображения,
+Использует Groq (vision) для анализа изображения,
 климатические данные (RAG + OpenMeteo API) для валидации,
 LangGraph pipeline для обработки запроса.
 """
@@ -69,15 +69,15 @@ def run_http():
 http_thread = threading.Thread(target=run_http, daemon=True)
 http_thread.start()
 
-print("=== 2. IMPORTS DONE ===", flush=True)
-print("=== 3. ENV LOADED ===", flush=True)
-print("=== 4. FLASK APP CREATED ===", flush=True)
+print("2 IMPORTS DONE", flush=True)
+print("3 ENV LOADED", flush=True)
+print("4 FLASK APP CREATED", flush=True)
 print(f" HTTP server started on port {os.environ.get('PORT', 10000)}")
 
 
 class SeasonBot:
     def __init__(self, cfg: DictConfig):
-        print("=== 5. SEASONBOT INIT START ===", flush=True)
+        print("5 SEASONBOT INIT START", flush=True)
         self.cfg = cfg
         self.token = cfg.telegram.token
         self.rate_limiter = RateLimiter(cfg)
@@ -88,7 +88,7 @@ class SeasonBot:
         self._register_handlers()
 
         logger.info("SeasonBot initialized")
-        print("=== 6. SEASONBOT INIT DONE ===", flush=True)
+        print("6 SEASONBOT INIT DONE", flush=True)
 
     def _register_handlers(self):
         self.application.add_handler(CommandHandler("start", self.start_command))
@@ -295,16 +295,16 @@ class SeasonBot:
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(cfg: DictConfig):
-    print("=== 7. MAIN START ===", flush=True)
+    print("7 MAIN START", flush=True)
     logger.info("Starting Season Bot Worker...")
 
     bot = SeasonBot(cfg)
-    print("=== 8. BOT CREATED ===", flush=True)
+    print("8 BOT CREATED", flush=True)
     asyncio.run(bot.run())
-    print("=== 9. BOT RUN DONE ===", flush=True)
+    print("9 BOT RUN DONE", flush=True)
 
 
-print("=== 10. BEFORE MAIN CALL ===", flush=True)
+print("10 BEFORE MAIN CALL", flush=True)
 if __name__ == "__main__":
     main()
-    print("=== 11. AFTER MAIN ===", flush=True)
+    print("11 AFTER MAIN", flush=True)
