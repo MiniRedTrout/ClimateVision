@@ -13,7 +13,7 @@ from cache import ollama_cache
 from utils import image_hash, location, logger, metrics
 
 GEMINI_API_KEY = os.getenv("GROQ_API_KEY")
-GEMINI_MODEL_NAME = "llama-3.2-90b-vision-preview"
+GEMINI_MODEL_NAME = "meta-llama/llama-4-scout-17b-16e-instruct"
 GEMINI_API_BASE = "https://api.groq.com/openai/v1"
 
 client = openai.AsyncOpenAI(
