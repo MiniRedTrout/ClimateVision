@@ -10,16 +10,15 @@ def extract_city(caption: str) -> Optional[str]:
         return None
 
     patterns = [
-        # "город Москва", "city Moscow"
-        r"(?:город|city)\s+([А-ЯЁа-яёA-Za-z\-\s]+?)(?:\s*[,.]|\s*$)",
-        # "в Москве", "в Moscow", "из Москвы"
-        r"(?:в|из|near|from|at)\s+([А-ЯЁа-яёA-Za-z\-]{3,})",
-        # "#москва"
+        r"(?:city|town|сити|город)\s*[:=]\s*"
+        r"([А-ЯЁA-Z][а-яёa-z\-]+(?:\s+[А-ЯЁA-Z][а-яёa-z\-]+)*)",
+        r"(?:город|city)\s+"
+        r"([А-ЯЁA-Z][а-яёa-z\-]+(?:\s+[А-ЯЁA-Z][а-яёa-z\-]+)*)",
+        r"^([А-ЯЁA-Z][а-яёa-z\-]+(?:\s+[А-ЯЁA-Z][а-яёa-z\-]+)*)\s*,",
+        r"(?:в|из|near|from|at|in)\s+"
+        r"([А-ЯЁA-Z][а-яёa-z\-]+(?:\s+[А-ЯЁA-Z][а-яёa-z\-]+){0,2})",
         r"#([а-яёa-z]{3,})",
-        # "Москва, март" — город перед запятой
-        r"^([А-ЯЁ][а-яёA-Za-z\-]{2,})\s*,",
-        # "city/town/сити/город: Moscow"
-        r"(?:city|town|сити|город)\s*[:=]?\s*([А-ЯЁA-Z][а-яёa-z\-]{2,})",
+        r"(?:^|\s)([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s*$",
     ]
 
     garbage = {
@@ -54,6 +53,7 @@ def extract_city(caption: str) -> Optional[str]:
         "spring",
         "summer",
         "autumn",
+        "fall",
         "winter",
         "temp",
         "temperature",
@@ -61,6 +61,7 @@ def extract_city(caption: str) -> Optional[str]:
         "градусов",
         "градуса",
         "град",
+        "degrees",
         "lat",
         "lon",
         "latitude",
@@ -79,12 +80,21 @@ def extract_city(caption: str) -> Optional[str]:
         "s",
         "e",
         "w",
+        "photo",
+        "фото",
+        "picture",
+        "image",
+        "pic",
+        "today",
+        "сегодня",
     }
 
     for p in patterns:
         match = re.search(p, caption, re.IGNORECASE)
         if match:
             city = match.group(1).strip()
+            city = re.split(r"\s+(?:temp|grad|lat|lon|n|s|e|w)\b", city, flags=re.I)[0]
+            city = city.strip(" ,.;:!?")
             if city.lower() not in garbage and len(city) >= 2:
                 return city
 
@@ -106,7 +116,6 @@ def parse(txt: str) -> dict:
     """Парсим ответ от модели — выковыривает JSON из любого мусора"""
     txt = txt.strip()
 
-    # Убираем markdown обёртки
     if txt.startswith("```json"):
         txt = txt[7:]
     if txt.startswith("```"):
@@ -115,13 +124,11 @@ def parse(txt: str) -> dict:
         txt = txt[:-3]
     txt = txt.strip()
 
-    # Попытка 1: прямой парсинг
     try:
         return json.loads(txt)
     except json.JSONDecodeError:
         pass
 
-    # Попытка 2: найти JSON-объект по скобкам
     brace_start = txt.find("{")
     brace_end = txt.rfind("}")
     if brace_start != -1 and brace_end != -1:
@@ -130,7 +137,6 @@ def parse(txt: str) -> dict:
         except json.JSONDecodeError:
             pass
 
-    # Попытка 3: regex по ключам (финальный fallback)
     season_match = re.search(r'"season"\s*:\s*"([^"]+)"', txt)
     month_match = re.search(r'"month"\s*:\s*"([^"]+)"', txt)
     confidence_match = re.search(r'"confidence"\s*:\s*"([^"]+)"', txt)
@@ -174,14 +180,10 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
         return None
 
     patterns_lat_lon = [
-        # lat=55.75, lon=37.62 / lat:55.75; lon:37.62
         r"lat(?:itude)?\s*[:=]?\s*([+-]?\d+\.?\d*)\s*[,;\s]\s*lon(?:g(?:itude)?)?\s*[:=]?\s*([+-]?\d+\.?\d*)",
-        # lon first, then lat
         r"lon(?:g(?:itude)?)?\s*[:=]?\s*([+-]?\d+\.?\d*)\s*[,;\s]\s*lat(?:itude)?\s*[:=]?\s*([+-]?\d+\.?\d*)",
-        # кириллица: ш/шр/широта ... д/дг/долгота
         r"(?:ш|ш\.|шр)\s*[:=]?\s*([+-]?\d+\.?\d*)\s*[,;\s]\s*(?:д|д\.|дг)\s*[:=]?\s*([+-]?\d+\.?\d*)",
         r"широта\s*[:=]?\s*([+-]?\d+\.?\d*)\s*[,;\s]\s*долгота\s*[:=]?\s*([+-]?\d+\.?\d*)",
-        # компас: 55°N 37°E (с градусом и без)
         r"([\d]+\.?\d*)\s*°?\s*[NnСс]\s*[,;\s]+\s*([\d]+\.?\d*)\s*°?\s*[EeВв]",
         r"([\d]+\.?\d*)\s*°?\s*[SsЮю]\s*[,;\s]+\s*([\d]+\.?\d*)\s*°?\s*[EeВв]",
         r"([\d]+\.?\d*)\s*°?\s*[NnСс]\s*[,;\s]+\s*([\d]+\.?\d*)\s*°?\s*[WwЗз]",
@@ -199,7 +201,6 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
                 val1 = float(match.group(1))
                 val2 = float(match.group(2))
 
-                # Определяем порядок lat/lon и знак
                 if "lon" in pattern and "lat" in pattern:
                     if pattern.index("lon") < pattern.index("lat"):
                         lat, lon = val2, val1
@@ -220,7 +221,6 @@ def parse_coordinates(text: str) -> Optional[Tuple[float, float]]:
             except ValueError:
                 continue
 
-    # Fallback: просто два числа подряд
     fallback = re.findall(r"([+-]?\d{1,3}\.?\d*)", text)
     if len(fallback) >= 2:
         try:
@@ -240,25 +240,15 @@ def extract_temperature(caption: str) -> Optional[float]:
         return None
 
     patterns = [
-        # "температура: 5", "темп = 5", "temp: 5", "Т: 5"
         r"(?:температура|темп|temp|temperature|t|Т)\s*[:=]\s*([+-]?\d+(?:[.,]\d+)?)",
-        # "температура 5", "temp 5"
         r"(?:температура|темп|temp|temperature|t|Т)\s+([+-]?\d+(?:[.,]\d+)?)",
-        # "5°C", "+5°C", "-10°C"
         r"([+-]?\d+(?:[.,]\d+)?)\s*°\s*[cCСс]",
-        # "5°" (без буквы)
         r"([+-]?\d+(?:[.,]\d+)?)\s*°",
-        # "5 градусов", "+5 градусов", "-10 градуса"
         r"([+-]?\d+(?:[.,]\d+)?)\s*(?:градусов|градуса|град)",
-        # "плюс 5", "+ 5"
         r"(?:плюс|\+)\s*(\d+(?:[.,]\d+)?)\s*(?:градусов|градуса|°)?",
-        # "минус 10", "− 10", "— 10"
         r"(?:минус|−|—)\s*(\d+(?:[.,]\d+)?)\s*(?:градусов|градуса|°)?",
-        # "5 градусов тепла", "5 выше нуля"
         r"(\d+(?:[.,]\d+)?)\s*(?:градусов\s+тепла|выше\s+нуля)",
-        # "5 градусов холода/мороза", "5 ниже нуля"
         r"(\d+(?:[.,]\d+)?)\s*(?:градусов\s+(?:холода|мороза)|ниже\s+нуля)",
-        # "5с" (без пробела)
         r"(\d+(?:[.,]\d+)?)\s*[cCСс]\b",
     ]
 
@@ -269,7 +259,6 @@ def extract_temperature(caption: str) -> Optional[float]:
                 temp_str = match.group(1).replace(",", ".")
                 temp = float(temp_str)
 
-                # Определяем знак по контексту
                 full_match = match.group(0).lower()
                 if any(
                     w in full_match

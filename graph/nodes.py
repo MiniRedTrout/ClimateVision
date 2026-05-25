@@ -327,24 +327,6 @@ SigLIP модель обучена на реальных климатическ�
 
         lines = []
 
-        if photo.get("siglip_season"):
-            siglip_ru = season_ru_map.get(
-                photo["siglip_season"], photo["siglip_season"]
-            )
-            siglip_pct = int(round(photo.get("siglip_confidence", 0) * 100))
-            lines.append(f"SigLIP Предсказание: {siglip_ru} ({siglip_pct}%)")
-
-        if photo.get("vision_season"):
-            vision_ru = season_ru_map.get(
-                photo["vision_season"], photo["vision_season"]
-            )
-            vision_conf = photo.get("vision_confidence", 0)
-            if isinstance(vision_conf, float):
-                vision_pct = int(round(vision_conf * 100))
-            else:
-                vision_pct = {"high": 90, "medium": 60, "low": 30}.get(vision_conf, 50)
-            lines.append(f"Vision Предсказание: {vision_ru} ({vision_pct}%)")
-
         lines.append("РЕЗУЛЬТАТЫ АНАЛИЗА (SigLIP 70% + Vision 30%)")
         lines.append("")
 
