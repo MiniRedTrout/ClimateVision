@@ -1,9 +1,9 @@
 SEASON_NAMES_RU:
-  winter: "❄️ Зима"
-  spring: "🌸 Весна"
-  summer: "☀️ Лето"
-  autumn: "🍂 Осень"
-  unknown: "❓ Неизвестно"
+  winter: "Зима"
+  spring: "Весна"
+  summer: "Лето"
+  autumn: "Осень"
+  unknown: "Неизвестно"
 
 MONTH_NAMES_RU:
   January: "Январь"
