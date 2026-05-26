@@ -6,7 +6,7 @@
 
 Проект настроен для развертывания на облачных платформах (например, Render) в режиме Web Service. Бот использует метод Long Polling. Для предотвращения остановки контейнера на бесплатных тарифах предусмотрен эндпоинт /health, который можно пинговать внешними сервисами (UptimeRobot).
 
-## Технический стек
+# Технический стек
 Оркестрация: LangGraph, LangChain
 
 Машинное обучение: PyTorch, Transformers (HuggingFace)
@@ -30,23 +30,26 @@
 
 ## Структура репозитория
 
- 
+
+``` 
 ClimateVision/
-├── app.py                 # Точка входа, инициализация Telegram-бота и Flask health-check
-├── config/                # Конфигурационные файлы (Hydra)
+├── app.py                 # Точка входа, Telegram bot + Flask
+├── config/                # Конфигурация (Hydra)
 ├── core/
-│   ├── analyzer.py        # Узел визуального анализа (Vision LLM API)
-│   └── siglip.py          # Инициализация и инференс локальной модели SigLIP
+│   ├── analyzer.py        # Vision анализ (Groq Llama-4)
+│   └── siglip.py          # SigLIP классификатор
 ├── graph/
-│   ├── builder.py         # Сборка графа LangGraph
-│   ├── nodes.py           # Логика узлов (router, analysis, synthesis, formatter)
-│   └── state.py           # Структура состояния (AgentState)
+│   ├── builder.py         # LangGraph пайплайн
+│   ├── nodes.py           # Узлы графа (router, analysis, synthesis, formatter)
+│   ├── state.py           # AgentState
+│   └── tools.py           # Климатические инструменты
 ├── rag/
-│   └── retriever.py       # Извлечение климатического контекста (справочник норм)
-├── cache/                 # Логика кэширования ответов
-├── middleware/            # Rate limiter и защита от спама
-├── utils/                 # Валидаторы, парсеры данных, логгер, сбор метрик
-└── models/                # Директория для весов SigLIP (best_model.pth)
+│   └── retriever.py       # Извлечение климатического контекста
+├── cache/                 # Кэширование ответов
+├── middleware/            # Rate limiter
+├── utils/                 # Валидаторы, парсеры, логгер, метрики
+└── models/                # Веса SigLIP (best_model.pth)
+```
 
 #Требования и установка
 
